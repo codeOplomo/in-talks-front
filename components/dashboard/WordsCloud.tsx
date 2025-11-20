@@ -7,6 +7,7 @@ interface Word {
   y: number;
   color: string;
   rotation: number;
+  theme: 'emerging' | 'decreasing' | 'new';
 }
 
 const WordCloud = () => {
@@ -42,12 +43,16 @@ const WordCloud = () => {
     { text: 'AWS', value: 10 }
   ], []);
 
-  const colors = useMemo(() => [
-    '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b',
-    '#10b981', '#06b6d4', '#6366f1', '#f97316'
-  ], []);
+  const themeColors = useMemo(() => ({
+    emerging: ['#d1fae5', '#10b981', '#047857'], // light green, green, dark green
+    decreasing: ['#fecaca', '#ef4444', '#dc2626'], // light red, red, dark red
+    new: ['#dbeafe', '#3b82f6', '#1d4ed8'] // light blue, blue, dark blue
+  }), []);
 
   useEffect(() => {
+    const minValue = Math.min(...wordData.map(w => w.value));
+    const maxValue = Math.max(...wordData.map(w => w.value));
+    
     // Generate random positions for words
     const positioned = wordData.map((word, index) => {
       const angle = (index / wordData.length) * Math.PI * 2;
@@ -55,16 +60,35 @@ const WordCloud = () => {
       const x = Math.cos(angle) * radius + Math.random() * 100 - 50;
       const y = Math.sin(angle) * radius + Math.random() * 100 - 50;
       
+      // Assign theme and color based on value percentile
+      const percentile = (word.value - minValue) / (maxValue - minValue);
+      let theme: 'emerging' | 'decreasing' | 'new';
+      let colorIndex: number;
+      
+      if (percentile < 0.33) {
+        theme = 'new';
+        colorIndex = Math.floor((percentile / 0.33) * (themeColors.new.length - 1));
+      } else if (percentile < 0.66) {
+        theme = 'emerging';
+        colorIndex = Math.floor(((percentile - 0.33) / 0.33) * (themeColors.emerging.length - 1));
+      } else {
+        theme = 'decreasing';
+        colorIndex = Math.floor(((percentile - 0.66) / 0.34) * (themeColors.decreasing.length - 1));
+      }
+      
+      const color = themeColors[theme][colorIndex];
+      
       return {
         ...word,
         x,
         y,
-        color: colors[index % colors.length],
-        rotation: Math.random() * 40 - 20
+        color,
+        rotation: Math.random() * 40 - 20,
+        theme
       };
     });
     setWords(positioned);
-  }, [wordData, colors]);
+  }, [wordData, themeColors]);
 
   const getFontSize = (value: number) => {
     const minSize = 12;
@@ -120,6 +144,19 @@ const WordCloud = () => {
               );
             })}
           </div>
+        </div>
+
+        <div className="mt-8 flex justify-center gap-8 flex-wrap">
+          {Object.entries(themeColors).map(([theme, colors]) => (
+            <div key={theme} className="flex items-center gap-3">
+              <span className="text-white capitalize text-sm font-medium">{theme} Themes</span>
+              <div className="flex gap-1">
+                {colors.map((color, i) => (
+                  <div key={i} className="w-4 h-4 rounded-sm border border-slate-600" style={{ backgroundColor: color }}></div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mt-8 text-center">

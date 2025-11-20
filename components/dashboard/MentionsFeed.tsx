@@ -89,10 +89,10 @@ const MentionsFeed = () => {
         </div>
         <div className="grid grid-cols-2 gap-5">
           <TopEditorialSource />
-          {data.cities && (
+            {data.countries && (
             <CountriesSplit
               title="Top Locations"
-              data={JSON.parse(data.cities.toString())}
+              data={JSON.parse(data.countries.toString())}
               tooltip={`The distribution of mentions by location, helping to identify key geographic areas of interest and engagement.`}
             />
           )}
