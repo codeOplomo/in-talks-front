@@ -31,8 +31,8 @@ import Image from "next/image";
 import Interset from "../charts/Interset";
 import {
   BookmarkIcon,
-  Heart,
-  Users,
+  // Heart,
+  // Users,
   DownloadCloud,
 } from "lucide-react";
 import ToolTipsProvider from "../charts/ToolTipsProvider";
@@ -70,7 +70,7 @@ const data: DataType = {
   ageSplit:
     '{"13-17":10.87,"18-24":45.65,"25-34":28.26,"35-44":6.52,"45-54":2.17,"55+":0,"undetermined":6.52}',
   interest:
-    '{"Friends, Family & Relationships":10.87,"Clothes, Shoes, Handbags":45.65,"Toys, Children & Baby":28.26,"Restaurants, Food & Grocery":6.52}',
+    '{"Fashion & Beauty":10.87,"Food & Drink":45.65,"Tech & Innovation":28.26,"Culture & Entertainment":6.52}',
   language:
     '{"Arabic":60.87,"French":19.57,"English":8.7,"Turkish":4.35,"Spanish":2.17,"Portuguese":2.17,"undetermined":2.17}',
   createdAt: "2025-11-04T01:37:03.914Z",
@@ -202,7 +202,7 @@ const AudienceReport = () => {
   const [showInsight, setShowInsight] = useState(false);
 
   // UI state for export context
-  const [metric, setMetric] = useState<string | undefined>("followers");
+  const [metric] = useState<string | undefined>("followers");
   const [source, setSource] = useState<string | undefined>(undefined);
 
   // Build a simple CSV from the `data` object and current UI filters
@@ -300,7 +300,7 @@ const AudienceReport = () => {
         {/* Right side: controls group */}
         <div className="flex items-center gap-2">
           {/* Segmented Buttons using the project's Button component for consistent sizing */}
-          <div
+          {/* <div
             className="flex items-center rounded-md shadow-sm overflow-hidden"
             role="tablist"
             aria-label="Metric switch"
@@ -340,7 +340,7 @@ const AudienceReport = () => {
               />
               Likers
             </Button>
-          </div>
+          </div> */}
 
           <CompactDatePicker
             dateRange={dateRange}
@@ -384,7 +384,7 @@ const AudienceReport = () => {
       )} */}
 
       {data && (
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <QualitySplit
             percentages={{
               fakePeople: data.fakePercentage,
@@ -476,31 +476,38 @@ const AudienceReport = () => {
             />
           )} */}
           <AgeGenderBreakdown />
-          {data.interest && (
-            <Interset
-              title="Audience interest affinity"
-              data={JSON.parse(data.interest.toString())}
-            />
-          )}
 
-          {data.countries && (
-            <CountriesSplit
-              title="Followers by Country"
-              data={JSON.parse(data.countries.toString())}
-              tooltip={`The audience location by country.`}
-            />
-          )}
-          {/* {data.cities && (
-            <CountriesSplit
-              title="Followers by City"
-              data={JSON.parse(data.cities.toString())}
-              tooltip={`The audience location by city.`}
-            />
-          )} */}
+          {/* Group the last three cards into a single full-width row with an inner 3-column grid */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {data.interest && (
+                <Interset
+                  title="Audience interest affinity"
+                  data={JSON.parse(data.interest.toString())}
+                />
+              )}
 
-          {data.language && JSON.stringify(data.language) !== "{}" && (
-            <ChartLangage data={JSON.parse(data.language.toString())} />
-          )}
+              {data.countries && (
+                <CountriesSplit
+                  title="Followers by Country"
+                  data={JSON.parse(data.countries.toString())}
+                  tooltip={`The audience location by country.`}
+                />
+              )}
+
+              {/* {data.cities && (
+                <CountriesSplit
+                  title="Followers by City"
+                  data={JSON.parse(data.cities.toString())}
+                  tooltip={`The audience location by city.`}
+                />
+              )} */}
+
+              {data.language && JSON.stringify(data.language) !== "{}" && (
+                <ChartLangage data={JSON.parse(data.language.toString())} />
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

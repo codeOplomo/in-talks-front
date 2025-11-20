@@ -52,7 +52,7 @@ const KeywordsNuage = ({ keywords }: { keywords: KeywordData[] }) => {
       </div>
       <CardHeader>
         <CardTitle className="text-center font-semibold">
-          Nuage de mots-clés Glovo Maroc
+          Words Cloud
         </CardTitle>
       </CardHeader>
       <CardContent className="pb-16">
