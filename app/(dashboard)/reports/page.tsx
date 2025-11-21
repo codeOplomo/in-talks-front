@@ -67,18 +67,18 @@ const Page = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-semibold mb-2">Reports</h1>
+            {/* <h1 className="text-2xl font-semibold mb-2">Reports</h1>
             <p className="text-sm text-muted-foreground mb-6">
               Generate and download concise reports for Share of Voice, Mentions
               and Exports.
-            </p>
+            </p> */}
           </div>
           <CompactDatePicker
             dateRange={dateRange}
             onDateRangeChange={setDateRange}
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-2 gap-6">
           {reports.map((r) => (
             <Link key={r.id} href={r.href} className="block">
               <Card className="relative hover:shadow-lg transition-shadow h-full flex flex-col justify-between overflow-hidden">
