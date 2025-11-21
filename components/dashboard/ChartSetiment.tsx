@@ -52,13 +52,13 @@ const ChartSetiment = () => {
 
   return (
     <Card className="col-span-1 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`Shows the overall sentiment breakdown (positive/neutral/negative) for the selected period and highlights the dominant sentiment. Helpful to track shifts in how people feel about the topic.`}
-        />
-      </div>
       <CardHeader>
-        <CardTitle className="">Sentiment Trend</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="">Sentiment Trend</CardTitle>
+          <ToolTipsProvider
+            title={`Shows the overall sentiment breakdown (positive/neutral/negative) for the selected period and highlights the dominant sentiment. Helpful to track shifts in how people feel about the topic.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="pb-16">
         <ChartContainer

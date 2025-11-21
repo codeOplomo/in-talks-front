@@ -14,13 +14,13 @@ const ChartLangage = ({ data }: { data: JSON }) => {
 
   return (
     <Card className="flex flex-col rounded-md gap-5 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`This chart illustrates the distribution of languages used in mentions, providing insights into the linguistic diversity and reach of the content.`}
-        />
-      </div>
       <CardHeader className="pb-0">
-        <CardTitle className="text-center">Top Languages</CardTitle>
+        <div className="flex items-center gap-2 justify-center">
+          <CardTitle className="text-center">Top Languages</CardTitle>
+          <ToolTipsProvider
+            title={`This chart illustrates the distribution of languages used in mentions, providing insights into the linguistic diversity and reach of the content.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="justify-center pb-0 bg-transparent mt-5 flex flex-col gap-2.5 ">
         {countries.map((country, index) => (

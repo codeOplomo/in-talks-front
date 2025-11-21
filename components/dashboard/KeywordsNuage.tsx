@@ -45,15 +45,15 @@ const KeywordsNuage = ({ keywords }: { keywords: KeywordData[] }) => {
 
   return (
     <Card className="col-span-1 xl:col-span-2 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`A visual representation of the most frequently mentioned keywords related to Glovo Maroc, highlighting trending topics and themes.`}
-        />
-      </div>
       <CardHeader>
-        <CardTitle className="text-center font-semibold">
-          Words Cloud
-        </CardTitle>
+        <div className="flex items-center gap-2 justify-center">
+          <CardTitle className="text-center font-semibold">
+            Words Cloud
+          </CardTitle>
+          <ToolTipsProvider
+            title={`A visual representation of the most frequently mentioned keywords related to Glovo Maroc, highlighting trending topics and themes.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="pb-16">
         <div className="flex flex-wrap justify-center items-center gap-0 mt-8 text-center">

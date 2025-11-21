@@ -63,12 +63,11 @@ export default function MentionsBySentimentCard() {
 
   return (
     <Card className="@container/card col-span-2 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Daily mentions split by sentiment (Positive / Neutral / Negative). Use this view to quickly spot days with higher negative mentions or surges in positive engagement." />
-      </div>
-
       <CardHeader>
-        <CardTitle>Mentions by Sentiment</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Mentions by Sentiment</CardTitle>
+          <ToolTipsProvider title="Daily mentions split by sentiment (Positive / Neutral / Negative). Use this view to quickly spot days with higher negative mentions or surges in positive engagement." />
+        </div>
       </CardHeader>
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">

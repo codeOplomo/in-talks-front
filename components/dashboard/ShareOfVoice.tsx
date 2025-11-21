@@ -41,13 +41,13 @@ function ShareOfVoice() {
 
   return (
     <Card className="flex flex-col justify-between relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`Displays how conversation is shared between categories (or competitors). It highlights the largest contributor to the overall share and helps assess relative visibility.`}
-        />
-      </div>
       <CardHeader className="items-center">
-        <CardTitle>Share of voice</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Share of voice</CardTitle>
+          <ToolTipsProvider
+            title={`Displays how conversation is shared between categories (or competitors). It highlights the largest contributor to the overall share and helps assess relative visibility.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="pb-16">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[300px]">

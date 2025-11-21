@@ -94,12 +94,11 @@ export default function TopBlogs({ feeds = defaultMentions }: { feeds?: Mention[
 
   return (
     <Card className="flex-1 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Latest mentions from various sources, providing quick access to recent conversations and insights." />
-      </div>
-
       <CardHeader>
-        <CardTitle>Top Blogs</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Top Blogs</CardTitle>
+          <ToolTipsProvider title="Latest mentions from various sources, providing quick access to recent conversations and insights." />
+        </div>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-2.5 pb-8">

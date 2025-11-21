@@ -9,9 +9,9 @@ import { MessageCircleQuestionMark } from "lucide-react";
 const ToolTipsProvider = ({ title }: { title: string }) => {
   return (
     <Tooltip>
-      <TooltipTrigger className=" absolute top-0 right-0 z-10" asChild>
-        <Button size={"icon"}>
-          <MessageCircleQuestionMark />
+      <TooltipTrigger asChild>
+        <Button size={"icon"} variant="ghost" className="h-6 w-6">
+          <MessageCircleQuestionMark className="h-4 w-4" />
         </Button>
       </TooltipTrigger>
       <TooltipContent className=" w-[350px]">

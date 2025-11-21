@@ -123,13 +123,13 @@ export function InsightCards() {
   return (
     <div className="grid grid-cols-4 md:gap-6">
       <Card className="col-span-1 xl:col-span-2 relative">
-        <div className="absolute top-0 right-0">
-          <ToolTipsProvider
-            title="Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation."
-          />
-        </div>
         <CardHeader>
-          <CardTitle>Mentions Distribution by Source</CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle>Mentions Distribution by Source</CardTitle>
+            <ToolTipsProvider
+              title="Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation."
+            />
+          </div>
         </CardHeader>
         <CardContent className="pb-16">
           <ChartContainer config={mentionsByPeriodConfig}>
@@ -220,13 +220,13 @@ export function InsightCards() {
         </div>
       </Card>
       <Card className="col-span-1 xl:col-span-2 relative">
-        <div className="absolute top-0 right-0">
-          <ToolTipsProvider
-            title="Latest mentions from various sources, providing quick access to recent conversations and insights."
-          />
-        </div>
         <CardHeader>
-          <CardTitle>Last Mentions</CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle>Last Mentions</CardTitle>
+            <ToolTipsProvider
+              title="Latest mentions from various sources, providing quick access to recent conversations and insights."
+            />
+          </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-2.5 pb-16">
           {mentions.slice(0, 3).map((feed) => (

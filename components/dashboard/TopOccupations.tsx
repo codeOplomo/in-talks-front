@@ -69,12 +69,11 @@ export default function TopOccupations({
 
   return (
     <Card className="relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title={tooltip ?? "Breakdown of occupations among your audience."} />
-      </div>
-
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
+      <CardHeader className="items-center">
+        <div className="flex items-center gap-2">
+          <CardTitle>{title}</CardTitle>
+          <ToolTipsProvider title={tooltip ?? "Breakdown of occupations among your audience."} />
+        </div>
       </CardHeader>
 
   <CardContent className="pb-16">

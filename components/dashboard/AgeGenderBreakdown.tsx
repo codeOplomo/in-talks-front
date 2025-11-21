@@ -51,13 +51,13 @@ function AgeGenderBreakdown() {
 
   return (
     <Card className="relative">
-        <div className=" absolute top-0 right-0">
-                  <ToolTipsProvider
-                    title={`Age and Gender Breakdown provides insights into the distribution of your audience across different age groups and genders, helping tailor content and marketing strategies.`}
-                  />
-                </div>
         <CardHeader>
-          <CardTitle>Age & Gender Breakdown</CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle>Age & Gender Breakdown</CardTitle>
+            <ToolTipsProvider
+              title={`Age and Gender Breakdown provides insights into the distribution of your audience across different age groups and genders, helping tailor content and marketing strategies.`}
+            />
+          </div>
         </CardHeader>
         <CardContent>
           <ChartContainer className="" config={chartConfig}>

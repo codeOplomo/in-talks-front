@@ -197,11 +197,11 @@ const WordCloud = () => {
 
   return (
     <Card className="@container/card col-span-2 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Interactive word cloud showing top food delivery mentions with color-coded themes. Emerging cuisines (green), declining preferences (red), and new food trends (blue). Hover over words to see their popularity and theme categorization across Arabic, French, and English languages." />
-      </div>
       <CardHeader>
-        <CardTitle>Food Delivery Trends</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Food Delivery Trends</CardTitle>
+          <ToolTipsProvider title="Interactive word cloud showing top food delivery mentions with color-coded themes. Emerging cuisines (green), declining preferences (red), and new food trends (blue). Hover over words to see their popularity and theme categorization across Arabic, French, and English languages." />
+        </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
 

@@ -81,18 +81,18 @@ function ChartAgeSplit({ data, title, tooltip, insight }: ChartAgeSplitProps) {
 
   return (
     <Card className="flex flex-col   rounded-md gap-5 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={
-            tooltip ??
-            `Age Distribution provides insights into the age demographics of your audience, helping tailor content and marketing strategies to better engage specific age groups.`
-          }
-        />
-      </div>
       <CardHeader className="pb-0">
-        <CardTitle className="text-center">
-          {title ? title : "Age Distribution"}
-        </CardTitle>
+        <div className="flex items-center gap-2 justify-center">
+          <CardTitle className="text-center">
+            {title ? title : "Age Distribution"}
+          </CardTitle>
+          <ToolTipsProvider
+            title={
+              tooltip ??
+              `Age Distribution provides insights into the age demographics of your audience, helping tailor content and marketing strategies to better engage specific age groups.`
+            }
+          />
+        </div>
       </CardHeader>
       <CardContent className="justify-center pb-0 bg-transparent mt-12 ">
         <div className="flex flex-col gap-3">

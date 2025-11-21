@@ -57,12 +57,11 @@ export default function KeywordsWithSentiment() {
 
   return (
     <Card className="@container/card col-span-2 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Distribution of sentiment across top keywords. Hover the AI insight bubble for a summary." />
-      </div>
-
       <CardHeader>
-        <CardTitle>Keywords with Sentiment</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Keywords with Sentiment</CardTitle>
+          <ToolTipsProvider title="Distribution of sentiment across top keywords. Hover the AI insight bubble for a summary." />
+        </div>
       </CardHeader>
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6 pb-10">

@@ -67,14 +67,14 @@ function QualitySplit({ percentages }: ChartGenderSplitProps) {
 
   return (
     <Card className="flex flex-col rounded-md relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.`}
-        />
-      </div>
 
       <CardHeader className="pb-0">
-        <CardTitle className="">Account Type</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="">Account Type</CardTitle>
+          <ToolTipsProvider
+            title={`To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="justify-center pb-16 ">
         <ChartContainer

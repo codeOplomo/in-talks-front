@@ -62,14 +62,13 @@ export default function ShareOfVoiceBySourceCard() {
 
   return (
     <Card className="relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider
-          title="Share of voice by source type. Bars are stacked by brand to show how each channel contributes to total mentions."
-        />
-      </div>
-
-      <CardHeader>
-        <CardTitle>Share of Voice by Source Type</CardTitle>
+      <CardHeader className="items-center">
+        <div className="flex items-center gap-2">
+          <CardTitle>Share of Voice by Source Type</CardTitle>
+          <ToolTipsProvider
+            title="Share of voice by source type. Bars are stacked by brand to show how each channel contributes to total mentions."
+          />
+        </div>
       </CardHeader>
 
       <CardContent className="pb-16">

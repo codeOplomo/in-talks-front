@@ -69,12 +69,11 @@ const KeywordWithSetiments = ({ label, data, tooltip, insight }: Propstype) => {
 
   return (
     <Card className="col-span-1 xl:col-span-2 relative">
-      <div className=" absolute top-0 right-0">
-        {tooltip && <ToolTipsProvider title={tooltip} />}
-      </div>
-
       <CardHeader>
-        <CardTitle>{label}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>{label}</CardTitle>
+          {tooltip && <ToolTipsProvider title={tooltip} />}
+        </div>
         <CardDescription className="text-sm text-black">
           {insight}
         </CardDescription>

@@ -65,12 +65,11 @@ export default function TopLocationsWithSentiment() {
 
   return (
     <Card className="@container/card col-span-2 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Distribution of sentiment across top Moroccan cities. Hover for context." />
-      </div>
-
       <CardHeader>
-        <CardTitle>Top Locations with Sentiment</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Top Locations with Sentiment</CardTitle>
+          <ToolTipsProvider title="Distribution of sentiment across top Moroccan cities. Hover for context." />
+        </div>
       </CardHeader>
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6 pb-10">

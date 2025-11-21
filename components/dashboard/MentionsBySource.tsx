@@ -128,11 +128,11 @@ export default function MentionsBySource() {
 
   return (
     <Card className="flex-1 relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Distribution of followers across social media platforms, showing the reach and engagement on each channel." />
-      </div>
       <CardHeader>
-        <CardTitle>Mentions by source</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Mentions by source</CardTitle>
+          <ToolTipsProvider title="Distribution of followers across social media platforms, showing the reach and engagement on each channel." />
+        </div>
       </CardHeader>
       <CardContent className="pb-16">
         <div className="flex flex-col items-center gap-5">

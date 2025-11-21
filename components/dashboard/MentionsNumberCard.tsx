@@ -28,12 +28,11 @@ const MentionsNumberCard: React.FC<Props> = ({
 
   return (
     <Card className={`relative`}>
-      {/* Top-right tooltip icon */}
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title={`Breakdown of mentions by gender. Shows the share of mentions attributed to each gender based on available profile data.`} />
-      </div>
       <CardHeader>
-        <CardTitle className="text-gray-700">{title}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-gray-700">{title}</CardTitle>
+          <ToolTipsProvider title={`Breakdown of mentions by gender. Shows the share of mentions attributed to each gender based on available profile data.`} />
+        </div>
       </CardHeader>
 
       <CardContent>

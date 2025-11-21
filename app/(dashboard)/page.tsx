@@ -7,7 +7,7 @@ import AudienceReport from "@/components/media/AudienceReport";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Keywords from "@/components/media/Keywords";
 import Sentiment from "@/components/media/Sentiment";
-import MentionsFeed from "@/components/dashboard/MentionsFeed";
+import MentionsFeed from "@/components/media/MentionsFeed";
 const tabs = [
   {
     label: "Social Listening",

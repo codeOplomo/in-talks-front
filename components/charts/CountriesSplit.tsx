@@ -27,12 +27,11 @@ const CountriesSplit = ({
 
   return (
     <Card className="flex flex-col rounded-md gap-5 relative">
-      <div className=" absolute top-0 right-0">
-        {tooltip && <ToolTipsProvider title={tooltip} />}
-      </div>
-
       <CardHeader className="pb-0">
-        <CardTitle>{title}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>{title}</CardTitle>
+          {tooltip && <ToolTipsProvider title={tooltip} />}
+        </div>
       </CardHeader>
       <CardContent className="justify-center pb-16 bg-transparent mt-5 flex flex-col gap-2.5 ">
         {countries.map((country, index) => (

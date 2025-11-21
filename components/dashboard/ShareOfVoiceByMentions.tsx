@@ -95,14 +95,13 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
 
     return (
         <Card className="relative">
-            <div className="absolute top-0 right-0">
-                <ToolTipsProvider
-                    title="Breakdown of mentions across topics with sentiment analysis. The main chart shows share of voice by brand, while the smaller charts show positive, negative, and neutral sentiment distribution."
-                />
-            </div>
-
-            <CardHeader>
-                <CardTitle>Share of Voice by Mentions</CardTitle>
+            <CardHeader className="items-center">
+                <div className="flex items-center gap-2">
+                    <CardTitle>Share of Voice by Mentions</CardTitle>
+                    <ToolTipsProvider
+                        title="Breakdown of mentions across topics with sentiment analysis. The main chart shows share of voice by brand, while the smaller charts show positive, negative, and neutral sentiment distribution."
+                    />
+                </div>
             </CardHeader>
 
             <CardContent className="pb-16">

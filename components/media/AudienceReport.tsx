@@ -400,13 +400,13 @@ const AudienceReport = () => {
           />
           {metric !== "likers" && (
             <Card className="relative">
-              <div className=" absolute top-0 right-0">
-                <ToolTipsProvider
-                  title={`To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.`}
-                />
-              </div>
               <CardHeader>
-                <CardTitle>Audience Reach Distribution</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle>Audience Reach Distribution</CardTitle>
+                  <ToolTipsProvider
+                    title={`To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.`}
+                  />
+                </div>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={chartConfig2}>

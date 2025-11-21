@@ -1,12 +1,12 @@
 import React from "react";
 import CountriesSplit from "../charts/CountriesSplit";
-import MentionsNumberCard from "./MentionsNumberCard";
-import WordCloud from "./WordsCloud";
-import MentionsBySentimentCard from "./MentionsBySentimentCard";
-import TopEditorialSource from "./TopEditorialSource";
-import TopSharedLinks from "./TopSharedLinks";
-import TopBlogs from "./TopBlogs";
-import MentionsBySource from "./MentionsBySource";
+import MentionsNumberCard from "../dashboard/MentionsNumberCard";
+import WordCloud from "../dashboard/WordsCloud";
+import MentionsBySentimentCard from "../dashboard/MentionsBySentimentCard";
+import TopEditorialSource from "../dashboard/TopEditorialSource";
+import TopSharedLinks from "../dashboard/TopSharedLinks";
+import TopBlogs from "../dashboard/TopBlogs";
+import MentionsBySource from "../dashboard/MentionsBySource";
 // import Mentions from "../fil-actualites/Mentions";
 
 // const followersData = [

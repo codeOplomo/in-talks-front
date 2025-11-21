@@ -149,13 +149,13 @@ function MentionsBySentiments() {
 
   return (
     <Card className="@container/card col-span-2 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`Shows the sentiment trend for the last 7 days. Hover over each point to see the number of mentions for each sentiment type. Use this data to track changes in audience mood and identify key events.`}
-        />
-      </div>
       <CardHeader>
-        <CardTitle>Sentiment Trend</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>Sentiment Trend</CardTitle>
+          <ToolTipsProvider
+            title={`Shows the sentiment trend for the last 7 days. Hover over each point to see the number of mentions for each sentiment type. Use this data to track changes in audience mood and identify key events.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6 pb-8">
         <ChartContainer
