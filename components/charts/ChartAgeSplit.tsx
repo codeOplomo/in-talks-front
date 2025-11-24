@@ -82,8 +82,8 @@ function ChartAgeSplit({ data, title, tooltip, insight }: ChartAgeSplitProps) {
   return (
     <Card className="flex flex-col   rounded-md gap-5 relative">
       <CardHeader className="pb-0">
-        <div className="flex items-center gap-2 justify-center">
-          <CardTitle className="text-center">
+        <div className="flex items-center gap-2">
+          <CardTitle>
             {title ? title : "Age Distribution"}
           </CardTitle>
           <ToolTipsProvider

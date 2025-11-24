@@ -13,13 +13,13 @@ const Interset = ({ title, data }: { title: string; data: JSON }) => {
 
   return (
     <Card className="flex flex-col rounded-md gap-5 relative">
-      <div className=" absolute top-0 right-0">
-        <ToolTipsProvider
-          title={`Interset displays the percentage distribution of mentions from different countries, helping to identify key geographic areas of interest and engagement.`}
-        />
-      </div>
       <CardHeader className="pb-0">
-        <CardTitle className="text-center">{title}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>{title}</CardTitle>
+          <ToolTipsProvider
+            title={`Interset displays the percentage distribution of mentions from different countries, helping to identify key geographic areas of interest and engagement.`}
+          />
+        </div>
       </CardHeader>
       <CardContent className="justify-center pb-0 bg-transparent mt-5 flex flex-col gap-2.5 ">
         {countries.map((country, index) => (

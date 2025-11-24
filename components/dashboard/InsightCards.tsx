@@ -116,7 +116,8 @@ const mentions = [
 ];
 
 export function InsightCards() {
-  const [showInsight, setShowInsight] = useState(false);
+  const [showInsight1, setShowInsight1] = useState(false);
+  const [showInsight2, setShowInsight2] = useState(false);
 
  
 
@@ -191,8 +192,8 @@ export function InsightCards() {
           <div className="relative">
             <div 
               className="text-sm text-black flex items-center gap-2 cursor-pointer"
-              onMouseEnter={() => setShowInsight(true)}
-              onMouseLeave={() => setShowInsight(false)}
+              onMouseEnter={() => setShowInsight1(true)}
+              onMouseLeave={() => setShowInsight1(false)}
             >
               <Image src="/icons/IN-TALKS-logo.png-2.webp" alt="IN-TALKS Logo" width={22} height={22} className="inline-block align-middle" />
               <span
@@ -209,7 +210,7 @@ export function InsightCards() {
                 AI-powered insight
               </span>
             </div>
-            {showInsight && (
+            {showInsight1 && (
               <div className="absolute bottom-full left-0 mb-2 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 w-auto min-w-80 max-w-xl">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   Facebook dominates social media mentions with 38% share, indicating strong brand presence on this platform. The stacked bar chart shows consistent engagement across all platforms over the three periods.
@@ -263,8 +264,8 @@ export function InsightCards() {
           <div className="relative">
             <div 
               className="text-sm text-black flex items-center gap-2 cursor-pointer"
-              onMouseEnter={() => setShowInsight(true)}
-              onMouseLeave={() => setShowInsight(false)}
+              onMouseEnter={() => setShowInsight2(true)}
+              onMouseLeave={() => setShowInsight2(false)}
             >
               <Image src="/icons/IN-TALKS-logo.png-2.webp" alt="IN-TALKS Logo" width={22} height={22} className="inline-block align-middle" />
               <span
@@ -281,7 +282,7 @@ export function InsightCards() {
                 AI-powered insight
               </span>
             </div>
-            {showInsight && (
+            {showInsight2 && (
               <div className="absolute bottom-full left-0 mb-2 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 w-auto min-w-80 max-w-xl">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   Social media mentions show a 25% increase in positive sentiment for delivery services. Facebook leads with 40% of total mentions, followed by Instagram at 30%. Key topics include service expansion, partnerships, and customer satisfaction improvements.

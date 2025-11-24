@@ -46,8 +46,8 @@ const KeywordsNuage = ({ keywords }: { keywords: KeywordData[] }) => {
   return (
     <Card className="col-span-1 xl:col-span-2 relative">
       <CardHeader>
-        <div className="flex items-center gap-2 justify-center">
-          <CardTitle className="text-center font-semibold">
+        <div className="flex items-center gap-2">
+          <CardTitle className="font-semibold">
             Words Cloud
           </CardTitle>
           <ToolTipsProvider
