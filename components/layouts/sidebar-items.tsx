@@ -1,12 +1,13 @@
 import {
-  LayoutDashboard,
-  Newspaper,
+  Headphones,
+  Users,
+  FileText,
+  AtSign,
+  Smile,
+  Eye,
+  BarChart2,
   Database,
   type LucideIcon,
-  Megaphone,
-  Medal,
-  Brain,
-  Tag,
 } from "lucide-react";
 
 export interface NavSubItem {
@@ -37,61 +38,61 @@ export interface NavGroup {
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
-    label: "",
+    label: "Dashboard",
     items: [
       {
-        title: "Dashboard",
+        title: "Écoute Sociale ",
         url: "/",
-        icon: LayoutDashboard,
+        icon: Headphones,
       },
       {
-        title: "Competitive Intelligence",
+        title: "Analyse d’Audience",
         url: "/competitive-intelligence",
-        icon: Brain,
+        icon: Users,
+      },
+      {
+        title: "Analyse des Publications",
+        url: "/social-listening/fil-actualites",
+        icon: FileText,
       },
       {
         title: "Mentions",
-        url: "/social-listening/fil-actualites",
-        icon: Tag,
-      },
-      {
-        title: "Reports",
         url: "/reports",
-        icon: Newspaper, // fil d’actu = news feed
+        icon: AtSign, // mentions use @ sign
       },
       {
-        title: "Ranking",
+        title: "Sentiment",
         url: "/reseaux-sociaux/ranking",
-        icon: Medal, // you can replace with Trophy if you prefer
+        icon: Smile, // sentiment / mood
       },
-      {
-        title: "Brand Watch",
-        url: "/reseaux-sociaux/brand-watch",
-        icon: Megaphone, // brand monitoring
-      },
+      // {
+      //   title: "Brand Watch",
+      //   url: "/reseaux-sociaux/brand-watch",
+      //   icon: Megaphone, // brand monitoring
+      // },
     ],
   },
-  // {
-  //   id: 2,
-  //   label: "Réseaux sociaux",
-  //   items: [
-  //     {
-  //       title: "Vue d’ensemble",
-  //       url: "/reseaux-sociaux/vue-ensemble",
-  //       icon: BarChart3, // overview analytics
-  //     },
-  //     {
-  //       title: "Ranking",
-  //       url: "/reseaux-sociaux/ranking",
-  //       icon: Medal, // you can replace with Trophy if you prefer
-  //     },
-  //     {
-  //       title: "Brand Watch",
-  //       url: "/reseaux-sociaux/brand-watch",
-  //       icon: Megaphone, // brand monitoring
-  //     },
-  //   ],
-  // },
+  {
+    id: 2,
+    label: "Veille & Benchmark",
+    items: [
+      {
+        title: "Veille marque",
+        url: "/reseaux-sociaux/vue-ensemble",
+        icon: Eye, // brand overview / monitoring
+      },
+      {
+        title: "Veille concurrentielle",
+        url: "/reseaux-sociaux/ranking",
+        icon: BarChart2, // benchmarking / comparison charts
+      },
+      // {
+      //   title: "Brand Watch",
+      //   url: "/reseaux-sociaux/brand-watch",
+      //   icon: Megaphone, // brand monitoring
+      // }
+    ],
+  },
   {
     id: 3,
     label: "Intégrations",
