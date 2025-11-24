@@ -104,7 +104,7 @@ const FollowersDisptach = ({ data }: FollowersDisptachProps) => {
 
   return (
     <div className="flex flex-col gap-5 border-gray-200 pl-12">
-      <Label className=" text-start">Followers Dispatch</Label>
+  <Label className=" text-start">Répartition des abonnés</Label>
       <div className="chart-container flex items-center gap-5">
         {/* Increased width and height */}
         <ResponsiveContainer width={180} height={180}>

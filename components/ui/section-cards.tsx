@@ -19,7 +19,7 @@ export function SectionCards() {
           <MessageSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
         </div>
         <CardHeader>
-          <CardDescription>Total Mentions</CardDescription>
+          <CardDescription>Mentions totales</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             11,780
           </CardTitle>
@@ -31,7 +31,7 @@ export function SectionCards() {
           <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
         </div>
         <CardHeader>
-          <CardDescription>{"Mention mensuels"}</CardDescription>
+          <CardDescription>Mentions mensuelles</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             81M
           </CardTitle>
@@ -43,7 +43,7 @@ export function SectionCards() {
           <ThumbsUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         </div>
         <CardHeader>
-          <CardDescription>{"Mentions positives"}</CardDescription>
+          <CardDescription>Mentions positives</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             45,678
           </CardTitle>
@@ -55,7 +55,7 @@ export function SectionCards() {
           <ThumbsDown className="h-5 w-5 text-rose-600 dark:text-rose-400" />
         </div>
         <CardHeader>
-          <CardDescription>{"Mentions négatives"}</CardDescription>
+          <CardDescription>Mentions négatives</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             4.5%
           </CardTitle>

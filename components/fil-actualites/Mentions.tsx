@@ -284,11 +284,11 @@ const mentions = [
 const Mentions = () => {
   return (
     <Card className="flex flex-col relative">
-      <div className="absolute top-0 right-0">
-        <ToolTipsProvider title="Recent mentions feed displaying the latest social media conversations and insights." />
-      </div>
       <CardHeader className="flex-shrink-0">
-        <CardTitle className="text-lg">Mentions Feed</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-lg">Mentions Feed</CardTitle>
+          <ToolTipsProvider title="Recent mentions feed displaying the latest social media conversations and insights." />
+        </div>
       </CardHeader>
       <CardContent className="flex-none h-[2600px] overflow-y-auto">
         <div className="flex flex-col gap-2.5">

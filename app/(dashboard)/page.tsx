@@ -10,7 +10,7 @@ import Sentiment from "@/components/media/Sentiment";
 import MentionsFeed from "@/components/media/MentionsFeed";
 const tabs = [
   {
-    label: "Social Listening",
+    label: "Écoute sociale",
     value: "overView",
     component: <Overview />,
   },
@@ -20,7 +20,7 @@ const tabs = [
     component: <AudienceReport />,
   },
   {
-    label: "Posts",
+    label: "Publications",
     value: "posts",
     component: <PostsGrid />,
   },
@@ -35,7 +35,7 @@ const tabs = [
     component: <Sentiment />,
   },
   {
-    label: "Keywords",
+    label: "Mots-clés",
     value: "keywords",
     component: <Keywords />,
   },

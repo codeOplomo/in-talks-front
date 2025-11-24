@@ -37,19 +37,19 @@ const media = [
 ];
 const languages = [
   {
-    label: "All",
-    image: "https://flagcdn.com/48x36/un.png", // UN flag for "All"
+    label: "Tous",
+    image: "https://flagcdn.com/48x36/un.png", // UN flag for "Tous"
   },
   {
-    label: "Arabic",
+    label: "Arabe",
     image: "https://flagcdn.com/48x36/sa.png", // Saudi Arabia flag
   },
   {
-    label: "French",
+    label: "Français",
     image: "https://flagcdn.com/48x36/fr.png", // France flag
   },
   {
-    label: "English",
+    label: "Anglais",
     image: "https://flagcdn.com/48x36/gb.png", // United Kingdom flag
   },
 ];
@@ -69,11 +69,11 @@ const FilterOverView = () => {
         />
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By source" />
+            <SelectValue placeholder="Par source" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>By source</SelectLabel>
+              <SelectLabel>Par source</SelectLabel>
               {media.map((item) => (
                 <SelectItem key={item.label} value={item.label}>
                   <Image
@@ -90,12 +90,12 @@ const FilterOverView = () => {
         </Select>
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By sentiment" />
+            <SelectValue placeholder="Par sentiment" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>By sentiment </SelectLabel>
-              {["Positive", "Neutral", "Negative"].map((item) => (
+              <SelectLabel>Par sentiment </SelectLabel>
+              {["Positif", "Neutre", "Négatif"].map((item) => (
                 <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
@@ -105,18 +105,12 @@ const FilterOverView = () => {
         </Select>
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By author" />
+            <SelectValue placeholder="Par auteur" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>By author </SelectLabel>
-              {[
-                "All",
-                "General public",
-                "Influencers",
-                "Media",
-                "Competitors",
-              ].map((item) => (
+              <SelectLabel>Par auteur </SelectLabel>
+              {["Tous", "Grand public", "Influenceurs", "Médias", "Concurrents"].map((item) => (
                 <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
@@ -126,12 +120,12 @@ const FilterOverView = () => {
         </Select>
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By format" />
+            <SelectValue placeholder="Par format" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>By format </SelectLabel>
-              {["All", "Video", "Post", "Comment", "Article"].map((item) => (
+              <SelectLabel>Par format </SelectLabel>
+              {["Tous", "Vidéo", "Publication", "Commentaire", "Article"].map((item) => (
                 <SelectItem key={item} value={item}>
                   {item}
                 </SelectItem>
@@ -141,11 +135,11 @@ const FilterOverView = () => {
         </Select>
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By language" />
+            <SelectValue placeholder="Par langue" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>By language </SelectLabel>
+              <SelectLabel>Par langue </SelectLabel>
               {languages.map((item) => (
                 <SelectItem key={item.label} value={item.label}>
                   <Image
@@ -162,11 +156,11 @@ const FilterOverView = () => {
         </Select>
         <Select>
           <SelectTrigger className="w-full bg-white">
-            <SelectValue placeholder="By City" />
+            <SelectValue placeholder="Par ville" />
           </SelectTrigger>
           <SelectContent className="h-[400px]">
             <SelectGroup>
-              <SelectLabel>By City </SelectLabel>
+              <SelectLabel>Par ville </SelectLabel>
               {[
                 "Casablanca",
                 "Rabat",
@@ -199,7 +193,7 @@ const FilterOverView = () => {
         <div className="flex-1 flex items-center gap-2.5">
           <Button className="flex-1">
             <Filter />
-            Filter
+            Filtrer
           </Button>
           <Button className="bg-transparent border border-main text-main">
             <RotateCcw />

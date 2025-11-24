@@ -9,8 +9,8 @@ import React, { Suspense } from "react";
 
 const tabs = [
   {
-    label: "OverView",
-    value: "overView",
+    label: "Overview",
+    value: "overview",
     component: <div className="grid grid-cols-3 gap-5">
       <div className="col-span-2 flex flex-col gap-5">
         <Suspense>
@@ -36,7 +36,7 @@ const tabs = [
 
 const page = () => {
   return (
-    <Tabs defaultValue={"overView"} className="my-2">
+    <Tabs defaultValue={"overview"} className="my-2">
               <TabsList className="grid grid-cols-2 w-full b text-white border dark:border-gray-800 border-gray-200">
                 {tabs.map((tab) => (
                   <TabsTrigger

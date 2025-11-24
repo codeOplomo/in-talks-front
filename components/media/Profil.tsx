@@ -14,9 +14,9 @@ import FollowersDisptach from "./FollowersDisptach";
 const data = {
   profil: "/glovo-logo.jpg",
   name: "Glovo Maroc",
-  slug: "Glovo Maroc: Your Local Delivery Partner for Everything",
-  country: "Morocco",
-  bio: `Glovo Maroc is a delivery service that connects customers with local businesses, offering a wide range of products from food to groceries. Their social media presence emphasizes partnerships with local merchants, showcasing success stories and community engagement. Content themes include Ramadan promotions, customer support, and highlighting the convenience of their service. The brand actively engages with its audience through giveaways and interactive posts, fostering a sense of community and support for local businesses.`,
+  slug: "Glovo Maroc : Votre partenaire local de livraison pour tout",
+  country: "Maroc",
+  bio: `Glovo Maroc est un service de livraison qui connecte les clients aux commerces locaux, offrant une large gamme de produits allant de la nourriture aux courses. Leur présence sur les réseaux sociaux met en avant les partenariats avec les commerçants locaux, présentant des histoires de réussite et l'engagement communautaire. Les thèmes du contenu incluent les promotions du Ramadan, le support client et la mise en avant de la commodité du service. La marque engage activement son audience à travers des jeux concours et des publications interactives, favorisant un esprit de communauté et de soutien aux entreprises locales.`,
 };
 const Profil = () => {
   return (
@@ -50,7 +50,7 @@ const Profil = () => {
               </div>
               <hr className="border-t border-gray-300/70" />
               <div>
-                <p className="font-semibold mb-2">Profile Overview</p>
+                <p className="font-semibold mb-2">Aperçu du profil</p>
                 <p className="text-sm"> {data.bio}</p>
               </div>
             </div>
