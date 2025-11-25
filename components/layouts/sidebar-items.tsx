@@ -86,7 +86,7 @@ export const sidebarItems: NavGroup[] = [
       },
       {
         title: "Veille concurrentielle",
-        url: "/reseaux-sociaux/wranking",
+        url: "/reseaux-sociaux/ranking",
         icon: BarChart2, // benchmarking / comparison charts
       },
       // {
