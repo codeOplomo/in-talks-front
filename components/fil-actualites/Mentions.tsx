@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
   DialogFooter,
   DialogClose,
 } from "../ui/dialog";
@@ -372,10 +371,10 @@ const Mentions = () => {
               </DialogTrigger>
               <DialogContent className="w-[90vw] max-w-none p-8">
                 <DialogHeader>
-                  <DialogTitle>Ajouter une mention</DialogTitle>
-                  <DialogDescription>
+                  <DialogTitle className="text-center">Ajouter une mention</DialogTitle>
+                  {/* <DialogDescription>
                     Remplissez les champs pour ajouter manuellement une mention.
-                  </DialogDescription>
+                  </DialogDescription> */}
                 </DialogHeader>
 
                 <div className="grid gap-3">
@@ -447,14 +446,11 @@ const Mentions = () => {
                 </div>
 
                 <DialogFooter>
-                  <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
-                  </DialogClose>
                   {/* Use a button that closes dialog after adding */}
                   <DialogClose asChild>
                     <Button
                       onClick={() => handleAddMention()}
-                      className="bg-pink-500 text-white"
+                      className="bg-main text-white w-full"
                     >
                       Ajouter
                     </Button>

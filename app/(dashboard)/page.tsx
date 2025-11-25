@@ -6,7 +6,6 @@ import PostsGrid from "@/components/media/PostsGrid";
 import AudienceReport from "@/components/media/AudienceReport";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams, useRouter } from "next/navigation";
-import Keywords from "@/components/media/Keywords";
 import Sentiment from "@/components/media/Sentiment";
 import MentionsPanel from "@/components/social-listening/MentionsPanel";
 const tabs = [

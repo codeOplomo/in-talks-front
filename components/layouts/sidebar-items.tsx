@@ -10,7 +10,6 @@ import {
   RefreshCw,
   Sliders,
   Cpu,
-  Megaphone,
   type LucideIcon,
 } from "lucide-react";
 
