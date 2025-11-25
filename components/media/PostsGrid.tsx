@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import PostsTable, { PostRow } from "./PostsTable";
 import PostCard from "./PostCard";
 import Image from "next/image";
@@ -831,7 +831,9 @@ const PostsGrid = () => {
 
           {/* Right side: controls group */}
           <div className="flex items-center gap-2">
-            <OrderByFilter />
+            <Suspense fallback={<div />}> 
+              <OrderByFilter />
+            </Suspense>
 
             <Select value={source} onValueChange={(v) => setSource(v)}>
               <SelectTrigger className="w-40 bg-white">
