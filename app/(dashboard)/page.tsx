@@ -1,6 +1,6 @@
 "use client";
 
-import Profil from "@/components/media/Profil";
+// import Profil from "@/components/media/Profil";
 import React, { Suspense, useEffect, useState } from "react";
 import Overview from "@/components/media/Overview";
 import PostsGrid from "@/components/media/PostsGrid";

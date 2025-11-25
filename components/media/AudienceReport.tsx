@@ -428,7 +428,7 @@ const AudienceReport = () => {
                   />
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pb-12">
                 <ChartContainer config={chartConfig2}>
                   <BarChart
                     accessibilityLayer
@@ -497,14 +497,7 @@ const AudienceReport = () => {
             <AgeGenderBreakdown />
 
             {/* Group the last three cards into a single full-width row with an inner 3-column grid */}
-            <div className="col-span-1 md:col-span-2">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                {data.interest && (
-                  <Interset
-                    title="Affinité d&apos;intérêt de l&apos;audience"
-                    data={JSON.parse(data.interest.toString())}
-                  />
-                )}
+            
 
                 {data.countries && (
                   <CountriesSplit
@@ -522,11 +515,16 @@ const AudienceReport = () => {
                   />
                 )}
 
+                {data.interest && (
+                  <Interset
+                    title="Affinité d&apos;intérêt de l&apos;audience"
+                    data={JSON.parse(data.interest.toString())}
+                  />
+                )}
+                
                 {data.language && JSON.stringify(data.language) !== "{}" && (
                   <ChartLangage data={JSON.parse(data.language.toString())} />
                 )}
-              </div>
-            </div>
           </div>
         </div>
       )}
