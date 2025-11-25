@@ -364,11 +364,8 @@ const SocialCoverage = ({ networks }: { networks: Network[] }) => {
 
   return (
     <div>
-      <h5 className="text-xl font-semibold mb-4">Performance Concurrentielle</h5>
-
-
-
-      <DataTable columns={columns} data={displayedNetworks} />
+      <h5 className="text-xl font-semibold mb-4">Tableau de Performance Multicanal</h5>
+      <DataTable columns={columns} data={networks} />
     </div>
   );
 };
