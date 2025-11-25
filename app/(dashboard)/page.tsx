@@ -8,6 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams, useRouter } from "next/navigation";
 import Sentiment from "@/components/media/Sentiment";
 import MentionsPanel from "@/components/social-listening/MentionsPanel";
+
+export const dynamic = 'force-dynamic';
 const tabs = [
   {
     label: "Écoute sociale",
