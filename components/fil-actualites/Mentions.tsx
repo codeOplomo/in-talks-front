@@ -370,7 +370,7 @@ const Mentions = () => {
       <CardHeader className="flex-shrink-0">
         <div className="flex items-center gap-2 justify-between w-full">
           <div className="flex items-center gap-2">
-            <CardTitle className="text-lg">Mentions Feed</CardTitle>
+            <CardTitle className="text-lg">Feed des Mentions</CardTitle>
             <ToolTipsProvider title="Recent mentions feed displaying the latest social media conversations and insights." />
           </div>
           <div className="flex items-center gap-2">
