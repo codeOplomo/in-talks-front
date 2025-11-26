@@ -1,6 +1,6 @@
 "use client";
 
-import Profil from "@/components/media/Profil";
+// import Profil from "@/components/media/Profil";
 import React, { Suspense, useEffect, useState } from "react";
 import Overview from "@/components/media/Overview";
 import PostsGrid from "@/components/media/PostsGrid";
@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams, useRouter } from "next/navigation";
 import Sentiment from "@/components/media/Sentiment";
 import MentionsPanel from "@/components/social-listening/MentionsPanel";
+
+export const dynamic = 'force-dynamic';
 const tabs = [
   {
     label: "Écoute sociale",

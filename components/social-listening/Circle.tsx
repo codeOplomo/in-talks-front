@@ -15,7 +15,7 @@ const data = [
   "/MARJANE.jpg",
   "/Logo-Lydec-1.jpg",
   "/ocp-group.png",
-  "/bmci.png",
+  // "/bmci.png",
   "/inwi.png",
 ];
 const Circle = () => {
