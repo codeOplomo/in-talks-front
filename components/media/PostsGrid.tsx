@@ -688,8 +688,8 @@ const PostsGrid = () => {
         metric === "followers"
           ? "Followers"
           : metric === "likers"
-          ? "Likers"
-          : metric,
+            ? "Likers"
+            : metric,
     });
     rows.push({
       key: "Date From",
@@ -804,16 +804,14 @@ const PostsGrid = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => setViewMode("grid")}
-                className={`rounded-r-none ${
-                  viewMode === "grid"
+                className={`rounded-r-none ${viewMode === "grid"
                     ? "bg-[#7b61f9] text-white border-[#7b61f9]"
                     : "text-gray-600"
-                }`}
+                  }`}
               >
                 <LayoutGrid
-                  className={`h-4 w-4 ${
-                    viewMode === "grid" ? "text-white" : "text-gray-600"
-                  }`}
+                  className={`h-4 w-4 ${viewMode === "grid" ? "text-white" : "text-gray-600"
+                    }`}
                 />
               </Button>
 
@@ -821,16 +819,14 @@ const PostsGrid = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => setViewMode("list")}
-                className={`rounded-l-none ${
-                  viewMode === "list"
+                className={`rounded-l-none ${viewMode === "list"
                     ? "bg-[#7b61f9] text-white border-[#7b61f9]"
                     : "text-gray-600"
-                }`}
+                  }`}
               >
                 <List
-                  className={`h-4 w-4 ${
-                    viewMode === "list" ? "text-white" : "text-gray-600"
-                  }`}
+                  className={`h-4 w-4 ${viewMode === "list" ? "text-white" : "text-gray-600"
+                    }`}
                 />
               </Button>
             </div>

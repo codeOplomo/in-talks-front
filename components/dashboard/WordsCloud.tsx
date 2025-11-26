@@ -156,7 +156,7 @@ const WordCloud = () => {
       
       // If we couldn't find a spot, try with reduced collision detection (fallback)
       if (!placed) {
-        let x, y;
+        // let x, y;
         let foundSpot = false;
         let fallbackAttempts = 0;
         const maxFallbackAttempts = 50;

@@ -17,16 +17,20 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
-import { Filter, RotateCcw, Search } from "lucide-react";
+import { Filter, RotateCcw } from "lucide-react";
 import Link from "next/link";
-import { Input } from "../ui/input";
+// import { Input } from "../ui/input";
 import Image from "next/image";
 import { CompactDatePicker } from "../ui/CompactDatePicker";
 
 const FilterFeed = () => {
   return (
     <div className="flex flex-col gap-5 h-[600px] sticky top-5 overflow-y-auto">
+<<<<<<< HEAD
       <Card>
+=======
+      {/* <Card>
+>>>>>>> eae9e5c18ce8d5bedad49c8e32532fc35451c1fc
         <CardHeader>
           <CardTitle className="font-semibold">Rechercher une mention</CardTitle>
         </CardHeader>
@@ -36,14 +40,21 @@ const FilterFeed = () => {
             <Search className=" size-4 absolute right-3 text-gray-700 transform -translate-y-1/2 top-1/2" />
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
       <OrderBy />
       <FilterSource />
       <FilterSentiment />
+<<<<<<< HEAD
       {/* <FilterAuthor /> */}
       {/* <FilterCity /> */}
       <FilterPeriod />
       {/* <FilterLangue /> */}
+=======
+      <FilterAuthor />
+      <FilterCity />
+      <FilterPeriod />
+      <FilterLangue />
+>>>>>>> eae9e5c18ce8d5bedad49c8e32532fc35451c1fc
       <div className="bg-white border rounded-md p-5 flex gap-2">
         <Button
           asChild
