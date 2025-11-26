@@ -105,7 +105,7 @@ function ShareOfVoice() {
                 display: 'inline-block',
               }}
             >
-              Insights boostés par IA
+              IA-powered insights
             </span>
           </div>
           {showInsight && (

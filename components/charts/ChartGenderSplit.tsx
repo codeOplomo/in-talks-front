@@ -177,7 +177,7 @@ function ChartGenderSplit({ percentages }: ChartGenderSplitProps) {
                 display: 'inline-block',
               }}
             >
-              Insights boostés par IA
+              AI-powered insights
             </span>
           </div>
           {showInsight && (

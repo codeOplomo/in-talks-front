@@ -282,10 +282,10 @@ const AudienceReport = () => {
         <h2 className="text-4xl sm:text-5xl md:text-6xl my-3 font-extrabold tracking-tight text-gray-900 dark:text-white">
           Audience
         </h2>
-        <p className="mt-1 text-sm sm:text-base text-muted-foreground max-w-3xl">
+        {/* <p className="mt-1 text-sm sm:text-base text-muted-foreground max-w-3xl">
           Générez et téléchargez des rapports détaillés sur vos performances sur
           les re9seaux sociaux, les insights d&apos;audience et plus encore.
-        </p>
+        </p> */}
       </div>
       <div className="flex justify-between items-center pt-4 pb-4">
         {/* Left side: Export button */}
@@ -400,10 +400,10 @@ const AudienceReport = () => {
             </SelectContent>
           </Select>
 
-          <p className="text-xs">
+          {/* <p className="text-xs">
             Les données d&apos;audience sont basées sur{" "}
             {source ?? "Tous les réseaux sociaux"}
-          </p>
+          </p> */}
         </div>
       </div>
       <SocialCoverage networks={networks} />
@@ -494,7 +494,7 @@ const AudienceReport = () => {
                         display: "inline-block",
                       }}
                     >
-                      Insights boostés par IA
+                      AI-powered insights
                     </span>
                   </div>
                   {showInsight && (

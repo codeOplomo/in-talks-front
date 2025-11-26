@@ -22,7 +22,8 @@ const ChartLangage = ({ data }: { data: JSON }) => {
           />
         </div>
       </CardHeader>
-      <CardContent className="justify-center pb-0 bg-transparent mt-5 flex flex-col gap-2.5 ">
+  {/* add extra bottom padding so the absolute AI insights block has room and doesn't overlap the content */}
+  <CardContent className="justify-center pb-16 bg-transparent mt-5 flex flex-col gap-2.5 ">
         {countries.map((country, index) => (
           <div key={index} className="flex flex-col gap-2.5">
             <div className="flex items-center text-sm justify-between">
@@ -43,7 +44,7 @@ const ChartLangage = ({ data }: { data: JSON }) => {
           </div>
         ))}
       </CardContent>
-      <div className="absolute bottom-4 left-6">
+  <div className="absolute bottom-6 left-6">
         <div className="relative">
           <div 
             className="text-sm text-black flex items-center gap-2 cursor-pointer"
@@ -62,7 +63,7 @@ const ChartLangage = ({ data }: { data: JSON }) => {
                 display: 'inline-block',
               }}
             >
-              Insights boostés par IA
+              AI-powered insights
             </span>
           </div>
           {showInsight && (
