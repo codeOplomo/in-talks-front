@@ -65,10 +65,12 @@ const WordCloud = () => {
     const minValue = Math.min(...wordData.map(w => w.value));
     const maxValue = Math.max(...wordData.map(w => w.value));
     
-    // Container dimensions for word positioning
-    const containerWidth = 400;
+    // Container dimensions for word positioning - use full available space
+    const containerWidth = 600;  // Increased width
     const containerHeight = 400;
-    const maxRadius = Math.min(containerWidth, containerHeight) / 2 - 40;
+    const padding = 20;
+    const availableWidth = containerWidth - 2 * padding;
+    const availableHeight = containerHeight - 2 * padding;
     
     // Function to check if two rectangles overlap
     const rectanglesOverlap = (rect1: Rectangle, rect2: Rectangle) => {
@@ -90,14 +92,14 @@ const WordCloud = () => {
       };
     };
     
-    // Generate positions with collision detection
+    // Generate positions with random distribution across the entire space
     const positioned: Word[] = [];
     
     wordData.forEach((word) => {
       const fontSize = 12 + ((word.value - minValue) / (maxValue - minValue)) * 36;
       let placed = false;
       let attempts = 0;
-      const maxAttempts = 200;
+      const maxAttempts = 100;
       
       // Assign theme and color based on value percentile
       const percentile = (word.value - minValue) / (maxValue - minValue);
@@ -118,26 +120,9 @@ const WordCloud = () => {
       const color = themeColors[theme][colorIndex];
       
       while (!placed && attempts < maxAttempts) {
-        let x, y;
-        
-        if (positioned.length === 0) {
-          // First word goes in center
-          x = 0;
-          y = 0;
-        } else {
-          // Spiral placement for subsequent words
-          const angle = attempts * 0.5;
-          const radius = Math.sqrt(attempts) * 15;
-          x = Math.cos(angle) * radius;
-          y = Math.sin(angle) * radius;
-          
-          // Ensure within bounds
-          const distanceFromCenter = Math.sqrt(x * x + y * y);
-          if (distanceFromCenter > maxRadius) {
-            x = (x / distanceFromCenter) * maxRadius;
-            y = (y / distanceFromCenter) * maxRadius;
-          }
-        }
+        // Random positioning across the entire rectangular space
+        const x = (Math.random() - 0.5) * availableWidth;
+        const y = (Math.random() - 0.5) * availableHeight;
         
         const testWord: Word = {
           ...word,
@@ -169,18 +154,66 @@ const WordCloud = () => {
         attempts++;
       }
       
-      // If we couldn't find a spot, place it anyway (fallback)
+      // If we couldn't find a spot, try with reduced collision detection (fallback)
       if (!placed) {
-        const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * maxRadius;
-        positioned.push({
-          ...word,
-          x: Math.cos(angle) * radius,
-          y: Math.sin(angle) * radius,
-          color,
-          rotation: Math.random() * 40 - 20,
-          theme
-        });
+        // let x, y;
+        let foundSpot = false;
+        let fallbackAttempts = 0;
+        const maxFallbackAttempts = 50;
+        
+        while (!foundSpot && fallbackAttempts < maxFallbackAttempts) {
+          const x = (Math.random() - 0.5) * availableWidth;
+          const y = (Math.random() - 0.5) * availableHeight;
+          
+          // Check for minimal overlaps only
+          const testWord: Word = {
+            ...word,
+            x,
+            y,
+            color,
+            rotation: Math.random() * 40 - 20,
+            theme
+          };
+          
+          const bounds = getWordBounds(testWord, fontSize);
+          let hasMajorOverlap = false;
+          
+          for (const existingWord of positioned) {
+            const existingFontSize = 12 + ((existingWord.value - minValue) / (maxValue - minValue)) * 36;
+            const existingBounds = getWordBounds(existingWord, existingFontSize);
+            if (rectanglesOverlap(bounds, existingBounds)) {
+              // Allow some overlap for smaller words
+              const overlapArea = Math.max(0, Math.min(bounds.right, existingBounds.right) - Math.max(bounds.left, existingBounds.left)) *
+                                Math.max(0, Math.min(bounds.bottom, existingBounds.bottom) - Math.max(bounds.top, existingBounds.top));
+              const testArea = (bounds.right - bounds.left) * (bounds.bottom - bounds.top);
+              if (overlapArea / testArea > 0.3) { // More than 30% overlap
+                hasMajorOverlap = true;
+                break;
+              }
+            }
+          }
+          
+          if (!hasMajorOverlap) {
+            positioned.push(testWord);
+            foundSpot = true;
+          }
+          
+          fallbackAttempts++;
+        }
+        
+        // Ultimate fallback - place randomly
+        if (!foundSpot) {
+          const x = (Math.random() - 0.5) * availableWidth;
+          const y = (Math.random() - 0.5) * availableHeight;
+          positioned.push({
+            ...word,
+            x,
+            y,
+            color,
+            rotation: Math.random() * 40 - 20,
+            theme
+          });
+        }
       }
     });
     
@@ -195,18 +228,24 @@ const WordCloud = () => {
     return minSize + ((value - minValue) / (maxValue - minValue)) * (maxSize - minSize);
   };
 
+  const themeLabels: Record<string, string> = {
+    emerging: 'Émergent',
+    decreasing: 'En baisse',
+    new: 'Nouveaux',
+  };
+
   return (
     <Card className="@container/card col-span-2 relative">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <CardTitle>Food Delivery Trends</CardTitle>
-          <ToolTipsProvider title="Interactive word cloud showing top food delivery mentions with color-coded themes. Emerging cuisines (green), declining preferences (red), and new food trends (blue). Hover over words to see their popularity and theme categorization across Arabic, French, and English languages." />
+          <CardTitle>Nuage des Thématiques</CardTitle>
+          <ToolTipsProvider title="Nuage de mots interactif affichant les mentions principales liées à la livraison de nourriture avec des thèmes codés par couleur. Cuisines émergentes (vert), préférences en baisse (rouge) et nouvelles tendances (bleu). Survolez les mots pour voir leur popularité et leur catégorisation en arabe, français et anglais." />
         </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
 
         <div className="relative bg-slate-700/40 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-slate-700">
-          <div className="relative h-[400px] flex items-center justify-center">
+          <div className="relative h-[400px] w-[600px] flex items-center justify-center mx-auto">
             {words.map((word, index) => {
               const fontSize = getFontSize(word.value);
               const isHovered = hoveredWord === index;
@@ -236,7 +275,7 @@ const WordCloud = () => {
                       className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-700 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap"
                       style={{ transform: `translateX(-50%) rotate(${-word.rotation}deg)` }}
                     >
-                      Weight: {word.value}
+                      Poids : {word.value}
                     </div>
                   )}
                 </div>
@@ -248,7 +287,7 @@ const WordCloud = () => {
         <div className="mt-6 flex justify-center gap-6 flex-wrap">
           {Object.entries(themeColors).map(([theme, colors]) => (
             <div key={theme} className="flex items-center gap-3">
-              <span className="capitalize text-sm font-medium">{theme} Themes</span>
+              <span className="capitalize text-sm font-medium">{themeLabels[theme] ?? theme}</span>
               <div className="flex gap-1">
                 {colors.map((color, i) => (
                   <div key={i} className="w-4 h-4 rounded-sm border border-slate-600" style={{ backgroundColor: color }}></div>
@@ -259,8 +298,8 @@ const WordCloud = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <div className="inline-flex items-center gap-4 bg-slate-700/40 backdrop-blur-sm px-6 py-3 rounded-full border border-slate-700">
-            <span className="text-black text-sm">Total words:</span>
+            <div className="inline-flex items-center gap-4 bg-slate-700/40 backdrop-blur-sm px-6 py-3 rounded-full border border-slate-700">
+            <span className="text-black text-sm">Total de mots :</span>
             <span className="text-white font-semibold">{words.length}</span>
           </div>
         </div>

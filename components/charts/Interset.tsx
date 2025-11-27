@@ -64,7 +64,7 @@ const Interset = ({ title, data }: { title: string; data: JSON }) => {
                 display: 'inline-block',
               }}
             >
-              Insights boostés par IA
+              AI-powered insights
             </span>
           </div>
           {showInsight && (

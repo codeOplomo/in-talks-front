@@ -17,7 +17,7 @@ import { Button } from "../ui/button";
 
 const media = [
   {
-    label: "All Social Medias",
+    label: "Tous les réseaux sociaux",
     // no image for the 'All' option - render an icon instead
   },
   {
@@ -683,7 +683,7 @@ const PostsGrid = () => {
 
     // include selected filters
     rows.push({
-      key: "Selected Metric",
+      key: "Métrique sélectionnée",
       value:
         metric === "followers"
           ? "Followers"
@@ -692,14 +692,14 @@ const PostsGrid = () => {
             : metric,
     });
     rows.push({
-      key: "Date From",
+      key: "Date de début",
       value: dateRange.from ? dateRange.from.toISOString() : "",
     });
     rows.push({
-      key: "Date To",
+      key: "Date de fin",
       value: dateRange.to ? dateRange.to.toISOString() : "",
     });
-    rows.push({ key: "Source", value: source ?? "All Social Medias" });
+    rows.push({ key: "Source", value: source ?? "Tous les réseaux sociaux" });
 
     // include top-level fields from data
     Object.entries(data).forEach(([k, v]) => {
@@ -730,7 +730,7 @@ const PostsGrid = () => {
       rows.push({ key: k, value: String(v) });
     });
 
-    const header = ["Metric", "Value"];
+  const header = ["Métrique", "Valeur"];
     const csv = [header.join(",")]
       .concat(
         rows.map(
@@ -747,7 +747,7 @@ const PostsGrid = () => {
     const a = document.createElement("a");
     const ts = new Date().toISOString().replace(/[:.]/g, "-");
     a.href = url;
-    a.download = `audience-report-${ts}.csv`;
+  a.download = `rapport-audience-${ts}.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -774,6 +774,16 @@ const PostsGrid = () => {
   return (
     <div>
       <div className="border border-gray-200 rounded-md">
+        
+      <div>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl my-3 font-extrabold tracking-tight text-gray-900 dark:text-white">
+          Publications
+        </h2>
+        {/* <p className="mt-1 text-sm sm:text-base text-muted-foreground max-w-3xl">
+          Générez et téléchargez des rapports détaillés sur vos performances sur
+          les re9seaux sociaux, les insights d&apos;audience et plus encore.
+        </p> */}
+      </div>
         <div className="flex justify-between items-center pt-4 pb-4">
           {/* Left side: Export button */}
           <div className="flex items-center">
@@ -784,7 +794,7 @@ const PostsGrid = () => {
               className=""
             >
               <DownloadCloud className="mr-2 h-4 w-4" />
-              Export CSV
+              Télécharger CSV
             </Button>
 
             {/* View mode segmented control (grid / list) */}
@@ -833,11 +843,11 @@ const PostsGrid = () => {
 
             <Select value={source} onValueChange={(v) => setSource(v)}>
               <SelectTrigger className="w-40 bg-white">
-                <SelectValue placeholder="By source" />
-              </SelectTrigger>
+                  <SelectValue placeholder="Par source" />
+                </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>By source</SelectLabel>
+                  <SelectLabel>Par source</SelectLabel>
                   {media.map((item) => (
                     <SelectItem key={item.label} value={item.label}>
                       {item.image ? (
@@ -851,11 +861,15 @@ const PostsGrid = () => {
                               e.currentTarget.style.display = "none";
                               const parent = e.currentTarget.parentElement;
                               if (parent) {
-                                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                                const svg = document.createElementNS(
+                                  "http://www.w3.org/2000/svg",
+                                  "svg"
+                                );
                                 svg.setAttribute("width", "20");
                                 svg.setAttribute("height", "20");
                                 svg.setAttribute("viewBox", "0 0 24 24");
-                                svg.innerHTML = '<path fill="black" d="M17.53 3H21L14.19 10.63L22.09 21H15.63L10.77 14.62L5.29 21H2L9.13 13L1.61 3H8.24L12.68 8.87L17.53 3ZM16.41 19H18.23L7.75 5H5.81L16.41 19Z"/>';
+                                svg.innerHTML =
+                                  '<path fill="black" d="M17.53 3H21L14.19 10.63L22.09 21H15.63L10.77 14.62L5.29 21H2L9.13 13L1.61 3H8.24L12.68 8.87L17.53 3ZM16.41 19H18.23L7.75 5H5.81L16.41 19Z"/>';
                                 parent.insertBefore(svg, parent.firstChild);
                               }
                             }}
@@ -878,9 +892,9 @@ const PostsGrid = () => {
               </SelectContent>
             </Select>
 
-            <p className="text-xs">
+            {/* <p className="text-xs">
               The audience data is based on {source ?? "All Social Medias"}
-            </p>
+            </p> */}
           </div>
         </div>
 

@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import FeedCard from "./FeedCard";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import ToolTipsProvider from "../charts/ToolTipsProvider";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Checkbox } from "../ui/checkbox";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../ui/select";
 import {
   Dialog,
   DialogTrigger,
@@ -9,23 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogClose,
 } from "../ui/dialog";
-import { Input } from "../ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectItem,
-} from "../ui/select";
-import { Button } from "../ui/button";
-import { Label } from "../ui/label";
-import { Plus } from "lucide-react";
 
-const mentions = [
+const mentionsData = [
   {
     id: "1",
     title: "Glovo expands in Morocco",
@@ -303,158 +299,204 @@ const mentions = [
   },
 ];
 const Mentions = () => {
-  const [currentMentions, setCurrentMentions] = useState(mentions);
-  // Modal / form state
-  const [link, setLink] = useState("");
-  const [title, setTitle] = useState("");
-  const [snippet, setSnippet] = useState("");
-  const [source, setSource] = useState("");
-  const [sentiment, setSentiment] = useState("");
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-  const [thumbnail, setThumbnail] = useState("");
+  const [mentions, setMentions] = useState(mentionsData);
+  const [open, setOpen] = useState(false);
+
+  const [form, setForm] = useState({
+    link: "",
+    title: "",
+    snippet: "",
+    source: "",
+    sentiment: "",
+    date: new Date().toISOString().slice(0, 10),
+    thumbnail: "",
+    notify: false,
+  });
 
   const handleDelete = (id: string) => {
-    setCurrentMentions((prev) => prev.filter((mention) => mention.id !== id));
+    setMentions(mentions.filter((mention) => mention.id !== id));
   };
 
-  const handleUpdateSentiment = (id: string, newType: string) => {
-    setCurrentMentions((prev) =>
-      prev.map((mention) =>
-        mention.id === id ? { ...mention, type: newType } : mention
+  const handleUpdateSentiment = (id: string, newSentiment: string) => {
+    setMentions(
+      mentions.map((mention) =>
+        mention.id === id ? { ...mention, type: newSentiment } : mention
       )
     );
   };
 
-  const handleAddMention = () => {
-    if (!title) return; // minimal validation
+  // Export mentions as CSV and trigger download
+  const handleDownloadMentions = () => {
+    try {
+      const headers = [
+        "id",
+        "title",
+        "link",
+        "postedDate",
+        "thumbnail",
+        "snippet",
+        "source",
+        "type",
+      ];
 
-    const newMention = {
-      id: Date.now().toString(),
-      title: title,
-      link: link || "#",
-      postedDate: date,
-      thumbnail: thumbnail || "/mentions/glovo.webp",
-      snippet: snippet,
-      source: source || "facebook",
-      type: sentiment || "NEUTRAL",
-    };
+      const rows = mentions.map((m) =>
+        headers
+          .map((h) => {
+            const val = (m as Record<string, unknown>)[h] ?? "";
+            // escape double quotes
+            return `"${String(val).replace(/"/g, '""')}"`;
+          })
+          .join(",")
+      );
 
-    setCurrentMentions((prev) => [newMention, ...prev]);
-
-    // reset form
-    setLink("");
-    setTitle("");
-    setSnippet("");
-    setSource("");
-    setSentiment("");
-    setDate(new Date().toISOString().slice(0, 10));
-    setThumbnail("");
-
-    // dialog will be closed by DialogClose wrapping the button
+      const csv = [headers.join(","), ...rows].join("\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `mentions-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      // silent fail for now - could show UI toast later
+      console.error(e);
+    }
   };
-  
+
   return (
     <Card className="flex flex-col relative">
       <CardHeader className="flex-shrink-0">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center gap-2 justify-between w-full">
           <div className="flex items-center gap-2">
-            <CardTitle className="text-lg">Mentions Feed</CardTitle>
+            <CardTitle className="text-lg">Feed des Mentions</CardTitle>
             <ToolTipsProvider title="Recent mentions feed displaying the latest social media conversations and insights." />
           </div>
-          <div>
-            <Dialog>
+          <div className="flex items-center gap-2">
+            <Button size="sm" variant="outline" onClick={handleDownloadMentions}>Télécharger</Button>
+            <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="flex items-center gap-2">
-                  <Plus className="size-4" />
-                  Ajouter une mention
-                </Button>
+                <Button size="sm" variant="outline">Ajouter une mention</Button>
               </DialogTrigger>
-              <DialogContent className="w-[90vw] max-w-none p-8">
+              <DialogContent className="w-full max-w-5xl">
                 <DialogHeader>
                   <DialogTitle className="text-center">Ajouter une mention</DialogTitle>
                   {/* <DialogDescription>
-                    Remplissez les champs pour ajouter manuellement une mention.
+                    Remplissez le formulaire ci-dessous pour ajouter une mention manuellement.
                   </DialogDescription> */}
                 </DialogHeader>
 
-                <div className="grid gap-3">
-                  <Label>Link</Label>
-                  <Input value={link} onChange={(e) => setLink(e.target.value)} placeholder="Link" />
+                <div className="grid grid-cols-1 gap-3 mt-2">
+                  <label className="text-sm">Link</label>
+                  <Input
+                    placeholder="Link"
+                    value={form.link}
+                    onChange={(e) => setForm({ ...form, link: e.target.value })}
+                  />
 
-                  <Label>Titre de la mention</Label>
-                  <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Titre de la mention" />
+                  <label className="text-sm">Titre de la mention</label>
+                  <Input
+                    placeholder="Titre de la mention"
+                    value={form.title}
+                    onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  />
 
-                  <Label>Snippet</Label>
+                  <label className="text-sm">Snippet</label>
                   <textarea
-                    value={snippet}
-                    onChange={(e) => setSnippet(e.target.value)}
-                    className="w-full rounded-md border px-3 py-2 text-sm"
                     placeholder="Snippet"
+                    className="min-h-[80px] resize-y rounded-md border bg-transparent px-3 py-2 text-base"
+                    value={form.snippet}
+                    onChange={(e) => setForm({ ...form, snippet: e.target.value })}
                   />
 
                   <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <Label>Source</Label>
-                      <Select onValueChange={(v) => setSource(v)} defaultValue={source}>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Source" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Source</SelectLabel>
-                            <SelectItem value="facebook">Facebook</SelectItem>
-                            <SelectItem value="instagram">Instagram</SelectItem>
-                            <SelectItem value="twitter">Twitter</SelectItem>
-                            <SelectItem value="tiktok">Tiktok</SelectItem>
-                            <SelectItem value="linkedin">LinkedIn</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
+                      <label className="text-sm">Source</label>
+                      <Input
+                        placeholder="Source"
+                        value={form.source}
+                        onChange={(e) => setForm({ ...form, source: e.target.value })}
+                      />
                     </div>
 
                     <div>
-                      <Label>Sentiment</Label>
-                      <Select onValueChange={(v) => setSentiment(v)} defaultValue={sentiment}>
-                        <SelectTrigger className="w-full">
+                      <label className="text-sm">Sentiment</label>
+                      <Select onValueChange={(val) => setForm({ ...form, sentiment: val })}>
+                        <SelectTrigger>
                           <SelectValue placeholder="Sentiment" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Sentiment</SelectLabel>
-                            <SelectItem value="POSITIVE">Positive</SelectItem>
-                            <SelectItem value="NEGATIVE">Negative</SelectItem>
-                            <SelectItem value="NEUTRAL">Neutral</SelectItem>
-                            <SelectItem value="Article">Article</SelectItem>
-                          </SelectGroup>
+                          <SelectItem value="POSITIVE">POSITIVE</SelectItem>
+                          <SelectItem value="NEGATIVE">NEGATIVE</SelectItem>
+                          <SelectItem value="Article">Article</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div>
-                      <Label>Date</Label>
-                      <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                      <label className="text-sm">Date</label>
+                      <Input
+                        type="date"
+                        value={form.date}
+                        onChange={(e) => setForm({ ...form, date: e.target.value })}
+                      />
                     </div>
                   </div>
 
-                  <Label>Miniature (URL)</Label>
-                  <Input value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} placeholder="Image URL" />
+                  <div className="grid grid-cols-1 gap-3">
+                    <div>
+                      <label className="text-sm">Miniature</label>
+                      <Input
+                        placeholder="/mentions/thumb.png"
+                        value={form.thumbnail}
+                        onChange={(e) => setForm({ ...form, thumbnail: e.target.value })}
+                      />
+                    </div>
 
-                  <div className="flex items-center gap-2">
-                    <input id="notify" type="checkbox" className="w-4 h-4" />
-                    <Label htmlFor="notify">Send the notification by email & Whatsapp</Label>
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        checked={form.notify}
+                        onCheckedChange={(val) => setForm({ ...form, notify: !!val })}
+                      />
+                      <span className="text-sm">Send the notification by email & Whatsapp</span>
+                    </div>
                   </div>
+
                 </div>
 
                 <DialogFooter>
-                  {/* Use a button that closes dialog after adding */}
-                  <DialogClose asChild>
-                    <Button
-                      onClick={() => handleAddMention()}
-                      className="bg-main text-white w-full"
-                    >
-                      Ajouter
-                    </Button>
-                  </DialogClose>
+                  <div className="flex w-full gap-2">
+                    <Button className="w-full bg-main" size="sm" onClick={() => {
+                      // minimal validation
+                      if (!form.title || !form.snippet) {
+                        // simple client-side guard
+                        return;
+                      }
+                      const newMention = {
+                        id: Date.now().toString(),
+                        title: form.title,
+                        link: form.link || "#",
+                        postedDate: form.date,
+                        thumbnail: form.thumbnail || "/mentions/glovo.webp",
+                        snippet: form.snippet,
+                        source: form.source || "unknown",
+                        type: form.sentiment || "Article",
+                      };
+                      setMentions((prev) => [newMention, ...prev]);
+                      setForm({
+                        link: "",
+                        title: "",
+                        snippet: "",
+                        source: "",
+                        sentiment: "",
+                        date: new Date().toISOString().slice(0, 10),
+                        thumbnail: "",
+                        notify: false,
+                      });
+                      setOpen(false);
+                    }}>Ajouter</Button>
+                  </div>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -463,7 +505,7 @@ const Mentions = () => {
       </CardHeader>
       <CardContent className="flex-none h-[2600px] overflow-y-auto">
         <div className="flex flex-col gap-2.5">
-          {currentMentions.map((mention) => (
+          {mentions.map((mention) => (
             <FeedCard key={mention.id} feed={mention} onDelete={handleDelete} onUpdateSentiment={handleUpdateSentiment} />
           ))}
         </div>

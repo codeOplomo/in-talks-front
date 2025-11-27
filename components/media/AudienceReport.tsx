@@ -6,12 +6,7 @@ import QualitySplit from "../charts/QualitySplit";
 import AgeGenderBreakdown from "../dashboard/AgeGenderBreakdown";
 import AudienceSocialTable from "./AudienceSocialTable";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -39,6 +34,7 @@ import ToolTipsProvider from "../charts/ToolTipsProvider";
 import { CompactDatePicker } from "../ui/CompactDatePicker";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import BrandAffinity from "../charts/BrandAffinity";
 type DataType = {
   id: string;
   femalePercentage: number;
@@ -245,8 +241,8 @@ const AudienceReport = () => {
         metric === "followers"
           ? "Followers"
           : metric === "likers"
-            ? "Likers"
-            : metric,
+          ? "Likers"
+          : metric,
     });
     rows.push({
       key: "Date From",
@@ -312,6 +308,15 @@ const AudienceReport = () => {
 
   return (
     <div className="w-350 flex flex-col gap-5">
+      <div>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl my-3 font-extrabold tracking-tight text-gray-900 dark:text-white">
+          Audience
+        </h2>
+        {/* <p className="mt-1 text-sm sm:text-base text-muted-foreground max-w-3xl">
+          Générez et téléchargez des rapports détaillés sur vos performances sur
+          les re9seaux sociaux, les insights d&apos;audience et plus encore.
+        </p> */}
+      </div>
       <div className="flex justify-between items-center pt-4 pb-4">
         {/* Left side: Export button */}
         <div className="flex items-center">
@@ -395,11 +400,15 @@ const AudienceReport = () => {
                           e.currentTarget.style.display = "none";
                           const parent = e.currentTarget.parentElement;
                           if (parent) {
-                            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                            const svg = document.createElementNS(
+                              "http://www.w3.org/2000/svg",
+                              "svg"
+                            );
                             svg.setAttribute("width", "20");
                             svg.setAttribute("height", "20");
                             svg.setAttribute("viewBox", "0 0 24 24");
-                            svg.innerHTML = '<path fill="black" d="M17.53 3H21L14.19 10.63L22.09 21H15.63L10.77 14.62L5.29 21H2L9.13 13L1.61 3H8.24L12.68 8.87L17.53 3ZM16.41 19H18.23L7.75 5H5.81L16.41 19Z"/>';
+                            svg.innerHTML =
+                              '<path fill="black" d="M17.53 3H21L14.19 10.63L22.09 21H15.63L10.77 14.62L5.29 21H2L9.13 13L1.61 3H8.24L12.68 8.87L17.53 3ZM16.41 19H18.23L7.75 5H5.81L16.41 19Z"/>';
                             parent.insertBefore(svg, parent.firstChild);
                           }
                         }}
@@ -421,9 +430,10 @@ const AudienceReport = () => {
             </SelectContent>
           </Select>
 
-          <p className="text-xs">
-            Les données d&apos;audience sont basées sur {source ?? "Tous les réseaux sociaux"}
-          </p>
+          {/* <p className="text-xs">
+            Les données d&apos;audience sont basées sur{" "}
+            {source ?? "Tous les réseaux sociaux"}
+          </p> */}
         </div>
       </div>
       <AudienceSocialTable networks={networks} />
@@ -448,7 +458,9 @@ const AudienceReport = () => {
             <Card className="relative">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CardTitle>Répartition de la portée de l&apos;audience</CardTitle>
+                  <CardTitle>
+                    Répartition de la portée de l&apos;audience
+                  </CardTitle>
                   <ToolTipsProvider
                     title={`Affiche le pourcentage d’abonnés segmentés selon le nombre de comptes qu’ils suivent : plus de 1 500, entre 1 000 et 1 500, 500 à 1 000, et moins de 500. Les abonnés qui suivent plus de 1 500 comptes sont moins susceptibles de voir du contenu sponsorisé.`}
                   />
@@ -485,25 +497,40 @@ const AudienceReport = () => {
                     onMouseEnter={() => setShowInsight(true)}
                     onMouseLeave={() => setShowInsight(false)}
                   >
-                    <Image src="/icons/IN-TALKS-logo.png-2.webp" alt="IN-TALKS Logo" width={22} height={22} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+                    <Image
+                      src="/icons/IN-TALKS-logo.png-2.webp"
+                      alt="IN-TALKS Logo"
+                      width={22}
+                      height={22}
+                      style={{
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                      }}
+                    />
                     <span
                       className="font-semibold"
                       style={{
-                        background: 'linear-gradient(90deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        color: 'transparent',
-                        display: 'inline-block',
+                        background:
+                          "linear-gradient(90deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        display: "inline-block",
                       }}
                     >
-                      Insights boostés par IA
+                      AI-powered insights
                     </span>
                   </div>
                   {showInsight && (
                     <div className="absolute bottom-full left-0 mb-2 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 w-auto min-w-80 max-w-xl">
                       <p className="text-sm text-gray-700 dark:text-gray-300">
-                        L&apos;analyse de la portée de l&apos;audience montre que 60% des abonnés ont moins de 500 connexions, ce qui indique un fort potentiel de portée organique. Concentrez-vous sur l&apos;engagement de ce segment très accessible pour maximiser la visibilité et l&apos;interaction du contenu.
+                        L&apos;analyse de la portée de l&apos;audience montre
+                        que 60% des abonnés ont moins de 500 connexions, ce qui
+                        indique un fort potentiel de portée organique.
+                        Concentrez-vous sur l&apos;engagement de ce segment très
+                        accessible pour maximiser la visibilité et
+                        l&apos;interaction du contenu.
                       </p>
                     </div>
                   )}

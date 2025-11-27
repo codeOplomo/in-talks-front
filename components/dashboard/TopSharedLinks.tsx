@@ -51,8 +51,8 @@ export default function TopSharedLinks({ feeds = [] as Feed[] }) {
     <Card className="flex-1 relative">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <CardTitle>Top Shared Links</CardTitle>
-          <ToolTipsProvider title="Latest mentions from various sources, providing quick access to recent conversations and insights." />
+          <CardTitle>Top des liens partagés</CardTitle>
+          <ToolTipsProvider title="Affiche les blogs les plus mentionnés. Utilisez ces données pour identifier les blogs les plus référencés par votre audience." />
         </div>
       </CardHeader>
 
@@ -63,7 +63,7 @@ export default function TopSharedLinks({ feeds = [] as Feed[] }) {
             const endIndex = startIndex + itemsPerPage
             const currentItems = displayFeeds.slice(startIndex, endIndex)
             return currentItems.map((feed) => (
-              <div key={feed.id} className="flex items-center gap-4">
+              <div key={feed.id} className="flex items-center gap-4 mb-3">
                 <ExternalLink className="h-5 w-5 text-primary" />
                 <a
                   href={feed.link}
@@ -86,11 +86,11 @@ export default function TopSharedLinks({ feeds = [] as Feed[] }) {
       <CardFooter className="gap-2 pb-4">
         <div className="flex justify-between items-center w-full">
           <Button size="sm" variant="outline" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
-            Previous
+            Précédent
           </Button>
-          <span className="text-sm">Page {currentPage} of {totalPages}</span>
+          <span className="text-sm">Page {currentPage} sur {totalPages}</span>
           <Button size="sm" variant="outline" onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
-            Next
+            Suivant
           </Button>
         </div>
       </CardFooter>

@@ -132,15 +132,15 @@ const chartConfig = {
     label: "Mentions",
   },
   positive: {
-    label: "Positive",
+    label: "Positif",
     color: palette[0],
   },
   neutral: {
-    label: "Neutral",
+    label: "Neutre",
     color: palette[1],
   },
   negative: {
-    label: "Negative",
+    label: "Négatif",
     color: palette[2],
   },
 } satisfies ChartConfig;
@@ -224,7 +224,7 @@ function MentionsBySentiments() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
+                return date.toLocaleDateString("fr-FR", {
                   month: "short",
                   day: "numeric",
                 });
@@ -236,7 +236,7 @@ function MentionsBySentiments() {
               content={
                 <ChartTooltipContent
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    return new Date(value).toLocaleDateString("fr-FR", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
