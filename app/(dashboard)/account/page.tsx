@@ -27,7 +27,6 @@ const Page = () => {
     <Suspense>
       <div className="@container/main flex flex-col">
         <Tabs defaultValue={"account"} className="my-2">
-          {/* Make the tab list a flex container so triggers can grow equally */}
           <TabsList className="flex w-full text-white border dark:border-gray-800 border-gray-200">
             {tabs.map((tab) => (
               <TabsTrigger
