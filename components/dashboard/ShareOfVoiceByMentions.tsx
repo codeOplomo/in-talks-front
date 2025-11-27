@@ -128,7 +128,7 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
                         </ResponsiveContainer>
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                             <div className="text-2xl font-bold text-gray-800">{totalMentions.toLocaleString()}</div>
-                            <div className="text-xs text-gray-500">Jan 06, 2023 - Feb 04, 2023</div>
+                            <div className="text-xs text-gray-500">Jan 06 - Feb 04</div>
                         </div>
                     </div>
 
