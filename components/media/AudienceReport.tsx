@@ -554,7 +554,7 @@ const AudienceReport = () => {
               <CountriesSplit
                 title="Abonnés par pays"
                 data={JSON.parse(data.countries.toString())}
-                tooltip={`Localisation de l&apos;audience par pays.`}
+                tooltip={`Localisation de l’audience par pays.`}
               />
             )}
 
@@ -562,7 +562,7 @@ const AudienceReport = () => {
               <CountriesSplit
                 title="Abonnés par ville"
                 data={JSON.parse(data.cities.toString())}
-                tooltip={`Localisation de l&apos;audience par ville.`}
+                tooltip={`Localisation de l’audience par ville`}
               />
             )}
 

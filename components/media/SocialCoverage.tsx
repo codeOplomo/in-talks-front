@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useMemo, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import DataTable, { TableColumn } from "react-data-table-component";
 import formatNumber from "@/lib/numbers";
@@ -159,6 +159,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
               onClick={() => setShowSourceMenu((s) => !s)}
               className="flex items-center gap-2 border px-2 py-1 rounded-md bg-white text-sm w-[120px]"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={selectedSource === "x" ? "/media/twitter.png" : `/media/${selectedSource}.png`}
                 alt={selectedSource}
@@ -193,6 +194,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
                     <span>Instagram</span>
                   </li>
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("tiktok"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/tiktok.png" alt="tiktok" width={16} height={16} />
                     <span>TikTok</span>
                   </li>
@@ -201,14 +203,17 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
                     <span>X</span>
                   </li>
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("youtube"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/youtube.png" alt="youtube" width={16} height={16} />
                     <span>YouTube</span>
                   </li>
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("facebook"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/facebook.png" alt="facebook" width={16} height={16} />
                     <span>Facebook</span>
                   </li>
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("linkedin"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/linkedin.png" alt="linkedin" width={16} height={16} />
                     <span>LinkedIn</span>
                   </li>
