@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import DataTable, { TableColumn } from "react-data-table-component";
 import formatNumber from "@/lib/numbers";
@@ -190,6 +190,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
                   }}
                 >
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("instagram"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/instagram.png" alt="instagram" width={16} height={16} />
                     <span>Instagram</span>
                   </li>
@@ -199,6 +200,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
                     <span>TikTok</span>
                   </li>
                   <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("x"); setShowSourceMenu(false); }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/media/twitter.png" alt="x" width={16} height={16} />
                     <span>X</span>
                   </li>
@@ -236,6 +238,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
         return (
           <div className="flex justify-center items-center p-3 gap-3">
             {/* Network logo */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={getNetworkImage(row.network)}
               alt={row.network + " logo"}

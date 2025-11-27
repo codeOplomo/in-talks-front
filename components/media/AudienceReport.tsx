@@ -20,7 +20,6 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart";
 import Image from "next/image";
 import Interset from "../charts/Interset";
@@ -34,7 +33,6 @@ import ToolTipsProvider from "../charts/ToolTipsProvider";
 import { CompactDatePicker } from "../ui/CompactDatePicker";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import BrandAffinity from "../charts/BrandAffinity";
 type DataType = {
   id: string;
   femalePercentage: number;
@@ -144,7 +142,7 @@ function CustomBarTooltip({
   label,
 }: {
   active?: boolean;
-  payload?: any[];
+  payload?: { value?: number; color?: string; payload?: { desktop?: number; fill?: string } }[];
   label?: string | number;
 }) {
   if (!active || !payload || !payload.length) return null;
@@ -241,8 +239,8 @@ const AudienceReport = () => {
         metric === "followers"
           ? "Followers"
           : metric === "likers"
-          ? "Likers"
-          : metric,
+            ? "Likers"
+            : metric,
     });
     rows.push({
       key: "Date From",

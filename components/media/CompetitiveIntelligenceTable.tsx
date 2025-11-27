@@ -380,15 +380,6 @@ const SAMPLE_NETWORKS: Network[] = [
     },
 ];
 
-const NETWORKS_OPTIONS = [
-    { value: "instagram", label: "Instagram" },
-    { value: "facebook", label: "Facebook" },
-    { value: "tiktok", label: "TikTok" },
-    { value: "x", label: "X" },
-    { value: "youtube", label: "YouTube" },
-    { value: "linkedin", label: "LinkedIn" },
-];
-
 interface NewCompetitorForm {
     name: string;
     profil: string;
