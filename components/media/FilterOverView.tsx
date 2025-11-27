@@ -24,7 +24,7 @@ const media = [
   },
   {
     label: "X",
-    image: "/media/x.png",
+    image: "/media/twitter.png",
   },
   {
     label: "Tiktok",
@@ -82,7 +82,7 @@ const FilterOverView = () => {
                 <SelectItem key={item.label} value={item.label}>
                   {item.label === "X" ? (
                     <Image
-                      src="/media/x.png"
+                      src="/media/twitter.png"
                       alt="X logo"
                       width={20}
                       height={20}
