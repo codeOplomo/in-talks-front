@@ -62,7 +62,6 @@ const NavItemExpanded = ({
             <SidebarMenuButton
               disabled={item.comingSoon}
               isActive={isActive(item.url, item.subItems)}
-              tooltip={item.title}
             >
               {item.icon && <item.icon />}
               <span>{item.title}</span>
@@ -74,7 +73,6 @@ const NavItemExpanded = ({
               asChild
               aria-disabled={item.comingSoon}
               isActive={isActive(item.url)}
-              tooltip={item.title}
             >
               <Link href={item.url} target={item.newTab ? "_blank" : undefined}>
                 {item.icon && <item.icon />}
@@ -171,7 +169,7 @@ const NavItemCollapsed = ({
 
 export function NavMain({ items }: NavMainProps) {
   const path = usePathname();
-  const { state, isMobile, lockOpen, unlockOpen } = useSidebar();
+  const { state, lockOpen, unlockOpen } = useSidebar();
 
   const isItemActive = (url: string, subItems?: NavMainItem["subItems"]) => {
     if (subItems?.length) {
@@ -191,6 +189,8 @@ export function NavMain({ items }: NavMainProps) {
       unlockOpen()
     }
   }
+
+  const isCollapsed = state === "collapsed";
 
   return (
     <>
@@ -215,29 +215,31 @@ export function NavMain({ items }: NavMainProps) {
           <SidebarGroupContent className="flex flex-col gap-2">
             <SidebarMenu>
               {group.items.map((item) => {
-                if (state === "collapsed" && !isMobile) {
-                  // If no subItems, just render the button as a link
-                  if (!item.subItems) {
-                    return (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          aria-disabled={item.comingSoon}
-                          tooltip={item.title}
-                          isActive={isItemActive(item.url)}
+                // If no subItems, just render the button as a link (works for both collapsed and expanded)
+                if (!item.subItems) {
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        aria-disabled={item.comingSoon}
+                        tooltip={item.title}
+                        isActive={isItemActive(item.url)}
+                      >
+                        <Link
+                          href={item.url}
+                          target={item.newTab ? "_blank" : undefined}
                         >
-                          <Link
-                            href={item.url}
-                            target={item.newTab ? "_blank" : undefined}
-                          >
-                            {item.icon && <item.icon />}
-                            <span>{item.title}</span>
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  }
-                  // Otherwise, render the dropdown as before
+                          {item.icon && <item.icon />}
+                          <span>{item.title}</span>
+                          {item.comingSoon && <IsComingSoon />}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                }
+
+                // For items with subItems, conditionally render based on state
+                if (isCollapsed) {
                   return (
                     <NavItemCollapsed
                       key={item.title}
@@ -247,7 +249,7 @@ export function NavMain({ items }: NavMainProps) {
                     />
                   );
                 }
-                // Expanded view
+
                 return (
                   <NavItemExpanded
                     key={item.title}

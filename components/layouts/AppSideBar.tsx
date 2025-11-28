@@ -1,6 +1,5 @@
 "use client";
 
-
 import {
   Sidebar,
   SidebarContent,
@@ -16,17 +15,13 @@ import Image from "next/image";
 export default function AppSideBar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const { state, setOpen, isMobile } = useSidebar();
+  const { state, setOpen } = useSidebar();
 
   return (
     <Sidebar
       {...props}
-      onMouseEnter={() => {
-        if (!isMobile) setOpen?.(true)
-      }}
-      onMouseLeave={() => {
-        if (!isMobile) setOpen?.(false)
-      }}
+      onMouseEnter={() => setOpen?.(true)}
+      onMouseLeave={() => setOpen?.(false)}
     >
       <div className=" h-[60px]">
         {state == "expanded" ? (

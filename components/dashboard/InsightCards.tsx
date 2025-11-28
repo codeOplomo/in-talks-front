@@ -287,8 +287,8 @@ export function InsightCards() {
 
 
   return (
-    <div className="grid grid-cols-4 md:gap-6">
-      <Card className="col-span-1 xl:col-span-2 relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+      <Card className="relative w-full">
         <CardHeader>
           <div className="flex items-center gap-2">
             <CardTitle>Répartition des Mentions par Source</CardTitle>
@@ -389,7 +389,7 @@ export function InsightCards() {
           </div>
         </div>
       </Card>
-      <Card className="col-span-1 xl:col-span-2 relative">
+      <Card className="relative w-full">
         <CardHeader>
           <div className="flex items-center gap-2">
             <CardTitle>Dernières Mentions</CardTitle>
