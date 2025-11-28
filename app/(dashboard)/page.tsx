@@ -1,18 +1,11 @@
 "use client";
 
 // import Profil from "@/components/media/Profil";
-<<<<<<< HEAD
+
 import React, {  useEffect, useState } from "react";
 import Overview from "@/components/media/Overview";
 import PostsGrid from "@/components/media/PostsGrid";
 import AudienceReport from "@/components/media/AudienceReport";
-=======
-import React, { Suspense, useEffect, useState } from "react";
-import Overview from "@/components/media/Overview";
-import PostsGrid from "@/components/media/PostsGrid";
-import AudienceReport from "@/components/media/AudienceReport";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
->>>>>>> eae9e5c18ce8d5bedad49c8e32532fc35451c1fc
 import { useSearchParams, useRouter } from "next/navigation";
 import Sentiment from "@/components/media/Sentiment";
 import MentionsPanel from "@/components/social-listening/MentionsPanel";
