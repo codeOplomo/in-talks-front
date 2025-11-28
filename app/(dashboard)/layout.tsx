@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         data-content-layout={"centered"}
         className={cn(
           // Base background and ensure content takes full width regardless of sidebar state
-          "bg-[#ebebeb] !mx-0 !max-w-full w-full",
+          "bg-[#eaeff9] !mx-0 !max-w-full w-full",
           // Preserve existing responsive adjustments that are specific to the inset variant
           "max-[113rem]:peer-data-[variant=inset]:!mr-2 min-[101rem]:peer-data-[variant=inset]:peer-data-[state=collapsed]:!mr-auto"
         )}
@@ -25,7 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <header
           // data-navbar-style={navbarStyle}
           className={cn(
-            " sticky top-0 backdrop-blur-3xl bg-[#ebebeb] z-10 flex h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12",
+            " sticky top-0 backdrop-blur-3xl bg-white z-10 flex h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12",
             "data-[navbar-style=sticky]:bg-background/50 data-[navbar-style=sticky]:sticky data-[navbar-style=sticky]:top-0 data-[navbar-style=sticky]:z-50 data-[navbar-style=sticky]:overflow-hidden data-[navbar-style=sticky]:rounded-t-[inherit] data-[navbar-style=sticky]:backdrop-blur-md"
           )}
         >

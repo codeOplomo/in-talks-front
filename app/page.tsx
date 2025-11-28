@@ -111,13 +111,13 @@ export default function WelcomePage() {
                         <div className="relative z-10 max-w-6xl mx-auto text-center w-full">
                             {/* Logo/Brand */}
                             <div className="mb-6 flex justify-center">
-                                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100">
+                                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 ">
                                     <Image
-                                        src="/icons/IN-TALKS-logo.png-2.webp"
+                                        src="/logo.webp"
                                         alt="InTalks"
                                         width={60}
                                         height={60}
-                                        className="w-[60px] h-[60px]"
+                                        className="w-full h-[60px]"
                                     />
                                 </div>
                             </div>
