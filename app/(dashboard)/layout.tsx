@@ -45,7 +45,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         className={cn(
           // Base background and ensure content takes full width regardless of sidebar state
           "bg-[#eaeff9] !mx-0 !max-w-full w-full",
-          // Preserve existing responsive adjustments that are specific to the inset variant
           "max-[113rem]:peer-data-[variant=inset]:!mr-2 min-[101rem]:peer-data-[variant=inset]:peer-data-[state=collapsed]:!mr-auto"
         )}
       >
@@ -56,8 +55,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             "data-[navbar-style=sticky]:bg-background/50 data-[navbar-style=sticky]:sticky data-[navbar-style=sticky]:top-0 data-[navbar-style=sticky]:z-50 data-[navbar-style=sticky]:overflow-hidden data-[navbar-style=sticky]:rounded-t-[inherit] data-[navbar-style=sticky]:backdrop-blur-md"
           )}
         >
-          <div className="flex w-full items-center justify-between px-4 lg:px-6">
-            <div className="flex items-center gap-1 lg:gap-2 font-medium text-md text-gray-500">
+          <div className="relative flex w-full items-center justify-end px-4 lg:px-6">
+            <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1 lg:gap-2 font-medium text-sm text-gray-400">
               {Navlink}
             </div>
             <div className="flex items-center gap-4">

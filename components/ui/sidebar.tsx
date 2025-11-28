@@ -366,10 +366,10 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
         "bg-background relative flex w-full flex-1 flex-col",
         // When the sibling sidebar (peer) reports it's the inset variant and collapsed
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
-        // Shift the inset/main when the peer sidebar is expanded. Support left/right side.
-        "transition-[margin] duration-200 ease-linear",
-        "md:peer-data-[side=left]:peer-data-[state=expanded]:ml-[var(--sidebar-width)]",
-        "md:peer-data-[side=right]:peer-data-[state=expanded]:mr-[var(--sidebar-width)]",
+        // Keep content stable - always reserve space for the collapsed icon bar width
+        // The expanded sidebar overlays the content, so content width stays consistent
+        "md:peer-data-[side=left]:ml-[var(--sidebar-width-icon)]",
+        "md:peer-data-[side=right]:mr-[var(--sidebar-width-icon)]",
         className
       )}
       {...props}
