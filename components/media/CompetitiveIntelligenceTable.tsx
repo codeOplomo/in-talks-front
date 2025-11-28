@@ -757,7 +757,7 @@ const CompetitiveIntelligenceTable = ({
     return (
         <div>
             <div className="flex justify-between items-center mb-4">
-                <h5 className="text-xl font-semibold">{title}</h5>
+                <h5 className="text-xl text-gray-400 font-semibold">{title}</h5>
                 <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
                     <DialogTrigger asChild>
                         <Button variant="default" className="flex items-center gap-2">

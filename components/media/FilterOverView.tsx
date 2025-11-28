@@ -66,7 +66,7 @@ const FilterOverView = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-4 gap-2 mt-5">
+      <div className="grid grid-cols-4 gap-2 ">
         <CompactDatePicker
           dateRange={dateRange}
           onDateRangeChange={setDateRange}

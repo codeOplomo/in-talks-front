@@ -306,14 +306,14 @@ const AudienceReport = () => {
 
   return (
     <div className="w-350 flex flex-col gap-3">
-      <div>
-        <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
+      <div className="">
+        <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white inline-flex flex-col">
           Audience
+          <div className="flex flex-row gap-1 mt-2  mb-4">
+          <div className="w-[20%] h-1 bg-[#f02cb9] rounded-full"></div>
+          <div className="w-[10%] h-1 bg-[#35b9f4] rounded-full"></div>
+          </div>
         </h2>
-        {/* <p className="mt-1 text-sm sm:text-base text-muted-foreground max-w-3xl">
-          Générez et téléchargez des rapports détaillés sur vos performances sur
-          les re9seaux sociaux, les insights d&apos;audience et plus encore.
-        </p> */}
       </div>
       
       <AudienceSocialTable networks={networks} />

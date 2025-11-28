@@ -1,15 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import AppSideBar from "@/components/layouts/AppSideBar";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import UserNavigation from "@/components/layouts/UserNavigation";
+import UserProfile from "@/components/layouts/UserProfile";
 import { Bell } from "lucide-react";
 // import { SearchDialog } from "@/components/layouts/SearchDialog";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [showNotifications, setShowNotifications] = useState(false);
+  const pathname = usePathname();
+
+  const [Navlink, setNavlink] = useState<string>("");
+
+  useEffect(() => {
+    const segment = pathname.split('/')[1];
+    switch (segment) {
+      case "dashboard":
+        setNavlink("Tableau de bord");
+        break;
+      case "reseaux-sociaux":
+        setNavlink("Veille & Benchmark");
+        break;
+      case "reseaux-sociaux":
+        setNavlink("Veille & Benchmark");
+        break;
+      case "competitive-intelligence":
+        setNavlink("Veille & Benchmark");
+        break;
+      case "reports":
+        setNavlink("Rapports");
+        break;
+      default:
+        setNavlink("");
+    }
+  }, [pathname]);
+
   return (
     <SidebarProvider className=" relative">
       <AppSideBar variant="sidebar" collapsible="icon" />
@@ -30,24 +59,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           )}
         >
           <div className="flex w-full items-center justify-between px-4 lg:px-6">
-            <div className="flex items-center gap-1 lg:gap-2">
-              <Separator
-                orientation="vertical"
-                className="mx-2 data-[orientation=vertical]:h-4"
-              />
-              {/* <SearchDialog /> */}
+            <div className="flex items-center gap-1 lg:gap-2 font-medium text-md text-gray-500">
+              {Navlink}
             </div>
-            <div className="flex items-center justify-center gap-5">
-              <div className="relative">
+            <div className="flex items-center gap-4">
+              <div className="relative flex items-center">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="relative rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="relative flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="bg-primary text-white -top-2.5 -right-2.5 h-5 w-5 absolute text-center rounded-full flex justify-center items-center text-xs">
+                  <span className="bg-primary text-white -top-0.5 -right-0.5 h-4 w-4 absolute text-center rounded-full flex justify-center items-center text-[10px] font-medium">
                     5
                   </span>
-                  <Bell className="size-4" />
+                  <Bell className="size-5" />
                 </button>
+
 
                 {showNotifications && (
                   <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
@@ -114,7 +140,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 )}
               </div>
-              <UserNavigation />
+
+              <UserProfile />
             </div>
           </div>
         </header>

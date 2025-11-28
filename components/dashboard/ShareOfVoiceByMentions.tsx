@@ -135,9 +135,9 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
         <Card className="relative">
             <CardHeader className="items-center">
                 <div className="flex items-center gap-2">
-                    <CardTitle>Share of Voice by Mentions</CardTitle>
+                    <CardTitle>Répartition de la Part de Voix par Source</CardTitle>
                     <ToolTipsProvider
-                        title="Breakdown of mentions across topics with sentiment analysis. The main chart shows share of voice by brand, while the smaller charts show positive, negative, and neutral sentiment distribution."
+                        title="Affiche la répartition de la part de voix des marques selon les différentes sources (Instagram, Facebook, X, TikTok, YouTube, LinkedIn). Ce graphique met en évidence quelles plateformes génèrent le plus de mentions pour chaque marque, permettant d’identifier les canaux les plus performants et les dynamiques de visibilité."
                     />
                 </div>
             </CardHeader>
@@ -211,7 +211,7 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <Smile className="w-4 h-4 text-green-600" />
-                                        <div className="text-xs font-medium">Share of Positive</div>
+                                        <div className="text-xs font-medium">Part de Sentiment Positif</div>
                                     </div>
                                 </div>
                                 <div className="mt-2 text-xs text-gray-600">
@@ -249,7 +249,7 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <Frown className="w-4 h-4 text-red-600" />
-                                        <div className="text-xs font-medium">Share of Negative</div>
+                                        <div className="text-xs font-medium">Part de Sentiment Négatif</div>
                                     </div>
                                 </div>
                                 <div className="mt-2 text-xs text-gray-600">
@@ -287,7 +287,7 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <Meh className="w-4 h-4 text-gray-500" />
-                                        <div className="text-xs font-medium">Share of Neutral</div>
+                                        <div className="text-xs font-medium">Part de Sentiment Neutre</div>
                                     </div>
                                 </div>
                                 <div className="mt-2 text-xs text-gray-600">
