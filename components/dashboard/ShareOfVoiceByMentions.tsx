@@ -135,9 +135,9 @@ export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
         <Card className="relative">
             <CardHeader className="items-center">
                 <div className="flex items-center gap-2">
-                    <CardTitle>Répartition de la Part de Voix par Source</CardTitle>
+                    <CardTitle>Part de Voix par Mentions</CardTitle>
                     <ToolTipsProvider
-                        title="Affiche la répartition de la part de voix des marques selon les différentes sources (Instagram, Facebook, X, TikTok, YouTube, LinkedIn). Ce graphique met en évidence quelles plateformes génèrent le plus de mentions pour chaque marque, permettant d’identifier les canaux les plus performants et les dynamiques de visibilité."
+                        title="Affiche la répartition des mentions entre les différentes marques pour la période sélectionnée. Le graphique principal montre la part de voix globale de chaque marque, tandis que les graphiques secondaires présentent la distribution des sentiments (positif, neutre et négatif) associés à chaque marque."
                     />
                 </div>
             </CardHeader>

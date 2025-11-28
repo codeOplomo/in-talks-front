@@ -339,7 +339,7 @@ const AudienceReport = () => {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CardTitle>
-                    Répartition de la portée de l&apos;audience
+                    Répartition de la Portée de l&apos;Audience
                   </CardTitle>
                   <ToolTipsProvider
                     title={`Affiche le pourcentage d’abonnés segmentés selon le nombre de comptes qu’ils suivent : plus de 1 500, entre 1 000 et 1 500, 500 à 1 000, et moins de 500. Les abonnés qui suivent plus de 1 500 comptes sont moins susceptibles de voir du contenu sponsorisé.`}
@@ -399,7 +399,7 @@ const AudienceReport = () => {
                         display: "inline-block",
                       }}
                     >
-                      AI-powered insights
+                      AI-Powered Insight
                     </span>
                   </div>
                   {showInsight && (
@@ -432,7 +432,7 @@ const AudienceReport = () => {
 
             {data.countries && (
               <CountriesSplit
-                title="Abonnés par pays"
+                title="Abonnés par Pays"
                 data={JSON.parse(data.countries.toString())}
                 tooltip={`Localisation de l’audience par pays.`}
               />
@@ -440,22 +440,28 @@ const AudienceReport = () => {
 
             {data.cities && (
               <CountriesSplit
-                title="Abonnés par ville"
+                title="Abonnés par Ville"
                 data={JSON.parse(data.cities.toString())}
                 tooltip={`Localisation de l’audience par ville`}
               />
             )}
 
-            {data.interest && (
-              <Interset
-                title="Affinité d&apos;intérêt de l&apos;audience"
-                data={JSON.parse(data.interest.toString())}
-              />
-            )}
+            <div className="col-span-1 md:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <BrandAffinity />
 
-            {data.language && JSON.stringify(data.language) !== "{}" && (
-              <ChartLangage data={JSON.parse(data.language.toString())} />
-            )}
+                {data.interest && (
+                  <Interset
+                    title="Affinité d&apos;Intérêt de l&apos;Audience"
+                    data={JSON.parse(data.interest.toString())}
+                  />
+                )}
+
+                {data.language && JSON.stringify(data.language) !== "{}" && (
+                  <ChartLangage data={JSON.parse(data.language.toString())} />
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

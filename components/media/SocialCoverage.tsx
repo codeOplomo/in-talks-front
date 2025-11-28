@@ -121,7 +121,7 @@ const SocialCoverage = ({ networks, includeSamples = false, title = "Tableau de 
   const mergedNetworks = useMemo(() => {
     const map = new Map<string, Network>();
     // add provided networks first
-    (networks || []).forEach((n) => {
+    (networks || []).forEach((n: Network) => {
       if (n && n.username) map.set(n.username, n);
     });
     // add samples if they don't exist and includeSamples is enabled
