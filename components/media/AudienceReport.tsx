@@ -184,8 +184,10 @@ const AudienceReport = () => {
           </div>
         </h2>
       </div>
-
+      <div>
       <AudienceSocialTable networks={networks} />
+      </div>
+
 
       {data && (
         <div className="overflow-x-hidden">
