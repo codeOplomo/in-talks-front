@@ -42,7 +42,6 @@ export interface AudienceSocialTableProps {
 const media = [
     {
         label: "All Social Medias",
-        // no image for the 'All' option - render an icon instead
     },
     {
         label: "Instagram",
@@ -101,7 +100,8 @@ const AudienceSocialTable = ({
             name: "Source",
             sortable: true,
             selector: (row) => row.network,
-            width: "350px",
+            minWidth: "200px",
+            grow: 2,
             cell: (row) => (
                 <div className="flex justify-center items-center p-3 gap-3">
                     {/* Network logo */}
@@ -139,7 +139,8 @@ const AudienceSocialTable = ({
         },
         {
             name: "Croissance (90 jours)",
-            width: "150px",
+            minWidth: "120px",
+            grow: 1,
             cell() {
                 return (
                     <Badge className="flex gap-1 items-center bg-emerald-500/20 text-black px-3 py-2 rounded-md">
@@ -151,14 +152,16 @@ const AudienceSocialTable = ({
         },
         {
             name: "Activité (90 jours)",
-            width: "150px",
+            minWidth: "120px",
+            grow: 1,
             cell() {
                 return <p>10 publications / mois</p>;
             },
         },
         {
             name: "Score",
-            width: "150px",
+            minWidth: "100px",
+            grow: 1,
             sortable: true,
             selector: (row) => Number(row.metrics),
             cell: (row) => (
@@ -173,6 +176,8 @@ const AudienceSocialTable = ({
         {
             name: "Abonnés",
             sortable: true,
+            minWidth: "100px",
+            grow: 1,
             selector: (row) => row.followers ?? 0,
             cell: (row) => (
                 <div className="">
@@ -182,7 +187,8 @@ const AudienceSocialTable = ({
         },
         {
             name: "Dernière activité",
-            width: "150px",
+            minWidth: "120px",
+            grow: 1,
             sortable: true,
             selector: (row) => row.followers ?? 0,
             cell: () => (
@@ -197,6 +203,8 @@ const AudienceSocialTable = ({
         {
             name: "Taux d'engagement %",
             sortable: true,
+            minWidth: "120px",
+            grow: 1,
             selector: (row) => row.er ?? 0,
             cell: (row) => (
                 <div className="">
@@ -207,7 +215,8 @@ const AudienceSocialTable = ({
         },
         {
             name: "Moy. interactions",
-            width: "150px",
+            minWidth: "120px",
+            grow: 1,
             sortable: true,
             selector: (row) => row.avgEngage ?? 0,
             cell: (row) => (
@@ -219,7 +228,8 @@ const AudienceSocialTable = ({
         },
         {
             name: "Moy. vues",
-            width: "150px",
+            minWidth: "100px",
+            grow: 1,
             sortable: true,
             selector: (row) => row.avgViews ?? 0,
             cell: (row) => (
@@ -231,7 +241,8 @@ const AudienceSocialTable = ({
         },
         {
             name: "Habitudes de publication",
-            width: "250px",
+            minWidth: "180px",
+            grow: 1,
             cell() {
                 return <p>deux fois par semaine à 18h</p>;
             },

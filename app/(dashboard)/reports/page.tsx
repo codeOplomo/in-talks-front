@@ -54,8 +54,8 @@ const Page = () => {
     to: undefined as Date | undefined,
   });
   return (
-    <div className="@container/main mx-auto p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="@container/main ">
+      <div className="w-full">
         <div className="flex justify-between items-center">
           <div className="">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white inline-flex flex-col">
@@ -73,15 +73,15 @@ const Page = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 pt-2 gap-6">
           {reports.map((r) => (
-            <Link key={r.id} href={r.href} className="block">
-              <Card className="relative hover:shadow-lg transition-shadow h-full flex flex-col justify-between overflow-hidden">
+            <Link key={r.id} href={r.href} className="group block">
+              <Card className="relative h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 {/* header band / thumbnail */}
                 <Image
                   src={r.image}
                   alt={r.title}
                   width={480}
                   height={256}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
                 <CardContent className="pt-0 pb-1">

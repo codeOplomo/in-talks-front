@@ -2,7 +2,7 @@
 
 import React, { Suspense } from "react";
 import FilterFeed from "@/components/fil-actualites/FilterFeed";
-import MentionPagination from "@/components/fil-actualites/MentionPagination";
+// import MentionPagination from "@/components/fil-actualites/MentionPagination";
 import Mentions from "@/components/fil-actualites/Mentions";
 import MentionsFeed from "@/components/media/MentionsFeed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -16,9 +16,6 @@ const tabs = [
                 <div className="col-span-2 flex flex-col gap-5">
                     <Suspense>
                         <Mentions />
-                        <MentionPagination
-                            pagination={{ page: 1, pageSize: 10, total: 300, totalPages: 30 }}
-                        />
                     </Suspense>
                 </div>
 
