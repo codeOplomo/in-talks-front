@@ -83,7 +83,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   onClick={() => setShowNotifications(!showNotifications)}
                   className="relative flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <span className="bg-primary text-white -top-0.5 -right-0.5 h-4 w-4 absolute text-center rounded-full flex justify-center items-center text-[10px] font-medium">
+                  <span className="bg-main text-white -top-0.5 -right-0.5 h-4 w-4 absolute text-center rounded-full flex justify-center items-center text-[10px] font-medium">
                     5
                   </span>
                   <Bell className="size-5" />
@@ -100,9 +100,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">New mention detected</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Jumia Food was mentioned in a positive context on Instagram</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">2 minutes ago</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Nouvelle mention détectée</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Jumia Food a été mentionné dans un contexte positif sur Instagram</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Il y a 2 minutes</p>
                           </div>
                         </div>
                       </div>
@@ -110,9 +110,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Sentiment spike alert</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Positive mentions increased by 25% in the last hour</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">1 hour ago</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Alerte pic de sentiment</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Les mentions positives ont augmenté de 25% dans la dernière heure</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Il y a 1 heure</p>
                           </div>
                         </div>
                       </div>
@@ -120,9 +120,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Negative mention alert</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Careem received negative feedback on Twitter</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">3 hours ago</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Alerte mention négative</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Careem a reçu des commentaires négatifs sur Twitter</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Il y a 3 heures</p>
                           </div>
                         </div>
                       </div>
@@ -130,9 +130,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Weekly report ready</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Your social listening weekly summary is available</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">1 day ago</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Rapport hebdomadaire prêt</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Votre résumé hebdomadaire d&apos;écoute sociale est disponible</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Il y a 1 jour</p>
                           </div>
                         </div>
                       </div>
@@ -140,16 +140,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Competitor analysis update</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">New insights available for Yassir market performance</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">2 days ago</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Mise à jour analyse concurrentielle</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Nouveaux insights disponibles sur la performance de Yassir</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Il y a 2 jours</p>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="p-3 border-t border-gray-200 dark:border-gray-700">
                       <button className="w-full text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
-                        View all notifications
+                        Voir toutes les notifications
                       </button>
                     </div>
                   </div>
