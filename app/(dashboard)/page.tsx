@@ -10,33 +10,6 @@ import { useSearchParams } from "next/navigation";
 // import MentionsPanel from "@/components/social-listening/MentionsPanel";
 
 export const dynamic = 'force-dynamic';
-// const tabs = [
-//   {
-//     label: "Écoute sociale",
-//     value: "overView",
-//     component: <Overview />,
-//   },
-//   {
-//     label: "Audience",
-//     value: "audience",
-//     component: <AudienceReport />,
-//   },
-//   {
-//     label: "Publications",
-//     value: "posts",
-//     component: <PostsGrid />,
-//   },
-//   {
-//     label: "Mentions",
-//     value: "mentions",
-//     component: <MentionsPanel />,
-//   },
-//   {
-//     label: "Sentiment",
-//     value: "sentiment",
-//     component: <Sentiment />,
-//   },
-// ];
 
 const Page = () => {
   const searchParams = useSearchParams();
