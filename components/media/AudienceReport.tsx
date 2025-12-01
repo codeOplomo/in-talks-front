@@ -184,6 +184,8 @@ const AudienceReport = () => {
           </div>
         </h2>
       </div>
+
+      {/*dadawfdwada */}
       <div className="grid grid-cols-1 w-full">
         <AudienceSocialTable networks={networks} />
       </div>
