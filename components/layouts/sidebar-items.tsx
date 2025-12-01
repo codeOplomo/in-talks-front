@@ -110,6 +110,7 @@ export const sidebarItems: NavGroup[] = [
         title: "Rapports personnalisés",
         url: "",
         icon: Sliders, // custom / configurable reports
+        comingSoon: true,
       },
     ],
   },

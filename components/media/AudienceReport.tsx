@@ -185,6 +185,7 @@ const AudienceReport = () => {
         </h2>
       </div>
 
+
       <AudienceSocialTable networks={networks} />
 
       {data && (
