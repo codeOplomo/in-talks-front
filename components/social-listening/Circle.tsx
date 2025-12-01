@@ -117,7 +117,7 @@ const BoxCreators = ({
 const MiddleElement = () => {
   return (
   <div className="inset-1/2 z-50 -translate-x-1/2 -top-10 -translate-y-1/2 absolute w-[340px] text-center flex flex-col gap-2">
-  <h2 className="text-xl font-semibold">Veille des Réseaux de Marque</h2>
+  <h2 className="text-xl font-semibold">Veille des de Marque</h2>
   <p className="text-whiteColor">Explorez les marques</p>
 
       <div className="flex items-center relative">
