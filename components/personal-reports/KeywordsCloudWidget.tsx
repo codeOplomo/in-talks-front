@@ -66,7 +66,7 @@ export default function KeywordsCloudWidget({ viewMode = "chart" }: KeywordsClou
     };
 
     return (
-        <Card className="col-span-1 xl:col-span-2 relative min-h-[400px]">
+        <Card className="col-span-1 xl:col-span-2 relative">
             <CardHeader>
                 <CardTitle className="font-semibold">
                     Nuage de Mots

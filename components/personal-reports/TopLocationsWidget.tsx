@@ -50,37 +50,39 @@ export default function TopLocationsWidget({ viewMode = "chart" }: TopLocationsW
     }, []);
 
     return (
-        <Card className="relative min-h-[400px]">
+        <Card className="relative">
             <CardHeader>
                 <CardTitle>Analyse des Sentiments par Ville</CardTitle>
             </CardHeader>
 
-            <CardContent className="h-[350px]">
+            <CardContent>
                 {viewMode === "chart" ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            data={sortedData}
-                            layout="vertical"
-                            barSize={14}
-                            margin={{ top: 8, right: 24, left: 12, bottom: 8 }}
-                        >
-                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                            <XAxis type="number" tickLine={false} axisLine={false} />
-                            <YAxis
-                                type="category"
-                                dataKey="city"
-                                width={100}
-                                tickLine={false}
-                                axisLine={false}
-                            />
-                            <Tooltip cursor={{ fill: "transparent" }} />
-                            <Legend />
+                    <div className="h-[350px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={sortedData}
+                                layout="vertical"
+                                barSize={14}
+                                margin={{ top: 8, right: 24, left: 12, bottom: 8 }}
+                            >
+                                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                                <XAxis type="number" tickLine={false} axisLine={false} />
+                                <YAxis
+                                    type="category"
+                                    dataKey="city"
+                                    width={100}
+                                    tickLine={false}
+                                    axisLine={false}
+                                />
+                                <Tooltip cursor={{ fill: "transparent" }} />
+                                <Legend />
 
-                            <Bar dataKey="positive" name="Positif" stackId="a" fill="#40bb3c" />
-                            <Bar dataKey="neutral" name="Neutre" stackId="a" fill="#ffbf26" />
-                            <Bar dataKey="negative" name="Négatif" stackId="a" fill="#ff0c00" />
-                        </BarChart>
-                    </ResponsiveContainer>
+                                <Bar dataKey="positive" name="Positif" stackId="a" fill="#40bb3c" />
+                                <Bar dataKey="neutral" name="Neutre" stackId="a" fill="#ffbf26" />
+                                <Bar dataKey="negative" name="Négatif" stackId="a" fill="#ff0c00" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
                 ) : (
                     <div className="overflow-x-auto">
                         <Table>
