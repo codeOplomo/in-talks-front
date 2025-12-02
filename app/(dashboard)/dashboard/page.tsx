@@ -1,19 +1,10 @@
 "use client";
 
-// import Profil from "@/components/media/Profil";
 import React, { useEffect, useState, Suspense } from "react";
-// import Overview from "@/components/media/Overview";
-// import PostsGrid from "@/components/media/PostsGrid";
-// import AudienceReport from "@/components/media/AudienceReport";
 import { useSearchParams } from "next/navigation";
-// import Sentiment from "@/components/media/Sentiment";
-// import MentionsPanel from "@/components/social-listening/MentionsPanel";
 
-export const dynamic = 'force-dynamic';
-
-const DashboardContent = () => {
+function DashboardContent() {
   const searchParams = useSearchParams();
-  // const router = useRouter();
   const initial = searchParams?.get("tab") ?? "overView";
   const [tabValue, setTabValue] = useState<string>(initial);
 
@@ -22,6 +13,7 @@ const DashboardContent = () => {
     if (p !== tabValue) setTabValue(p);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams?.toString()]);
+
   return (
     <main className="p-6">
       <h1 className="text-3xl font-bold">Welcome to InTalks</h1>
@@ -30,12 +22,10 @@ const DashboardContent = () => {
   );
 }
 
-const Page = () => {
+export default function Page() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="p-6">Loading...</div>}>
       <DashboardContent />
     </Suspense>
   );
 }
-
-export default Page;
