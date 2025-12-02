@@ -33,7 +33,7 @@ export default function ShareOfVoiceWidget({ viewMode = "chart" }: ShareOfVoiceW
     const total = chartData.reduce((sum, item) => sum + item.desktop, 0);
 
     return (
-        <Card className="flex flex-col relative min-h-[400px]">
+        <Card className="flex flex-col relative">
             <CardHeader className="items-center">
                 <CardTitle>Part de Voix</CardTitle>
             </CardHeader>

@@ -35,68 +35,70 @@ interface AreaChartWidgetProps {
 
 export default function AreaChartWidget({ viewMode = "chart" }: AreaChartWidgetProps) {
     return (
-        <Card className="h-full min-h-[400px]">
+        <Card>
             <CardHeader>
                 <CardTitle>Évolution des Sentiments</CardTitle>
             </CardHeader>
-            <CardContent className="h-[350px]">
+            <CardContent>
                 {viewMode === "chart" ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart
-                            data={chartData}
-                            margin={{
-                                top: 10,
-                                right: 10,
-                                left: 0,
-                                bottom: 0,
-                            }}
-                        >
-                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                            <XAxis
-                                dataKey="date"
-                                tickLine={false}
-                                axisLine={false}
-                                tickMargin={8}
-                                tickFormatter={(value) => {
-                                    const date = new Date(value);
-                                    return date.toLocaleDateString("fr-FR", {
-                                        month: "short",
-                                        day: "numeric",
-                                    });
+                    <div className="h-[350px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart
+                                data={chartData}
+                                margin={{
+                                    top: 10,
+                                    right: 10,
+                                    left: 0,
+                                    bottom: 0,
                                 }}
-                            />
-                            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
-                            <Tooltip />
-                            <Legend />
-                            <Area
-                                type="monotone"
-                                dataKey="positive"
-                                name="Positif"
-                                stackId="1"
-                                stroke="#40bb3c"
-                                fill="#40bb3c"
-                                fillOpacity={0.4}
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="neutral"
-                                name="Neutre"
-                                stackId="1"
-                                stroke="#ffbf26"
-                                fill="#ffbf26"
-                                fillOpacity={0.4}
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="negative"
-                                name="Négatif"
-                                stackId="1"
-                                stroke="#ff0c00"
-                                fill="#ff0c00"
-                                fillOpacity={0.4}
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
+                            >
+                                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                                <XAxis
+                                    dataKey="date"
+                                    tickLine={false}
+                                    axisLine={false}
+                                    tickMargin={8}
+                                    tickFormatter={(value) => {
+                                        const date = new Date(value);
+                                        return date.toLocaleDateString("fr-FR", {
+                                            month: "short",
+                                            day: "numeric",
+                                        });
+                                    }}
+                                />
+                                <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+                                <Tooltip />
+                                <Legend />
+                                <Area
+                                    type="monotone"
+                                    dataKey="positive"
+                                    name="Positif"
+                                    stackId="1"
+                                    stroke="#40bb3c"
+                                    fill="#40bb3c"
+                                    fillOpacity={0.4}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="neutral"
+                                    name="Neutre"
+                                    stackId="1"
+                                    stroke="#ffbf26"
+                                    fill="#ffbf26"
+                                    fillOpacity={0.4}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="negative"
+                                    name="Négatif"
+                                    stackId="1"
+                                    stroke="#ff0c00"
+                                    fill="#ff0c00"
+                                    fillOpacity={0.4}
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
                 ) : (
                     <div className="h-full overflow-auto">
                         <Table>

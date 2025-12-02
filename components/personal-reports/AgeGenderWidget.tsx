@@ -31,45 +31,47 @@ interface AgeGenderWidgetProps {
 
 export default function AgeGenderWidget({ viewMode = "chart" }: AgeGenderWidgetProps) {
     return (
-        <Card className="relative min-h-[400px]">
+        <Card className="relative">
             <CardHeader>
                 <CardTitle>Répartition par Age et Genre</CardTitle>
             </CardHeader>
-            <CardContent className="h-[350px]">
+            <CardContent>
                 {viewMode === "chart" ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            data={chartData}
-                            margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
-                            barSize={20}
-                            barGap={2}
-                        >
-                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                            <XAxis
-                                dataKey="ageGroup"
-                                tickLine={false}
-                                tickMargin={15}
-                                axisLine={false}
-                            />
-                            <Tooltip />
-                            <Legend />
-                            <Bar
-                                dataKey="male"
-                                name="Homme"
-                                stackId="a"
-                                fill="#9c0274"
-                                radius={[0, 0, 4, 4]}
-                            />
-                            <Bar dataKey="female" name="Femme" stackId="a" fill="#ea1c80" />
-                            <Bar
-                                dataKey="other"
-                                name="Autre"
-                                stackId="a"
-                                fill="#8376ce"
-                                radius={[4, 4, 0, 0]}
-                            />
-                        </BarChart>
-                    </ResponsiveContainer>
+                    <div className="h-[350px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={chartData}
+                                margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
+                                barSize={20}
+                                barGap={2}
+                            >
+                                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                                <XAxis
+                                    dataKey="ageGroup"
+                                    tickLine={false}
+                                    tickMargin={15}
+                                    axisLine={false}
+                                />
+                                <Tooltip />
+                                <Legend />
+                                <Bar
+                                    dataKey="male"
+                                    name="Homme"
+                                    stackId="a"
+                                    fill="#9c0274"
+                                    radius={[0, 0, 4, 4]}
+                                />
+                                <Bar dataKey="female" name="Femme" stackId="a" fill="#ea1c80" />
+                                <Bar
+                                    dataKey="other"
+                                    name="Autre"
+                                    stackId="a"
+                                    fill="#8376ce"
+                                    radius={[4, 4, 0, 0]}
+                                />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
                 ) : (
                     <div className="overflow-x-auto">
                         <Table>

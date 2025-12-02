@@ -69,7 +69,7 @@ function SortableItem(props: {
         <div
             ref={setNodeRef}
             style={style}
-            className="group relative mb-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950 print:border-none print:shadow-none print:p-0 print:mb-8"
+            className="group relative mb-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950 print:border-none print:shadow-none print:p-0 print:mb-8 print:break-inside-avoid"
         >
             <div className="mb-4 flex items-center justify-between border-b border-neutral-100 pb-2 dark:border-neutral-800 print:hidden">
                 <div className="flex items-center gap-2">
@@ -177,16 +177,26 @@ export default function ReportBuilder() {
                 <div className="sticky top-6 rounded-xl border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
                     <h2 className="mb-4 text-lg font-semibold">Widgets Disponibles</h2>
                     <div className="flex flex-col gap-2">
-                        {AVAILABLE_WIDGETS.map((widget) => (
-                            <button
-                                key={widget.id}
-                                onClick={() => addWidget(widget.id)}
-                                className="flex w-full items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-left transition-colors hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:bg-neutral-800"
-                            >
-                                <span className="text-sm font-medium">{widget.label}</span>
-                                <Plus size={16} className="text-neutral-500" />
-                            </button>
-                        ))}
+                        {AVAILABLE_WIDGETS.map((widget) => {
+                            const count = items.filter((item) => item.widgetId === widget.id).length;
+                            return (
+                                <button
+                                    key={widget.id}
+                                    onClick={() => addWidget(widget.id)}
+                                    className="flex w-full items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-left transition-colors hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:bg-neutral-800"
+                                >
+                                    <span className="text-sm font-medium">{widget.label}</span>
+                                    <div className="flex items-center gap-2">
+                                        {count > 0 && (
+                                            <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-neutral-200 px-1 text-xs font-medium text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
+                                                {count}
+                                            </span>
+                                        )}
+                                        <Plus size={16} className="text-neutral-500" />
+                                    </div>
+                                </button>
+                            );
+                        })}
                     </div>
                     <div className="mt-6 border-t border-neutral-200 pt-4 dark:border-neutral-800">
                         <p className="mb-4 text-xs text-neutral-500">
@@ -202,7 +212,7 @@ export default function ReportBuilder() {
                     </div>
                 </div>
             </div>            {/* Main Area - Report Canvas */}
-            <div className="flex-1" ref={contentRef}>
+            <div className="flex-1 print:block print:m-0 print:h-auto print:overflow-visible" ref={contentRef}>
                 <div className="mb-6 print:hidden">
                     <h1 className="text-2xl font-bold">Générateur de Rapports Personnalisés</h1>
                     <p className="text-neutral-500">Construisez votre rapport personnalisé en ajoutant des widgets depuis la barre latérale.</p>
@@ -277,6 +287,10 @@ export default function ReportBuilder() {
           }
           .print\\:mb-8 {
             margin-bottom: 2rem !important;
+          }
+          .print\\:break-inside-avoid {
+            break-inside: avoid;
+            page-break-inside: avoid;
           }
           /* Hide drag handles and delete buttons in print */
           button {

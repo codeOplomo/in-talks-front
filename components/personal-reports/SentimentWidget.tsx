@@ -33,59 +33,61 @@ export default function SentimentWidget({ viewMode = "chart" }: SentimentWidgetP
     );
 
     return (
-        <Card className="col-span-1 relative h-full min-h-[350px]">
+        <Card className="col-span-1 relative">
             <CardHeader>
                 <CardTitle>Répartition des Mentions par Sentiment</CardTitle>
             </CardHeader>
-            <CardContent className="h-[300px]">
+            <CardContent>
                 {viewMode === "chart" ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <Tooltip />
-                            <Pie
-                                data={mentionsBySentimentChartData}
-                                dataKey="mentions"
-                                nameKey="sentiment"
-                                innerRadius={60}
-                                outerRadius={90}
-                                paddingAngle={2}
-                                cornerRadius={4}
-                            >
-                                {mentionsBySentimentChartData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                                ))}
-                                <Label
-                                    content={({ viewBox }) => {
-                                        if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                                            return (
-                                                <text
-                                                    x={viewBox.cx}
-                                                    y={viewBox.cy}
-                                                    textAnchor="middle"
-                                                    dominantBaseline="middle"
-                                                >
-                                                    <tspan
+                    <div className="h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <PieChart>
+                                <Tooltip />
+                                <Pie
+                                    data={mentionsBySentimentChartData}
+                                    dataKey="mentions"
+                                    nameKey="sentiment"
+                                    innerRadius={60}
+                                    outerRadius={90}
+                                    paddingAngle={2}
+                                    cornerRadius={4}
+                                >
+                                    {mentionsBySentimentChartData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                                    ))}
+                                    <Label
+                                        content={({ viewBox }) => {
+                                            if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                                                return (
+                                                    <text
                                                         x={viewBox.cx}
                                                         y={viewBox.cy}
-                                                        className="fill-foreground text-3xl font-bold"
+                                                        textAnchor="middle"
+                                                        dominantBaseline="middle"
                                                     >
-                                                        {totalMentions.toLocaleString()}
-                                                    </tspan>
-                                                    <tspan
-                                                        x={viewBox.cx}
-                                                        y={(viewBox.cy || 0) + 24}
-                                                        className="fill-muted-foreground text-xs"
-                                                    >
-                                                        Mentions
-                                                    </tspan>
-                                                </text>
-                                            );
-                                        }
-                                    }}
-                                />
-                            </Pie>
-                        </PieChart>
-                    </ResponsiveContainer>
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={viewBox.cy}
+                                                            className="fill-foreground text-3xl font-bold"
+                                                        >
+                                                            {totalMentions.toLocaleString()}
+                                                        </tspan>
+                                                        <tspan
+                                                            x={viewBox.cx}
+                                                            y={(viewBox.cy || 0) + 24}
+                                                            className="fill-muted-foreground text-xs"
+                                                        >
+                                                            Mentions
+                                                        </tspan>
+                                                    </text>
+                                                );
+                                            }
+                                        }}
+                                    />
+                                </Pie>
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
                 ) : (
                     <div className="overflow-x-auto">
                         <Table>

@@ -63,7 +63,7 @@ interface MentionsOverTimeWidgetProps {
 
 export default function MentionsOverTimeWidget({ viewMode = "chart" }: MentionsOverTimeWidgetProps) {
     return (
-        <Card className="w-full h-full min-h-[400px]">
+        <Card className="w-full">
             <CardHeader>
                 <div className="flex items-center gap-2">
                     <CardTitle>Mentions au fil du temps</CardTitle>

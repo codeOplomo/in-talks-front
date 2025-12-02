@@ -76,7 +76,7 @@ export default function MentionsBySourceWidget({ viewMode = "chart" }: MentionsB
     }));
 
     return (
-        <Card className="flex-1 relative overflow-hidden min-h-[400px]">
+        <Card className="flex-1 relative overflow-hidden">
             <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                     <CardTitle className="text-lg font-semibold">Mentions par source</CardTitle>
