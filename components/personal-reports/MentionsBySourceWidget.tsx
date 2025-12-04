@@ -15,7 +15,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import Image from "next/image";
 import formatNumber from "@/lib/numbers";
 
 const followersData = [
@@ -98,7 +97,7 @@ export default function MentionsBySourceWidget({ viewMode = "chart" }: MentionsB
                                 key={`legend-${index}`}
                                 className="flex items-center gap-3 p-3 rounded-lg transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
                             >
-                                <Image
+                                <img
                                     src={entry.icon}
                                     alt={entry.name}
                                     width={24}
@@ -147,7 +146,7 @@ export default function MentionsBySourceWidget({ viewMode = "chart" }: MentionsB
                                     <TableRow key={row.name}>
                                         <TableCell className="font-medium">
                                             <div className="flex items-center gap-2">
-                                                <Image
+                                                <img
                                                     src={row.icon}
                                                     alt={row.name}
                                                     width={20}
