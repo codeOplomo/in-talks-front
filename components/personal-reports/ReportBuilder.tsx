@@ -30,17 +30,97 @@ import ShareOfVoiceWidget from "./ShareOfVoiceWidget";
 import AgeGenderWidget from "./AgeGenderWidget";
 import TopLocationsWidget from "./TopLocationsWidget";
 import MentionsBySourceWidget from "./MentionsBySourceWidget";
+import MentionsNumberWidget from "./MentionsNumberWidget";
+import EmotionsWidget from "./EmotionsWidget";
+import TopOccupationsWidget from "./TopOccupationsWidget";
+import TopSharedLinksWidget from "./TopSharedLinksWidget";
 
 // Define available widgets
 const AVAILABLE_WIDGETS = [
-    { id: "mentions-over-time", label: "Mentions au fil du temps", component: MentionsOverTimeWidget, supportsViewMode: true },
-    { id: "mentions-by-source", label: "Mentions par Source", component: MentionsBySourceWidget, supportsViewMode: true },
-    { id: "chart-sentiment", label: "Graphique de Sentiment", component: SentimentWidget, supportsViewMode: true },
-    { id: "chart-area", label: "Graphique de Zone", component: AreaChartWidget, supportsViewMode: true },
-    { id: "keywords-nuage", label: "Nuage de Mots-clés", component: KeywordsCloudWidget, supportsViewMode: true },
-    { id: "share-of-voice", label: "Part de Voix", component: ShareOfVoiceWidget, supportsViewMode: true },
-    { id: "age-gender", label: "Répartition Âge & Genre", component: AgeGenderWidget, supportsViewMode: true },
-    { id: "top-locations", label: "Top Localisations", component: TopLocationsWidget, supportsViewMode: true },
+    {
+        id: "mentions-over-time",
+        label: "Mentions au fil du temps",
+        component: MentionsOverTimeWidget,
+        supportsViewMode: true,
+        insight: "L'analyse temporelle révèle une croissance constante des mentions sur TikTok et Instagram, tandis que Facebook maintient une stabilité. Les pics d'activité coïncident avec les campagnes majeures."
+    },
+    {
+        id: "mentions-by-source",
+        label: "Mentions par Source",
+        component: MentionsBySourceWidget,
+        supportsViewMode: true,
+        insight: "TikTok mène avec 175k abonnés, suivi d'Instagram à 150k, indiquant un fort engagement sur le contenu visuel. Facebook et LinkedIn montrent une présence solide, tandis que YouTube et Twitter ont une marge de croissance."
+    },
+    {
+        id: "mentions-number",
+        label: "Mentions par Genre",
+        component: MentionsNumberWidget,
+        supportsViewMode: false,
+        insight: "L'audience féminine est en tête avec 55%. Envisagez de prioriser le contenu et les campagnes qui résonnent avec les intérêts féminins pour augmenter l'engagement."
+    },
+    {
+        id: "chart-sentiment",
+        label: "Graphique de Sentiment",
+        component: SentimentWidget,
+        supportsViewMode: true,
+        insight: "L'analyse des sentiments montre que les mentions positives dominent à 49% (275 mentions), indiquant une perception globalement favorable. Le sentiment négatif représente 16% (80 mentions), ce qui suggère des axes d'amélioration pour l'expérience client."
+    },
+    {
+        id: "emotions-chart",
+        label: "Analyse des Émotions",
+        component: EmotionsWidget,
+        supportsViewMode: true,
+        insight: "La joie est l'émotion dominante (90.4%), reflétant une satisfaction client élevée. Les faibles niveaux de colère et de peur indiquent une bonne gestion de la réputation."
+    },
+    {
+        id: "chart-area",
+        label: "Graphique de Zone",
+        component: AreaChartWidget,
+        supportsViewMode: true,
+        insight: "Les tendances de sentiment montrent des pics positifs corrélés à des événements clés. Les mentions négatives restent faibles, tandis que les fluctuations neutres indiquent des sujets émergents. Surveillez les modèles pour optimiser les stratégies d'engagement."
+    },
+    {
+        id: "keywords-nuage",
+        label: "Nuage de Mots-clés",
+        component: KeywordsCloudWidget,
+        supportsViewMode: true,
+        insight: "Le nuage de mots révèle 'Glovo' comme le mot-clé le plus important, indiquant une forte reconnaissance de la marque. Les termes liés à la livraison dominent, suggérant que les consommateurs se concentrent sur la logistique et la rapidité du service."
+    },
+    {
+        id: "share-of-voice",
+        label: "Part de Voix",
+        component: ShareOfVoiceWidget,
+        supportsViewMode: true,
+        insight: "La restauration rapide domine la part de voix avec 35%, indiquant un fort intérêt des consommateurs pour cette catégorie. Les services de livraison suivent de près avec 29%, montrant l'importance de la logistique dans le choix des consommateurs."
+    },
+    {
+        id: "age-gender",
+        label: "Répartition Âge & Genre",
+        component: AgeGenderWidget,
+        supportsViewMode: true,
+        insight: "L'analyse par âge et genre montre que le groupe 25-34 ans est le segment le plus important avec une répartition équilibrée entre les genres. L'audience féminine domine légèrement la plupart des groupes d'âge, ce qui suggère d'orienter les stratégies de contenu vers ce public pour maximiser l'engagement."
+    },
+    {
+        id: "top-locations",
+        label: "Top Localisations",
+        component: TopLocationsWidget,
+        supportsViewMode: true,
+        insight: "Le Maroc est en tête des mentions avec un fort engagement positif. Les entrées indéterminées sont importantes — envisagez d'affiner la géolocalisation. Surveillez les pics non locaux pour détecter la portée de la campagne."
+    },
+    {
+        id: "top-occupations",
+        label: "Professions des Auteurs",
+        component: TopOccupationsWidget,
+        supportsViewMode: true,
+        insight: "Les médias sociaux et les blogueurs représentent les principales professions, indiquant une forte influence des créateurs de contenu. Les ingénieurs et les étudiants sont également bien représentés."
+    },
+    {
+        id: "top-shared-links",
+        label: "Top Liens Partagés",
+        component: TopSharedLinksWidget,
+        supportsViewMode: true,
+        insight: "Les articles de TechCrunch et Forbes génèrent le plus de partages, soulignant l'intérêt pour l'expansion et les partenariats de l'entreprise. Les actualités économiques dominent les discussions."
+    },
 ];
 
 interface WidgetItem {
@@ -69,7 +149,7 @@ function SortableItem(props: {
         <div
             ref={setNodeRef}
             style={style}
-            className="group relative mb-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950 print:border-none print:shadow-none print:p-0 print:mb-8 print:break-inside-avoid"
+            className="group relative mb-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950 print:border-none print:shadow-none print:p-0 print:mb-8 print:break-inside-avoid"
         >
             <div className="mb-4 flex items-center justify-between border-b border-neutral-100 pb-2 dark:border-neutral-800 print:hidden">
                 <div className="flex items-center gap-2">
@@ -119,6 +199,19 @@ function SortableItem(props: {
                     {widget && <widget.component viewMode={props.viewMode} />}
                 </div>
             </div>
+
+            {widget?.insight && (
+                <div className="mt-4 rounded-lg bg-neutral-50 p-4 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 print:break-inside-avoid">
+                    <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm font-semibold bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+                            AI-Powered Insight
+                        </span>
+                    </div>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                        {widget.insight}
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
@@ -269,6 +362,8 @@ export default function ReportBuilder() {
           }
           body {
             background: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
           }
           .print\\:hidden {
             display: none !important;
