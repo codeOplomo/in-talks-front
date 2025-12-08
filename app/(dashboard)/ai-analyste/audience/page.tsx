@@ -1,22 +1,23 @@
 "use client";
-import ChartGenderSplit from "../charts/ChartGenderSplit";
-import ChartLangage from "../charts/ChartLangage";
-import CountriesSplit from "../charts/CountriesSplit";
-import QualitySplit from "../charts/QualitySplit";
-import AgeGenderBreakdown from "../dashboard/AgeGenderBreakdown";
-import AudienceSocialTable from "./AudienceSocialTable";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import BrandAffinity from "@/components/charts/BrandAffinity";
+import ChartGenderSplit from "@/components/charts/ChartGenderSplit";
+import ChartLangage from "@/components/charts/ChartLangage";
+import CountriesSplit from "@/components/charts/CountriesSplit";
+import Interset from "@/components/charts/Interset";
+import QualitySplit from "@/components/charts/QualitySplit";
+import ToolTipsProvider from "@/components/charts/ToolTipsProvider";
+import AgeGenderBreakdown from "@/components/dashboard/AgeGenderBreakdown";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import Image from "next/image";
-import Interset from "../charts/Interset";
-import BrandAffinity from "../charts/BrandAffinity";
-import ToolTipsProvider from "../charts/ToolTipsProvider";
 import { useState } from "react";
+import Cucumber from "@/components/ui/Cucumber";
+import ActionsDropdown from "@/components/ui/ActionsDropdown";
 
 type DataType = {
   id: string;
@@ -57,28 +58,6 @@ const data: DataType = {
   networkId: "cmhjwf16z0002kqz0qttwcbp8",
 };
 
-// const postingFrequency = {
-//   postingFrequency: {
-//     avgPerDay: "0.11",
-//     avgPerWeek: "0.75",
-//     avgPerMonth: "3.00",
-//     monthlyPosts: [
-//       { date: "December 2024", count: 0 },
-//       { date: "January 2025", count: 0 },
-//       { date: "February 2025", count: 0 },
-//       { date: "March 2025", count: 0 },
-//       { date: "April 2025", count: 0 },
-//       { date: "May 2025", count: 0 },
-//       { date: "June 2025", count: 0 },
-//       { date: "July 2025", count: 9 },
-//       { date: "August 2025", count: 10 },
-//       { date: "September 2025", count: 14 },
-//       { date: "October 2025", count: 3 },
-//       { date: "November 2025", count: 0 },
-//     ],
-//   },
-// };
-
 const chartData2 = [
   { month: "< 500", desktop: 186 },
   { month: "500 - 1k", desktop: 305 },
@@ -88,8 +67,8 @@ const chartData2 = [
   { month: "<1k", desktop: 214 },
 ];
 
-const totalChart2 = chartData2.reduce((s, it) => s + (it.desktop || 0), 0);
-
+// Total used by the custom tooltip to compute percentages
+const totalChart2 = chartData2.reduce((sum, item) => sum + (item.desktop ?? 0), 0);
 function CustomBarTooltip({
   active,
   payload,
@@ -124,75 +103,15 @@ const chartConfig2 = {
   },
 } satisfies ChartConfig;
 
-const networks = [
-  {
-    network: "instagram",
-    profil: "/glovo/483195916_1532010537473174_2632696751857179851_n.jpg",
-    username: "glovo_maroc",
-    name: "Glovo Maroc",
-    followers: 122000,
-    er: 2.5,
-    avgEngage: 19000,
-    avgViews: 211400,
-    metrics: "85.4",
-  },
-  {
-    network: "x",
-    profil: "/glovo/483195916_1532010537473174_2632696751857179851_n.jpg",
-    username: "glovo_x",
-    name: "Glovo Maroc",
-    followers: 45000,
-    er: 1.8,
-    avgEngage: 8000,
-    avgViews: 90000,
-    metrics: "80.2",
-  },
-  {
-    network: "facebook",
-    profil: "/glovo/483195916_1532010537473174_2632696751857179851_n.jpg",
-    username: "glovo.fb",
-    name: "Glovo Maroc",
-    followers: 98000,
-    er: 2.1,
-    avgEngage: 12000,
-    avgViews: 150000,
-    metrics: "83.7",
-  },
-  {
-    network: "youtube",
-    profil: "/glovo/483195916_1532010537473174_2632696751857179851_n.jpg",
-    username: "glovo_youtube",
-    name: "Glovo Maroc",
-    followers: 32000,
-    er: 3.2,
-    avgEngage: 5000,
-    avgViews: 200000,
-    metrics: "88.1",
-  },
-];
-
-const AudienceReport = () => {
-  const [showInsight, setShowInsight] = useState(false);
-
+export default function AudiencePage() {
+    const [showInsight, setShowInsight] = useState(false);
   return (
-    <div className="@container w-full flex flex-col gap-3">
-      <div className="">
-        <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white inline-flex flex-col">
-          Audience
-          <div className="flex flex-row gap-1 mt-2  mb-4">
-            <div className="w-[20%] h-1 bg-[#f02cb9] rounded-full"></div>
-            <div className="w-[10%] h-1 bg-[#35b9f4] rounded-full"></div>
-          </div>
-        </h2>
-      </div>
-
-      {/*dadawfdwada */}
-      <div className="grid grid-cols-1 w-full">
-        <AudienceSocialTable networks={networks} />
-      </div>
-
-
-      {data && (
+        <div className="@container w-full flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <Cucumber />
+              <ActionsDropdown />
+            </div>
+            {data && (
         <div className="overflow-x-hidden">
           <div className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-5">
             <QualitySplit
@@ -329,8 +248,6 @@ const AudienceReport = () => {
           </div>
         </div>
       )}
-    </div>
+        </div>
   );
-};
-
-export default AudienceReport;
+}

@@ -1,6 +1,8 @@
 "use client";
-
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Cucumber from "@/components/ui/Cucumber";
+ 
 import {
   Table,
   TableBody,
@@ -79,6 +81,7 @@ const analysisData: AnalysisItem[] = [
 type DashboardType = "ecoute" | "audience" | "mentions" | "sentiments" | null;
 
 export default function AIAnalystePage() {
+  const router = useRouter();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -114,6 +117,9 @@ export default function AIAnalystePage() {
 
   return (
     <div className="w-full">
+      <div className="flex items-center justify-between mb-4">
+        <Cucumber />
+      </div>
       {/* Page Header */}
       <div className="mb-6">
         <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white inline-flex flex-col">
@@ -482,8 +488,18 @@ export default function AIAnalystePage() {
                   <Button 
                     className="bg-main hover:bg-main/90 text-white"
                     onClick={() => {
-                      // Handle create dashboard
-                      console.log("Creating dashboard:", { selectedDashboardType, dashboardName, selectedSearch });
+                      // Handle create dashboard based on type
+                      console.log("Creating dashboard, type:", selectedDashboardType);
+                      if (selectedDashboardType === "ecoute") {
+                        console.log("Navigating to social-listening");
+                        router.push("/ai-analyste/social-listening");
+                      } else if (selectedDashboardType === "audience") {
+                        router.push("/ai-analyste/audience");
+                      } else if (selectedDashboardType === "mentions") {
+                        router.push("/ai-analyste/mentions");
+                      } else if (selectedDashboardType === "sentiments") {
+                        router.push("/ai-analyste/sentiments");
+                      }
                       setIsModalOpen(false);
                     }}
                   >
