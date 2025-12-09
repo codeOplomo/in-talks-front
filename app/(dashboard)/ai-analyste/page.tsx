@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cucumber from "@/components/ui/Cucumber";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Send, MessageSquare } from "lucide-react";
  
 import {
   Table,
@@ -80,6 +82,17 @@ const analysisData: AnalysisItem[] = [
 
 type DashboardType = "ecoute" | "audience" | "mentions" | "sentiments" | null;
 
+type Message = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+type ChatHistory = {
+  id: string;
+  title: string;
+  lastMessage: string;
+};
+
 export default function AIAnalystePage() {
   const router = useRouter();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -115,6 +128,60 @@ export default function AIAnalystePage() {
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
+   const [messages, setMessages] = useState<Message[]>([
+      { role: 'assistant', content: 'Bonjour ! Je suis votre Analyste IA. Comment puis-je vous aider à analyser vos données de réseaux sociaux aujourd\'hui ?' }
+    ]);
+    const [input, setInput] = useState('');
+    const [currentChatId, setCurrentChatId] = useState<string>('default');
+  
+    // Simulated chat history
+    const [chatHistory, setChatHistory] = useState<ChatHistory[]>([
+      { id: '1', title: 'Analyse des Performances Instagram', lastMessage: 'Quels sont les métriques clés pour Instagram ?' },
+      { id: '2', title: 'Comparaison des Concurrents', lastMessage: 'Comparez notre engagement avec les concurrents' },
+      { id: '3', title: 'Tendances des Sentiments', lastMessage: 'Montrez-moi l\'analyse des sentiments au fil du temps' },
+    ]);
+  
+    const sendMessage = () => {
+      if (input.trim()) {
+        setMessages(prev => [...prev, { role: 'user', content: input }]);
+        setInput('');
+        // Update chat history title if it's the first message
+        if (messages.length === 1) {
+          const newTitle = input.length > 30 ? input.substring(0, 30) + '...' : input;
+          setChatHistory(prev => prev.map(chat => 
+            chat.id === currentChatId ? { ...chat, title: newTitle, lastMessage: input } : chat
+          ));
+        }
+        // Simulate AI response
+        setTimeout(() => {
+          setMessages(prev => [...prev, { role: 'assistant', content: 'Merci pour votre question. J\'analyse les données... (Ceci est une réponse d\'exemple)' }]);
+        }, 1000);
+      }
+    };
+  
+    const startNewChat = () => {
+      const newChatId = Date.now().toString();
+      const newChat: ChatHistory = {
+        id: newChatId,
+        title: 'Nouvelle Conversation',
+        lastMessage: 'A commencé une nouvelle discussion'
+      };
+      setChatHistory(prev => [newChat, ...prev]);
+      setCurrentChatId(newChatId);
+      setMessages([
+        { role: 'assistant', content: 'Bonjour ! Je suis votre Analyste IA. Comment puis-je vous aider à analyser vos données de réseaux sociaux aujourd\'hui ?' }
+      ]);
+    };
+  
+    const loadChat = (chatId: string) => {
+      setCurrentChatId(chatId);
+      // In a real app, load messages from backend
+      // For now, just set to initial
+      setMessages([
+        { role: 'assistant', content: 'Bonjour ! Je suis votre Analyste IA. Comment puis-je vous aider à analyser vos données de réseaux sociaux aujourd\'hui ?' }
+      ]);
+    };
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-4">
@@ -123,7 +190,7 @@ export default function AIAnalystePage() {
       {/* Page Header */}
       <div className="mb-6">
         <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white inline-flex flex-col">
-          AI Analyste
+          Analyste IA
           <div className="flex flex-row gap-1 mt-2 mb-4">
             <div className="w-[20%] h-1 bg-[#f02cb9] rounded-full"></div>
             <div className="w-[10%] h-1 bg-main rounded-full"></div>
@@ -131,7 +198,90 @@ export default function AIAnalystePage() {
         </h2>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+
+      <div className="w-full mx-auto">
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Sidebar for Chat History */}
+          <div className="lg:col-span-1">
+            <Card className="h-[600px] gap-2">
+              <CardHeader className="pb-1 px-0">
+                <div
+                  className="p-3 cursor-pointer rounded-lg hover:bg-muted transition-colors border-b"
+                  onClick={startNewChat}
+                >
+                  <div className="flex items-start gap-2">
+                    <Plus className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium">Nouvelle Discussion</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground font-medium pt-2 pb-0 pl-6">Vos Discussions</p>
+              </CardHeader>
+              <CardContent className="p-0 pt-0">
+                <div className="space-y-1 max-h-[500px] overflow-y-auto">
+                  {chatHistory.map((chat) => (
+                    <div
+                      key={chat.id}
+                      onClick={() => loadChat(chat.id)}
+                      className={`px-2 py-1 cursor-pointer rounded-lg hover:bg-muted transition-colors ${
+                        chat.id === currentChatId ? 'bg-muted' : ''
+                      }`}
+                    >
+                      <div className="flex items-start gap-2">
+                        <MessageSquare className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate">{chat.title}</p>
+                          <p className="text-xs text-muted-foreground truncate">{chat.lastMessage}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Main Chat Area */}
+          <div className="lg:col-span-3">
+            <Card className="h-[600px] flex flex-col">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold">Discuter avec l&apos;Analyste IA</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <div className="flex-1 overflow-y-auto space-y-4 mb-4">
+                  {messages.map((msg, index) => (
+                    <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        msg.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
+                      }`}>
+                        {msg.content}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Demandez des informations sur vos analyses de réseaux sociaux..."
+                    onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                    className="flex-1"
+                  />
+                  <Button onClick={sendMessage} size="icon" className="bg-main">
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
         {/* Selection Toolbar */}
         {selectedItems.length > 0 && (
           <div className="flex items-center justify-between px-4 py-3 bg-main/5 border-b border-main/20">
