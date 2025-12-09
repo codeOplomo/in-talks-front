@@ -16,7 +16,6 @@ const pathNameMap: Record<string, string> = {
   "competitive-intelligence": "Competitive Intelligence",
   "reports": "Reports",
   "personal-reports": "Personal Reports",
-  "social-listening": "Social Listening",
   "account": "Account",
 };
 
