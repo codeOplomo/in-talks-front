@@ -75,7 +75,7 @@ export function NavUser() {
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">Glovo Maroc</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    glovo@in-talks.ma
+                    massinart@in-talks.ma
                   </span>
                 </div>
               </div>

@@ -39,14 +39,14 @@ export interface CompetitiveIntelligenceTableProps {
 }
 
 // sample competitors data for multiple platforms
-// Competitors: Jumia Food, Yasser Market, Kool, Livery, Creem Food
+// Concurrents: Concurrent 1, Concurrent 2, Concurrent 3, Concurrent 4
 const SAMPLE_NETWORKS: Network[] = [
-    // Competitor 1 - all platforms
+    // Concurrent 1 - all platforms
     {
         network: "instagram",
         profil: "",
-        username: "competitor1.ma",
-        name: "Competitor 1",
+        username: "concurrent1.ma",
+        name: "Concurrent 1",
         followers: 156000,
         er: 2.8,
         avgEngage: 22000,
@@ -58,8 +58,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "facebook",
         profil: "",
-        username: "competitor1maroc",
-        name: "Competitor 1",
+        username: "concurrent1maroc",
+        name: "Concurrent 1",
         followers: 420000,
         er: 2.1,
         avgEngage: 8500,
@@ -71,8 +71,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "x",
         profil: "",
-        username: "competitor1_ma",
-        name: "Competitor 1",
+        username: "concurrent1_ma",
+        name: "Concurrent 1",
         followers: 24000,
         er: 1.4,
         avgEngage: 1100,
@@ -84,8 +84,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "tiktok",
         profil: "",
-        username: "competitor1.maroc",
-        name: "Competitor 1",
+        username: "concurrent1.maroc",
+        name: "Concurrent 1",
         followers: 112000,
         er: 6.5,
         avgEngage: 55000,
@@ -97,8 +97,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "youtube",
         profil: "",
-        username: "Competitor1Maroc",
-        name: "Competitor 1",
+        username: "Concurrent1Maroc",
+        name: "Concurrent 1",
         followers: 12000,
         er: 3.4,
         avgEngage: 1800,
@@ -110,8 +110,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "linkedin",
         profil: "",
-        username: "competitor1-maroc",
-        name: "Competitor 1",
+        username: "concurrent1-maroc",
+        name: "Concurrent 1",
         followers: 32000,
         er: 2.6,
         avgEngage: 4200,
@@ -122,12 +122,12 @@ const SAMPLE_NETWORKS: Network[] = [
     },
 
 
-    // Competitor 2 - all platforms
+    // Concurrent 2 - all platforms
     {
         network: "instagram",
         profil: "",
-        username: "competitor2.ma",
-        name: "Competitor 2",
+        username: "concurrent2.ma",
+        name: "Concurrent 2",
         followers: 72000,
         er: 2.4,
         avgEngage: 9500,
@@ -139,8 +139,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "facebook",
         profil: "",
-        username: "competitor2maroc",
-        name: "Competitor 2",
+        username: "concurrent2maroc",
+        name: "Concurrent 2",
         followers: 195000,
         er: 1.5,
         avgEngage: 3800,
@@ -152,8 +152,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "x",
         profil: "",
-        username: "competitor2_ma",
-        name: "Competitor 2",
+        username: "concurrent2_ma",
+        name: "Concurrent 2",
         followers: 11000,
         er: 0.9,
         avgEngage: 420,
@@ -165,8 +165,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "tiktok",
         profil: "",
-        username: "competitor2.maroc",
-        name: "Competitor 2",
+        username: "concurrent2.maroc",
+        name: "Concurrent 2",
         followers: 58000,
         er: 5.8,
         avgEngage: 32000,
@@ -178,8 +178,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "youtube",
         profil: "",
-        username: "Competitor2Maroc",
-        name: "Competitor 2",
+        username: "Concurrent2Maroc",
+        name: "Concurrent 2",
         followers: 4200,
         er: 2.2,
         avgEngage: 520,
@@ -191,8 +191,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "linkedin",
         profil: "",
-        username: "competitor2-maroc",
-        name: "Competitor 2",
+        username: "concurrent2-maroc",
+        name: "Concurrent 2",
         followers: 15000,
         er: 1.8,
         avgEngage: 1800,
@@ -202,12 +202,12 @@ const SAMPLE_NETWORKS: Network[] = [
         activity: 4,
     },
 
-    // Competitor 3 - all platforms
+    // Concurrent 3 - all platforms
     {
         network: "instagram",
         profil: "",
-        username: "competitor3.ma",
-        name: "Competitor 3",
+        username: "concurrent3.ma",
+        name: "Concurrent 3",
         followers: 54000,
         er: 2.6,
         avgEngage: 7800,
@@ -219,8 +219,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "facebook",
         profil: "",
-        username: "competitor3maroc",
-        name: "Competitor 3",
+        username: "concurrent3maroc",
+        name: "Concurrent 3",
         followers: 142000,
         er: 1.4,
         avgEngage: 2900,
@@ -232,8 +232,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "x",
         profil: "",
-        username: "competitor3_ma",
-        name: "Competitor 3",
+        username: "concurrent3_ma",
+        name: "Concurrent 3",
         followers: 8500,
         er: 0.8,
         avgEngage: 320,
@@ -245,8 +245,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "tiktok",
         profil: "",
-        username: "competitor3.maroc",
-        name: "Competitor 3",
+        username: "concurrent3.maroc",
+        name: "Concurrent 3",
         followers: 45000,
         er: 5.2,
         avgEngage: 24000,
@@ -258,8 +258,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "youtube",
         profil: "",
-        username: "Competitor3Maroc",
-        name: "Competitor 3",
+        username: "Concurrent3Maroc",
+        name: "Concurrent 3",
         followers: 3100,
         er: 1.9,
         avgEngage: 380,
@@ -271,8 +271,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "linkedin",
         profil: "",
-        username: "competitor3-morocco",
-        name: "Competitor 3",
+        username: "concurrent3-morocco",
+        name: "Concurrent 3",
         followers: 11000,
         er: 1.5,
         avgEngage: 1200,
@@ -282,12 +282,12 @@ const SAMPLE_NETWORKS: Network[] = [
         activity: 5,
     },
 
-    // Competitor 4 - all platforms
+    // Concurrent 4 - all platforms
     {
         network: "instagram",
         profil: "",
-        username: "competitor4.ma",
-        name: "Competitor 4",
+        username: "concurrent4.ma",
+        name: "Concurrent 4",
         followers: 38000,
         er: 2.0,
         avgEngage: 5200,
@@ -299,8 +299,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "facebook",
         profil: "",
-        username: "competitor4maroc",
-        name: "Competitor 4",
+        username: "concurrent4maroc",
+        name: "Concurrent 4",
         followers: 95000,
         er: 1.2,
         avgEngage: 1800,
@@ -312,8 +312,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "x",
         profil: "",
-        username: "competitor4_ma",
-        name: "Competitor 4",
+        username: "concurrent4_ma",
+        name: "Concurrent 4",
         followers: 5800,
         er: 0.7,
         avgEngage: 210,
@@ -325,8 +325,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "tiktok",
         profil: "",
-        username: "competitor4.maroc",
-        name: "Competitor 4",
+        username: "concurrent4.maroc",
+        name: "Concurrent 4",
         followers: 28000,
         er: 4.8,
         avgEngage: 15000,
@@ -338,8 +338,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "youtube",
         profil: "",
-        username: "Competitor4Maroc",
-        name: "Competitor 4",
+        username: "Concurrent4Maroc",
+        name: "Concurrent 4",
         followers: 1800,
         er: 1.6,
         avgEngage: 220,
@@ -351,8 +351,8 @@ const SAMPLE_NETWORKS: Network[] = [
     {
         network: "linkedin",
         profil: "",
-        username: "competitor4-maroc",
-        name: "Competitor 4",
+        username: "concurrent4-maroc",
+        name: "Concurrent 4",
         followers: 7500,
         er: 1.3,
         avgEngage: 780,

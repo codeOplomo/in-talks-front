@@ -9,8 +9,8 @@ const networks = [
     network: "instagram",
     profil:
       "",
-    username: "Yassir.ma",
-    name: "Yassir.ma",
+    username: "concurrent5.ma",
+    name: "Concurrent 5",
     followers: 42000,
     er: 1.5,
     avgEngage: 19000,

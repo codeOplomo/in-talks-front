@@ -108,11 +108,11 @@ const palette = [
 // Company list used elsewhere in the dashboard (keeps parity with ShareOfVoiceByMention)
 const companies = [
   { key: "Massinart", label: "Massinart", color: palette[0] },
-  { key: "Competitor1", label: "Competitor 1", color: palette[1] },
-  { key: "Competitor2", label: "Competitor 2", color: palette[2] },
-  { key: "Competitor3", label: "Competitor 3", color: palette[3] },
-  { key: "Competitor4", label: "Competitor 4", color: palette[4] },
-  { key: "Competitor5", label: "Competitor 5", color: palette[5] },
+  { key: "Concurrent1", label: "Concurrent 1", color: palette[1] },
+  { key: "Concurrent2", label: "Concurrent 2", color: palette[2] },
+  { key: "Concurrent3", label: "Concurrent 3", color: palette[3] },
+  { key: "Concurrent4", label: "Concurrent 4", color: palette[4] },
+  { key: "Concurrent5", label: "Concurrent 5", color: palette[5] },
 ];
 
 const chartConfig: ChartConfig = companies.reduce((acc, c) => {
@@ -123,12 +123,12 @@ const chartConfig: ChartConfig = companies.reduce((acc, c) => {
 // Example competitive data per source (values are illustrative — replace with real data)
 // Raw mention counts per source (these will be normalized to percentage shares per row)
 const rawData: Array<Record<string, number | string>> = [
-  { source: "Instagram", Massinart: 320, Competitor1: 220, Competitor2: 180, Competitor3: 150, Competitor4: 90, Competitor5: 130 },
-  { source: "Facebook", Massinart: 280, Competitor1: 200, Competitor2: 180, Competitor3: 180, Competitor4: 160, Competitor5: 160 },
-  { source: "Tiktok", Massinart: 350, Competitor1: 250, Competitor2: 200, Competitor3: 120, Competitor4: 80, Competitor5: 80 },
-  { source: "X", Massinart: 250, Competitor1: 200, Competitor2: 150, Competitor3: 200, Competitor4: 200, Competitor5: 200 },
-  { source: "Youtube", Massinart: 300, Competitor1: 240, Competitor2: 180, Competitor3: 160, Competitor4: 120, Competitor5: 120 },
-  { source: "Presse", Massinart: 430, Competitor1: 330, Competitor2: 180, Competitor3: 460, Competitor4: 320, Competitor5: 320 },
+  { source: "Instagram", Massinart: 320, Concurrent1: 220, Concurrent2: 180, Concurrent3: 150, Concurrent4: 90, Concurrent5: 130 },
+  { source: "Facebook", Massinart: 280, Concurrent1: 200, Concurrent2: 180, Concurrent3: 180, Concurrent4: 160, Concurrent5: 160 },
+  { source: "Tiktok", Massinart: 350, Concurrent1: 250, Concurrent2: 200, Concurrent3: 120, Concurrent4: 80, Concurrent5: 80 },
+  { source: "X", Massinart: 250, Concurrent1: 200, Concurrent2: 150, Concurrent3: 200, Concurrent4: 200, Concurrent5: 200 },
+  { source: "Youtube", Massinart: 300, Concurrent1: 240, Concurrent2: 180, Concurrent3: 160, Concurrent4: 120, Concurrent5: 120 },
+  { source: "Presse", Massinart: 430, Concurrent1: 330, Concurrent2: 180, Concurrent3: 460, Concurrent4: 320, Concurrent5: 320 },
 ];
 
 // Normalize counts into percentage shares per source (each row sums to ~100)
