@@ -15,7 +15,7 @@ const networks = [
     er: 1.5,
     avgEngage: 19000,
     avgViews: 21400,
-    metrics: "75.4/100",
+    metrics: "75.4",
   },
 ];
 

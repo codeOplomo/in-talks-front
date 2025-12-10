@@ -3,6 +3,7 @@ import React, { useMemo, useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import DataTable, { TableColumn } from "react-data-table-component";
 import formatNumber from "@/lib/numbers";
+import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -603,6 +604,7 @@ const CompetitiveIntelligenceTable = ({
                             onClick={() => setShowSourceMenu((s) => !s)}
                             className="flex items-center gap-2 border px-3 py-1.5 rounded-md bg-white text-sm w-[160px]"
                         >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={getNetworkImage(selectedSource)}
                                 alt={selectedSource}
@@ -635,27 +637,27 @@ const CompetitiveIntelligenceTable = ({
                                     }}
                                 >
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("instagram"); setShowSourceMenu(false); }}>
-                                        <img src="/media/instagram.png" alt="instagram" width={16} height={16} />
+                                        <Image src="/media/instagram.png" alt="instagram" width={16} height={16} />
                                         <span>Instagram</span>
                                     </li>
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("tiktok"); setShowSourceMenu(false); }}>
-                                        <img src="/media/tiktok.png" alt="tiktok" width={16} height={16} />
+                                        <Image src="/media/tiktok.png" alt="tiktok" width={16} height={16} />
                                         <span>TikTok</span>
                                     </li>
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("x"); setShowSourceMenu(false); }}>
-                                        <img src="/media/twitter.png" alt="x" width={16} height={16} />
+                                        <Image src="/media/twitter.png" alt="x" width={16} height={16} />
                                         <span>X</span>
                                     </li>
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("youtube"); setShowSourceMenu(false); }}>
-                                        <img src="/media/youtube.png" alt="youtube" width={16} height={16} />
+                                        <Image src="/media/youtube.png" alt="youtube" width={16} height={16} />
                                         <span>YouTube</span>
                                     </li>
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("facebook"); setShowSourceMenu(false); }}>
-                                        <img src="/media/facebook.png" alt="facebook" width={16} height={16} />
+                                        <Image src="/media/facebook.png" alt="facebook" width={16} height={16} />
                                         <span>Facebook</span>
                                     </li>
                                     <li className="px-3 py-2 hover:bg-slate-50 cursor-pointer flex items-center gap-2" onClick={() => { setSelectedSource("linkedin"); setShowSourceMenu(false); }}>
-                                        <img src="/media/linkedin.png" alt="linkedin" width={16} height={16} />
+                                        <Image src="/media/linkedin.png" alt="linkedin" width={16} height={16} />
                                         <span>LinkedIn</span>
                                     </li>
                                 </ul>,
@@ -670,6 +672,7 @@ const CompetitiveIntelligenceTable = ({
             cell: (row) => (
                 <div className="flex justify-center items-center p-3 gap-3">
                     {/* Network logo */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={getNetworkImage(row.network)}
                         alt={row.network + " logo"}
@@ -686,6 +689,7 @@ const CompetitiveIntelligenceTable = ({
                         className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0"
                     >
                         {row.profil ? (
+                            /* eslint-disable-next-line @next/next/no-img-element */
                             <img
                                 src={row.profil}
                                 alt={row.name + " profile"}
@@ -872,7 +876,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="instagram" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/instagram.png" alt="instagram" width={16} height={16} />
+                                    <Image src="/media/instagram.png" alt="instagram" width={16} height={16} />
                                     Instagram
                                 </Label>
                                 <Input
@@ -887,7 +891,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="facebook" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/facebook.png" alt="facebook" width={16} height={16} />
+                                    <Image src="/media/facebook.png" alt="facebook" width={16} height={16} />
                                     Facebook
                                 </Label>
                                 <Input
@@ -902,7 +906,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="tiktok" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/tiktok.png" alt="tiktok" width={16} height={16} />
+                                    <Image src="/media/tiktok.png" alt="tiktok" width={16} height={16} />
                                     TikTok
                                 </Label>
                                 <Input
@@ -917,7 +921,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="x" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/twitter.png" alt="x" width={16} height={16} />
+                                    <Image src="/media/twitter.png" alt="x" width={16} height={16} />
                                     X
                                 </Label>
                                 <Input
@@ -932,7 +936,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="youtube" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/youtube.png" alt="youtube" width={16} height={16} />
+                                    <Image src="/media/youtube.png" alt="youtube" width={16} height={16} />
                                     YouTube
                                 </Label>
                                 <Input
@@ -947,7 +951,7 @@ const CompetitiveIntelligenceTable = ({
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="linkedin" className="text-left flex items-center justify-start gap-2">
-                                    <img src="/media/linkedin.png" alt="linkedin" width={16} height={16} />
+                                    <Image src="/media/linkedin.png" alt="linkedin" width={16} height={16} />
                                     LinkedIn
                                 </Label>
                                 <Input
