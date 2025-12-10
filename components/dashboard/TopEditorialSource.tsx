@@ -30,26 +30,26 @@ interface TopEditorialSourceProps {
 const ITEMS_PER_PAGE_DEFAULT = 10
 
 const DEFAULT_SOURCES: EditorialSource[] = [
-  { name: "Forbes Business Europe", mentionCount: 120 },
-  { name: "Startup Daily", mentionCount: 95 },
-  { name: "Food Delivery Insider", mentionCount: 78 },
-  { name: "Le Business des Applications", mentionCount: 64 },
-  { name: "Commerce News", mentionCount: 50 },
-  { name: "TechCrunch", mentionCount: 85 },
-  { name: "The Verge", mentionCount: 70 },
-  { name: "Wired", mentionCount: 55 },
-  { name: "BBC Business", mentionCount: 40 },
-  { name: "CNN Money", mentionCount: 35 },
-  { name: "Reuters", mentionCount: 50 },
-  { name: "Bloomberg", mentionCount: 65 },
-  { name: "Financial Times", mentionCount: 25 },
-  { name: "The Economist", mentionCount: 75 },
-  { name: "Business Insider", mentionCount: 60 },
-  { name: "Fortune", mentionCount: 45 },
-  { name: "Harvard Business Review", mentionCount: 30 },
-  { name: "MIT Technology Review", mentionCount: 55 },
-  { name: "VentureBeat", mentionCount: 40 },
-  { name: "TechRepublic", mentionCount: 35 },
+  { name: "Art & Design Magazine", mentionCount: 120 },
+  { name: "Interior Design Weekly", mentionCount: 95 },
+  { name: "Home Decor Insider", mentionCount: 78 },
+  { name: "Le Monde de l'Art", mentionCount: 64 },
+  { name: "Décoration Moderne", mentionCount: 50 },
+  { name: "Architectural Digest", mentionCount: 85 },
+  { name: "Elle Décoration", mentionCount: 70 },
+  { name: "Maison & Objet", mentionCount: 55 },
+  { name: "Art Basel News", mentionCount: 40 },
+  { name: "Design Milk", mentionCount: 35 },
+  { name: "Dezeen", mentionCount: 50 },
+  { name: "Wallpaper Magazine", mentionCount: 65 },
+  { name: "Artsy Editorial", mentionCount: 25 },
+  { name: "The Art Newspaper", mentionCount: 75 },
+  { name: "AD France", mentionCount: 60 },
+  { name: "Côté Maison", mentionCount: 45 },
+  { name: "Art Review", mentionCount: 30 },
+  { name: "Design Boom", mentionCount: 55 },
+  { name: "Artnet News", mentionCount: 40 },
+  { name: "Surface Magazine", mentionCount: 35 },
 ]
 
 // Helper function
@@ -246,7 +246,7 @@ export default function TopEditorialSource({
 
         <div className="w-full flex justify-start">
           <AIInsightBadge
-            insight="Recent mentions focus on Glovo's expansion and partnerships, with positive sentiment indicating growing acceptance. Negative feedback on commissions suggests opportunities for improved vendor relations."
+            insight="Recent mentions focus on Massinart's unique art collections and interior design partnerships, with positive sentiment indicating growing recognition in the decor industry. Feedback highlights opportunities for expanding artist collaborations and exclusive home decor offerings."
           />
         </div>
       </CardFooter>

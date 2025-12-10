@@ -25,13 +25,13 @@ import ToolTipsProvider from "../charts/ToolTipsProvider";
 import Image from "next/image";
 
 const data = [
-  { keyword: "Glovo Orders", positive: 120, neutral: 80, negative: 10 },
-  { keyword: "Fast Delivery", positive: 100, neutral: 60, negative: 20 },
-  { keyword: "Glovo Jobs", positive: 90, neutral: 70, negative: 15 },
-  { keyword: "Online Food App", positive: 80, neutral: 90, negative: 12 },
-  { keyword: "Livraison Rapide", positive: 70, neutral: 60, negative: 10 },
-  { keyword: "توصل الطلبات", positive: 65, neutral: 55, negative: 8 },
-  { keyword: "Commande en ligne", positive: 60, neutral: 45, negative: 5 },
+  { keyword: "Massinart Gallery", positive: 120, neutral: 80, negative: 10 },
+  { keyword: "Art Collection", positive: 100, neutral: 60, negative: 20 },
+  { keyword: "Home Decor", positive: 90, neutral: 70, negative: 15 },
+  { keyword: "Interior Design", positive: 80, neutral: 90, negative: 12 },
+  { keyword: "Décoration Intérieure", positive: 70, neutral: 60, negative: 10 },
+  { keyword: "فن وديكور", positive: 65, neutral: 55, negative: 8 },
+  { keyword: "Œuvres d'Art", positive: 60, neutral: 45, negative: 5 },
 ];
 
 // Reuse the ShareOfVoice palette for consistency across charts
@@ -129,7 +129,7 @@ export default function KeywordsWithSentiment() {
           {showInsight && (
             <div className="absolute bottom-full left-0 mb-2 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 w-auto min-w-80 max-w-xl">
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                These keywords show strong positive engagement (pink). Neutral mentions (blue) indicate informative or descriptive usage. Watch keywords with rising negative share for potential issues to investigate.
+                Massinart&apos;s keywords show strong positive engagement around gallery and art collections. Neutral mentions indicate informative discussions about interior design trends. Monitor keywords with rising negative share to address customer concerns promptly.
               </p>
             </div>
           )}

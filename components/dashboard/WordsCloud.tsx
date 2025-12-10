@@ -34,31 +34,31 @@ const WordCloud = () => {
 
   // Sample data - replace with your own
   const wordData = useMemo(() => [
-    { text: 'Delivery', value: 95 },
-    { text: 'Food', value: 90 },
-    { text: 'Restaurant', value: 85 },
-    { text: 'Order', value: 80 },
-    { text: 'Fast', value: 75 },
-    { text: 'Pizza', value: 70 },
-    { text: 'Burger', value: 65 },
-    { text: 'Sushi', value: 60 },
-    { text: 'Livraison', value: 55 },
-    { text: 'Nourriture', value: 50 },
-    { text: 'Commande', value: 45 },
-    { text: 'Rapide', value: 42 },
-    { text: 'توصيل', value: 40 },
-    { text: 'طعام', value: 38 },
-    { text: 'مطعم', value: 35 },
-    { text: 'طلب', value: 33 },
-    { text: 'سريع', value: 30 },
-    { text: 'بيتزا', value: 28 },
-    { text: 'برجر', value: 25 },
-    { text: 'سوشي', value: 22 },
-    { text: 'Fresh', value: 20 },
-    { text: 'Hot', value: 18 },
-    { text: 'Quality', value: 15 },
-    { text: 'Service', value: 12 },
-    { text: 'App', value: 10 }
+    { text: 'Art', value: 95 },
+    { text: 'Design', value: 90 },
+    { text: 'Décoration', value: 85 },
+    { text: 'Interior', value: 80 },
+    { text: 'Modern', value: 75 },
+    { text: 'Painting', value: 70 },
+    { text: 'Sculpture', value: 65 },
+    { text: 'Gallery', value: 60 },
+    { text: 'Artiste', value: 55 },
+    { text: 'Maison', value: 50 },
+    { text: 'Collection', value: 45 },
+    { text: 'Élégant', value: 42 },
+    { text: 'فن', value: 40 },
+    { text: 'ديكور', value: 38 },
+    { text: 'تصميم', value: 35 },
+    { text: 'لوحة', value: 33 },
+    { text: 'معرض', value: 30 },
+    { text: 'حديث', value: 28 },
+    { text: 'منزل', value: 25 },
+    { text: 'فنان', value: 22 },
+    { text: 'Canvas', value: 20 },
+    { text: 'Vintage', value: 18 },
+    { text: 'Aesthetic', value: 15 },
+    { text: 'Handmade', value: 12 },
+    { text: 'Unique', value: 10 }
   ], []);
 
   useEffect(() => {
@@ -277,7 +277,7 @@ const WordCloud = () => {
           {showInsight && (
             <div className="absolute bottom-full left-0 mb-2 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 w-auto min-w-80 max-w-xl">
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Food delivery analysis shows strong demand for pizza and burgers across all languages, with Arabic speakers showing particular interest in traditional cuisine. French customers emphasize quality and freshness, while English speakers focus on speed and convenience.
+                Massinart&apos;s thematic analysis reveals strong interest in modern art and interior design across all audiences. Arabic speakers show particular appreciation for handmade and traditional pieces, while French customers emphasize elegance and home décor. English speakers focus on unique collections and gallery experiences.
               </p>
             </div>
           )}
