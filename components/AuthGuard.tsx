@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import api from "@/services/axiosService";
 
 const allowedPaths = ["/", "/login", "/register"];
 
@@ -22,40 +23,44 @@ export function useAuth() {
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const router = useRouter();
-
-    // Start as `undefined` so server and initial client render are consistent.
-    // We set the real value on mount inside useEffect which avoids hydration
-    // mismatches when client auth differs from the server.
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined);
 
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const token = localStorage.getItem("token");
-        const path = pathname || window.location.pathname;
+   useEffect(() => {
+    if (typeof window === "undefined") return;
 
-        // If the path is allowed for unauthenticated users, just set state and return
-        if (allowedPaths.includes(path)) {
-            setIsAuthenticated(!!token);
-            return;
-        }
+    const token = localStorage.getItem("token");
+    const currentPath = pathname || "/";
+    const isAllowedPath = allowedPaths.includes(currentPath);
 
-        // Otherwise, if there's no token, redirect to /login
-        if (!token) {
-            router.push("/login");
-            setIsAuthenticated(false);
-            return;
-        }
-
+    // For allowed paths, always allow access
+    if (isAllowedPath) {
         setIsAuthenticated(!!token);
-    }, [pathname, router]);
+        return;
+    }
 
-    const refresh = () => {
-        if (typeof window === "undefined") return;
-        setIsAuthenticated(!!localStorage.getItem("token"));
-    };
+    // For protected paths, require valid token
+    if (!token) {
+        router.push("/login");
+        setIsAuthenticated(false);
+        return;
+    }
+
+    // Has token on protected path
+    setIsAuthenticated(true);
+}, [pathname, router]);
+
+    // Don't render children until auth state is determined
+    if (isAuthenticated === undefined) {
+        return null; // or a loading spinner
+    }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, refresh }}>
+        <AuthContext.Provider value={{
+            isAuthenticated, 
+            refresh: () => {
+                setIsAuthenticated(!!localStorage.getItem("token"));
+            }
+        }}>
             {children}
         </AuthContext.Provider>
     );

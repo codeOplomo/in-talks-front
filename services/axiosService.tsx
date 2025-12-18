@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL + "/api" || '';
 
 const api = axios.create({
     baseURL,
@@ -31,34 +31,12 @@ api.interceptors.response.use(
         const skipRedirect = requestConfig?.headers?.['x-skip-auth-redirect'];
 
         if (isBrowser && (status === 401 || status === 403) && !skipRedirect) {
-            try {
-                localStorage.removeItem('token');
-            } catch (e) {
-                // ignore
-            }
+            localStorage.removeItem('token');
             window.location.href = '/login';
         }
         return Promise.reject(error);
     }
 );
 
-export const setAuthToken = (token: string | null) => {
-    if (!isBrowser) return;
-    if (token) {
-        localStorage.setItem('token', token);
-        api.defaults.headers.common.Authorization = `Bearer ${token}`;
-    } else {
-        try {
-            localStorage.removeItem('token');
-        } catch (e) {
-            // ignore
-        }
-        // remove header
-        if (api.defaults.headers.common) {
-            // @ts-ignore
-            delete api.defaults.headers.common.Authorization;
-        }
-    }
-};
 
 export default api;

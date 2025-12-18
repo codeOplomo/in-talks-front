@@ -31,7 +31,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useEffect, useState } from "react";
 import api from "@/services/axiosService";
-import { setAuthToken } from "@/services/axiosService";
 import { useAuth } from "@/components/AuthGuard";
 
 export function NavUser() {
@@ -49,34 +48,39 @@ export function NavUser() {
   }
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        // Do not trigger global auth redirect when fetching profile for optional UI.
-        const response = await api.get("/auth/profile");
-        console.log("User data:", response.data.user);
-        setUserData(response.data.user);
-      } catch (error) {
-        // It's fine if the user is unauthenticated on public pages.
-        console.debug("No user profile (possibly unauthenticated)", error);
-      }
-    };
-    getUserData();
-  }, []);
+  const getUserData = async () => {
+    // Check if token exists before making the request
+    const token = localStorage.getItem("token");
+    
+    if (!token) {
+      console.debug("No token available, skipping profile fetch");
+      return;
+    }
+
+    try {
+      const response = await api.get("/v1/auth/profile");
+      console.log("User data:", response.data.user);
+      setUserData(response.data.user);
+    } catch (error) {
+      console.debug("Failed to fetch user profile", error);
+      setUserData(null); // Clear any stale user data
+    }
+  };
+  
+  getUserData();
+}, []);
 
   const handleLogout = async () => {
     // Front-only logout: clear client token and session
     try {
-      setAuthToken(null);
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
+        await signOut({ redirect: false });
       }
     } catch (e) {
       // ignore
     }
-
-    // If NextAuth is configured, sign out the session (no redirect)
     try {
-      await signOut({ redirect: false });
     } catch (e) {
       // ignore
     }
@@ -161,19 +165,19 @@ export function NavUser() {
         ) : (
           // When sidebar is collapsed, show only an icon with reduced left margin.
           state === "collapsed" ? (
-            <div className="p-1 w-full flex items-center justify-center">
+            <div className="p-1 w-full flex items-center justify-center bg-gray-300 rounded-md">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => router.push('/login')}
-                className="p-0"
+                className="p-0  "
               >
                 <CircleUser />
               </Button>
             </div>
           ) : (
             <div className="p-3 w-full">
-              <Button onClick={() => router.push('/login')} className="w-full justify-center">
+              <Button onClick={() => router.push('/login')} className="w-full justify-center  ">
                 Se connecter
               </Button>
             </div>

@@ -9,7 +9,7 @@ import * as Yup from "yup";
 // import { signIn } from "@/auth";
 // import { signIn } from "next-auth/react"; // Import from next-auth/react instead
 import { useRouter } from "next/navigation";
-import api, { setAuthToken } from "@/services/axiosService";
+import api from "@/services/axiosService";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -37,7 +37,7 @@ export function LoginForm({
     }),
     onSubmit: async (values, { setErrors }) => {
       try {
-        const response = await api.post("/auth/login", values);
+        const response = await api.post("/v1/auth/login", values);
         const data = response?.data || {};
         const token = data.token || data.accessToken || data.access_token || data?.data?.token;
 
@@ -46,7 +46,9 @@ export function LoginForm({
           return;
         }
 
-        setAuthToken(token);
+        // Store token in localStorage
+        localStorage.setItem("token", token);
+    
 
         router.push("/");
       } catch (err: any) {

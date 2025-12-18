@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
     SidebarInset,
     SidebarProvider,
@@ -84,6 +84,11 @@ export default function WelcomePage() {
             url: "/reports/custom",
         },
     ];
+    const [token, setToken] = React.useState<string | null>(null);
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        setToken(storedToken);
+    }, []);
 
     return (
         <SidebarProvider className="relative">
@@ -133,7 +138,7 @@ export default function WelcomePage() {
                             {/* CTA Button */}
                             <div className="flex justify-center mb-12">
                                 <Link
-                                    href="/dashboard/overView"
+                                    href= {token ? "/dashboard/overView" : "/login"}
                                     className="group inline-flex items-center gap-3 px-8 py-4 bg-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:bg-cyan-600 hover:shadow-xl transition-all duration-300"
                                 >
                                     <span>Commencer l&apos;expérience</span>
@@ -148,7 +153,7 @@ export default function WelcomePage() {
                                     {dashboardItems.map((item, index) => (
                                         <Link
                                             key={index}
-                                            href={item.url}
+                                            href={token ? item.url : "/login"}
                                             className="group bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-lg hover:border-cyan-300 transition-all duration-300 hover:-translate-y-1"
                                         >
                                             <div className="flex flex-col items-center text-center">
@@ -166,24 +171,6 @@ export default function WelcomePage() {
                                     ))}
                                 </div>
                             </div>
-
-                            {/* Bottom Stats
-                            <div className="pt-8 border-t border-gray-200 max-w-3xl mx-auto">
-                                <div className="grid grid-cols-3 gap-8 text-center">
-                                    <div>
-                                        <div className="text-2xl font-bold text-gray-900">10M+</div>
-                                        <div className="text-sm text-gray-500 mt-1">Mentions suivies</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-gray-900">50+</div>
-                                        <div className="text-sm text-gray-500 mt-1">Sources de données</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-gray-900">99.9%</div>
-                                        <div className="text-sm text-gray-500 mt-1">Disponibilité</div>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </div>
