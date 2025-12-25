@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import api from "@/services/axiosService";
+import { useSession } from "next-auth/react";
 
 const allowedPaths = ["/", "/login", "/register"];
 
@@ -23,42 +23,49 @@ export function useAuth() {
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const router = useRouter();
+    const { data: session, status } = useSession();
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined);
 
-   useEffect(() => {
-    if (typeof window === "undefined") return;
+    useEffect(() => {
+        const currentPath = pathname || "/";
+        const isAllowedPath = allowedPaths.includes(currentPath);
 
-    const token = localStorage.getItem("token");
-    const currentPath = pathname || "/";
-    const isAllowedPath = allowedPaths.includes(currentPath);
+        // console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" , session?.user);
+        
 
-    // For allowed paths, always allow access
-    if (isAllowedPath) {
-        setIsAuthenticated(!!token);
-        return;
-    }
+        // While next-auth is resolving, show nothing
+        if (status === "loading") {
+            setIsAuthenticated(undefined);
+            return;
+        }
 
-    // For protected paths, require valid token
-    if (!token) {
-        router.push("/login");
-        setIsAuthenticated(false);
-        return;
-    }
+        // If path is allowed, set state but don't redirect
+        if (isAllowedPath) {
+            setIsAuthenticated(!!session?.user?.id);
+            return;
+        }
 
-    // Has token on protected path
-    setIsAuthenticated(true);
-}, [pathname, router]);
+        // If there is no session id, redirect
+        if (!session?.user?.id) {
+            setIsAuthenticated(false);
+            // router.push("/login");
+            return;
+        }
 
-    // Don't render children until auth state is determined
+        // If authenticated (session id exists), allow
+        setIsAuthenticated(true);
+    }, [status, session, pathname, router]);
+
     if (isAuthenticated === undefined) {
-        return null; // or a loading spinner
+        return null; // or loading indicator
     }
 
     return (
         <AuthContext.Provider value={{
-            isAuthenticated, 
+            isAuthenticated,
             refresh: () => {
-                setIsAuthenticated(!!localStorage.getItem("token"));
+                // Force a re-evaluation by updating state based on current session
+                setIsAuthenticated(status === "authenticated" && !!session?.user);
             }
         }}>
             {children}

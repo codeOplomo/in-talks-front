@@ -1,8 +1,9 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 import KeywordWithSetiments from "../dashboard/KeywordWithSetiments";
 import MentionsBySentiments from "../dashboard/MentionsBySentiments";
 import KeywordsWithSentiment from "../dashboard/KeywordsWithSentiment";
 import TopLocationsWithSentiment from "../dashboard/TopLocationsWithSentiment";
+import {v1Api} from "@/services/axiosService";
 
 
 
@@ -58,6 +59,21 @@ const dataNetworks = [
 ];
 
 const Sentiment = () => {
+
+  const [data , setData] = React.useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await v1Api.get("/dashboard");
+        console.log("Sentiment data:", response.data);
+      } catch (error) {
+        console.error("Error fetching sentiment data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div>
 

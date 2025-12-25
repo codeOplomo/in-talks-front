@@ -16,7 +16,8 @@ import Image from "next/image";
 import Interset from "../charts/Interset";
 import BrandAffinity from "../charts/BrandAffinity";
 import ToolTipsProvider from "../charts/ToolTipsProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {v1Api} from "@/services/axiosService";
 
 type DataType = {
   id: string;
@@ -35,49 +36,25 @@ type DataType = {
   networkId: string;
 };
 
-const data: DataType = {
-  id: "cmhjwf73e0013kqz0in94r25z",
-  femalePercentage: 52.17,
-  malePercentage: 34.78,
-  unknownPercentage: 13.04,
-  realPercentage: 84.78,
-  fakePercentage: 15.22,
-  countries:
-    '{"Morocco":60.87,"France":13.04,"Turkey":6.52,"Saudi Arabia":4.35,"Algeria":4.35,"Egypt":2.17,"undetermined":8.7}',
-  cities:
-    '{"Marrakech":15.22,"Tanger":8.7,"Casablanca":6.52,"Rabat":4.35,"Fes":4.35,"Istanbul":4.35,"undetermined":56.52}',
-  ageSplit:
-    '{"13-17":10.87,"18-24":45.65,"25-34":28.26,"35-44":6.52,"45-54":2.17,"55+":0,"undetermined":6.52}',
-  interest:
-    '{"Art & Design":45.65,"Home Decor":28.26,"Interior Design":10.87,"Culture & Entertainment":6.52,"Architecture":8.7}',
-  language:
-    '{"Arabic":60.87,"French":19.57,"English":8.7,"Turkish":4.35,"Spanish":2.17,"Portuguese":2.17,"undetermined":2.17}',
-  createdAt: "2025-11-04T01:37:03.914Z",
-  updatedAt: "2025-11-04T01:37:03.914Z",
-  networkId: "cmhjwf16z0002kqz0qttwcbp8",
-};
-
-// const postingFrequency = {
-//   postingFrequency: {
-//     avgPerDay: "0.11",
-//     avgPerWeek: "0.75",
-//     avgPerMonth: "3.00",
-//     monthlyPosts: [
-//       { date: "December 2024", count: 0 },
-//       { date: "January 2025", count: 0 },
-//       { date: "February 2025", count: 0 },
-//       { date: "March 2025", count: 0 },
-//       { date: "April 2025", count: 0 },
-//       { date: "May 2025", count: 0 },
-//       { date: "June 2025", count: 0 },
-//       { date: "July 2025", count: 9 },
-//       { date: "August 2025", count: 10 },
-//       { date: "September 2025", count: 14 },
-//       { date: "October 2025", count: 3 },
-//       { date: "November 2025", count: 0 },
-//     ],
-//   },
+// const data: DataType = {
+//   id: "",
+//   femalePercentage: 0,
+//   malePercentage: 0,
+//   unknownPercentage: 0,
+//   realPercentage: 0,
+//   fakePercentage: 0,
+//   countries: "",
+//   cities: "",
+//   ageSplit: "",
+//   interest: "",
+//   language: "",
+//   createdAt: "",
+//   updatedAt: "",
+//   networkId: "",
 // };
+
+
+
 
 const chartData2 = [
   { month: "< 500", desktop: 186 },
@@ -180,6 +157,19 @@ const networks = [
 ];
 
 const AudienceReport = () => {
+
+  const [audienceData, setAudienceData] = useState<DataType | null>(null);
+  const [networkData, setNetworkData] = useState<any | null>(null);
+
+  useEffect((): void => {
+    const fetchData = async (): Promise<void> => {
+      const response: any = await v1Api.get('/audience');
+      setNetworkData(response?.data?.networks);
+      setAudienceData(response?.data?.audience);
+    };
+    fetchData();
+  }, []);
+
   const [showInsight, setShowInsight] = useState(false);
 
   return (
@@ -194,26 +184,26 @@ const AudienceReport = () => {
         </h2>
       </div>
 
-      {/*dadawfdwada */}
+      
       <div className="grid grid-cols-1 w-full">
-        <AudienceSocialTable networks={networks} />
+        <AudienceSocialTable networks={networkData || []} />
       </div>
 
 
-      {data && (
+      {audienceData && (
         <div className="overflow-x-hidden">
           <div className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-5">
             <QualitySplit
               percentages={{
-                fakePeople: data.fakePercentage,
-                realPeople: data?.realPercentage,
+                fakePeople: audienceData.fakePercentage,
+                realPeople: audienceData?.realPercentage,
               }}
             />
             <ChartGenderSplit
               percentages={{
-                male: data.malePercentage,
-                female: data?.femalePercentage,
-                unknown: data?.unknownPercentage,
+                male: audienceData.malePercentage,
+                female: audienceData?.femalePercentage,
+                unknown: audienceData?.unknownPercentage,
               }}
             />
 
@@ -302,35 +292,35 @@ const AudienceReport = () => {
 
             <AgeGenderBreakdown />
 
-            {data.countries && (
+            {audienceData.countries && (
               <CountriesSplit
                 title="Abonnés par Pays"
-                data={JSON.parse(data.countries.toString())}
+                data={JSON.parse(audienceData.countries.toString())}
                 tooltip={`Localisation de l’audience par pays.`}
               />
             )}
 
-            {data.cities && (
+            {audienceData.cities && (
               <CountriesSplit
                 title="Abonnés par Ville"
-                data={JSON.parse(data.cities.toString())}
+                data={JSON.parse(audienceData.cities.toString())}
                 tooltip={`Localisation de l’audience par ville`}
               />
             )}
 
             <div className="col-span-1 md:col-span-2">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <BrandAffinity />
 
-                {data.interest && (
-                  <Interset
-                    title="Affinité d&apos;Intérêt de l&apos;Audience"
-                    data={JSON.parse(data.interest.toString())}
-                  />
-                )}
+                  {audienceData.interest && (
+                    <Interset
+                      title="Affinité d&apos;Intérêt de l&apos;Audience"
+                      data={JSON.parse(audienceData.interest.toString())}
+                    />
+                  )}
 
-                {data.language && JSON.stringify(data.language) !== "{}" && (
-                  <ChartLangage data={JSON.parse(data.language.toString())} />
+                {audienceData.language && JSON.stringify(audienceData.language) !== "{}" && (
+                  <ChartLangage data={JSON.parse(audienceData.language.toString())} />
                 )}
               </div>
             </div>

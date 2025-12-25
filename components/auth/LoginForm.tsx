@@ -9,11 +9,11 @@ import * as Yup from "yup";
 // import { signIn } from "@/auth";
 // import { signIn } from "next-auth/react"; // Import from next-auth/react instead
 import { useRouter } from "next/navigation";
-import api from "@/services/axiosService";
+import { v1Api } from "@/services/axiosService";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 
 export function LoginForm({
   className,
@@ -37,35 +37,37 @@ export function LoginForm({
     }),
     onSubmit: async (values, { setErrors }) => {
       try {
-        const response = await api.post("/v1/auth/login", values);
-        const data = response?.data || {};
-        const token = data.token || data.accessToken || data.access_token || data?.data?.token;
+        // Use NextAuth credentials signIn so next-auth session is created
+        const res = await signIn("credentials", {
+          redirect: false,
+          email: values.email,
+          password: values.password,
+        });
 
-        if (!token) {
+        if (!res || res.error) {
           setErrors({ email: "Adresse e-mail ou mot de passe invalide." });
           return;
         }
 
-        // Store token in localStorage
-        localStorage.setItem("token", token);
-    
+        // After signIn, fetch the session to get the token set by the credentials provider
+        const session = await getSession();
+        const token = session?.user?.token;
+
+        if (token) {
+          localStorage.setItem("token", token as string);
+        }
 
         router.push("/");
       } catch (err: any) {
         console.error(err);
-        const status = err?.response?.status;
-        if (status === 401 || status === 403) {
-          setErrors({ email: "Adresse e-mail ou mot de passe invalide." });
-        } else {
-          setErrors({ email: "Une erreur est survenue. Réessayez." });
-        }
+        setErrors({ email: "Une erreur est survenue. Réessayez." });
       }
     },
   });
 
   const handleGoogleSignIn = async () => {
     try {
-      await signIn("google" , { callbackUrl: "/" });
+      await signIn("google", { callbackUrl: "/" });
     } catch (err) {
       console.error("Google sign-in error:", err);
     }

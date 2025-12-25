@@ -102,7 +102,7 @@ const AudienceSocialTable = ({
             name: "Source",
             sortable: true,
             selector: (row) => row.network,
-            minWidth: "200px",
+            minWidth: "400px",
             grow: 2,
             cell: (row) => (
                 <div className="flex justify-center items-center p-3 gap-3">
@@ -132,7 +132,7 @@ const AudienceSocialTable = ({
                             }}
                         />
                     )}
-                    <div className="text-center">
+                    <div className="text-left">
                         <h6>{row.name}</h6>
                         <p className="text-sm">@{row.username}</p>
                     </div>

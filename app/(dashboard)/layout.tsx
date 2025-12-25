@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSideBar from "@/components/layouts/AppSideBar";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-// import { SearchDialog } from "@/components/layouts/SearchDialog";
+import { setAuthToken } from "@/services/axiosService";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -18,6 +19,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [activeTab, setActiveTab] = useState<'notifications' | 'profile'>('notifications');
   const notificationRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, status } = useSession();
+
+  // Set auth token for axios
+  useEffect(() => {
+    if (status === 'loading') return;
+    if (session?.user?.token) {
+      setAuthToken(session.user.token);
+    }
+  }, [status, session]);
 
   // Mock notifications data
   const notifications = [
@@ -111,6 +122,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         setNavlink("");
     }
   }, [pathname]);
+
+
 
   return (
     <SidebarProvider className=" relative">

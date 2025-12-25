@@ -18,13 +18,19 @@ import {
 } from "@/components/ui/chart";
 import ToolTipsProvider from "../charts/ToolTipsProvider";
 
-const ChartSetiment = () => {
+
+interface SectionCardsProps {
+  filters: any;
+  data: any;
+}
+
+const ChartSetiment = ({ filters, data }: SectionCardsProps) => {
   const [showInsight, setShowInsight] = useState(false);
 
   const mentionsBySentimentChartData = [
-    { sentiment: "positif", mentions: 275, fill: "#40bb3c" },
-    { sentiment: "neutre", mentions: 120, fill: "#ffbf26" },
-    { sentiment: "négatif", mentions: 80, fill: "#ff0c00" },
+    { sentiment: "positif", mentions: data?.positiveCount ?? 10, fill: "#40bb3c" },
+    { sentiment: "neutre", mentions: data?.neutralCount ?? 10, fill: "#ffbf26" },
+    { sentiment: "négatif", mentions: data?.negativeCount ?? 10, fill: "#ff0c00" },
   ];
 
   const mentionsBySentimentChartConfig = {

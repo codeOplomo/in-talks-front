@@ -38,7 +38,7 @@ const followersData = [
     value: 60000,
     label: 60000,
     color: "#1DA1F2",
-    icon: "/media/twitter.png?v=12",
+    icon: "/media/twitter.png",
   },
   {
     name: "LinkedIn",

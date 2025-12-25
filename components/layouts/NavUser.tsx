@@ -30,14 +30,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useEffect, useState } from "react";
-import api from "@/services/axiosService";
+import { v1Api } from '@/services/axiosService';
 import { useAuth } from "@/components/AuthGuard";
+import { fetchImages } from "@/lib/fetchImages";
+import { useSession } from "next-auth/react";
 
 export function NavUser() {
   const [userData, setUserData] = useState<any>(null);
   const { isMobile, lockOpen, unlockOpen, state } = useSidebar();
   const router = useRouter();
   const { isAuthenticated } = useAuth();
+  const { data: session } = useSession();
 
   const handleOpenChange = (open: boolean) => {
     if (open) {
@@ -48,27 +51,31 @@ export function NavUser() {
   }
 
   useEffect(() => {
-  const getUserData = async () => {
-    // Check if token exists before making the request
-    const token = localStorage.getItem("token");
-    
-    if (!token) {
-      console.debug("No token available, skipping profile fetch");
+    // If next-auth session exists we rely on it; otherwise try to fetch profile using stored token
+    if (session && session.user) {
       return;
     }
 
-    try {
-      const response = await api.get("/v1/auth/profile");
-      console.log("User data:", response.data.user);
-      setUserData(response.data.user);
-    } catch (error) {
-      console.debug("Failed to fetch user profile", error);
-      setUserData(null); // Clear any stale user data
-    }
-  };
-  
-  getUserData();
-}, []);
+    if (typeof window === "undefined") return;
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const getProfile = async () => {
+      try {
+        const res = await v1Api.get("/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserData(res.data.user);
+      } catch (err) {
+        console.debug("Failed to fetch profile:", err);
+        setUserData(null);
+      }
+    };
+
+    getProfile();
+  }, [session]);
 
   const handleLogout = async () => {
     // Front-only logout: clear client token and session
@@ -100,11 +107,11 @@ export function NavUser() {
                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={"/massinart.jpg"} alt={"massinart "} />
+                  <AvatarImage src={fetchImages(session?.user?.image ?? "")} alt={session?.user?.name ?? ""} />
                   <AvatarFallback className="rounded-lg">M</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{userData?.name}</span>
+                  <span className="truncate font-medium">{session?.user?.name}</span>
                   <span className="text-muted-foreground truncate text-xs">
                     {userData?.email}
                   </span>
@@ -125,9 +132,9 @@ export function NavUser() {
                     <AvatarFallback className="rounded-lg">G</AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">{userData?.name}</span>
+                    <span className="truncate font-medium">{session?.user?.name ?? ""}</span>
                     <span className="text-muted-foreground truncate text-xs">
-                      {userData?.email}
+                      {session?.user?.email ?? ""}
                     </span>
                   </div>
                 </div>

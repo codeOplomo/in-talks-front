@@ -7,10 +7,12 @@ import {
   SquareArrowOutUpRight,
 } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import moment from "moment";
 import formatNumber from "@/lib/numbers";
+import { fetchImages } from "@/lib/fetchImages";
+import { useSession } from "next-auth/react";
 
 interface InfluencerType {
   verified: boolean;
@@ -43,6 +45,7 @@ const PostCard = ({
 
   const network = post.network || influencer?.network || "instagram";
   const networkIcon = getNetworkIcon(network);
+  const { data: session } = useSession();
 
   return (
     <div className="bg-white border dark:border-gray-800 border-gray-200 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 rounded-md px-2 hover:shadow-lg flex flex-col gap-5 justify-between">
@@ -53,12 +56,12 @@ const PostCard = ({
             <div className="flex items-center gap-2.5">
               <div
                 className="w-12 h-12 bg-gray-800 rounded-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${influencer?.profilePic})` }}
+                style={{ backgroundImage: `url(${fetchImages(session?.user.image ?? "")})` }}
               ></div>
               <div className="flex flex-col flex-1">
                 <div className="flex items-center gap-1">
                   <p className="font-semibold text-sm flex-1 truncate">
-                    {influencer?.name || influencer?.username}
+                    {session?.user.name || ""}
                   </p>
 
                   {influencer?.verified && (
@@ -84,18 +87,27 @@ const PostCard = ({
               height={20}
               className="rounded"
             />
-            <Link
-              href={post.url}
-              target="_blank"
-              className="border dark:border-gray-800 border-gray-200 h-8 w-8 flex justify-center items-center dark:text-gray-700 text-gray-600 rounded-md"
-            >
-              <SquareArrowOutUpRight className="h-5 w-5" />
-            </Link>
+            {post?.displayURL ? (
+              <Link
+                href={post.displayURL}
+                target="_blank"
+                className="border dark:border-gray-800 border-gray-200 h-8 w-8 flex justify-center items-center dark:text-gray-700 text-gray-600 rounded-md"
+              >
+                <SquareArrowOutUpRight className="h-5 w-5" />
+              </Link>
+            ) : (
+              <div
+                className="border dark:border-gray-800 border-gray-200 h-8 w-8 flex justify-center items-center text-gray-400 rounded-md opacity-60 cursor-not-allowed"
+                aria-hidden
+              >
+                <SquareArrowOutUpRight className="h-5 w-5" />
+              </div>
+            )}
           </div>
         </div>
         <div
           className="h-[350px] w-full rounded-md bg-cover bg-no-repeat bg-center bg-gray-700"
-          style={{ backgroundImage: `url(${post.picture})` }}
+          style={{ backgroundImage: `url(${fetchImages(post.mediaUrl)})` }}
         ></div>
         <p className="text-xs text-end flex justify-end items-center gap-2.5">
           <Calendar className="h-4 w-4" />

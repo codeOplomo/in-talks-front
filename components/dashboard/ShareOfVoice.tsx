@@ -36,7 +36,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-function ShareOfVoice() {
+interface SectionCardsProps {
+  filters: any;
+  data: any;
+}
+
+function ShareOfVoice({ filters, data }: SectionCardsProps) {
   const [showInsight, setShowInsight] = useState(false);
 
   const total = chartData.reduce((sum, item) => sum + item.desktop, 0);

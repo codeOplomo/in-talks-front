@@ -1,29 +1,32 @@
 import axios, { AxiosError } from 'axios';
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL + "/api" || '';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL + "/api/v1" || '';
 
-const api = axios.create({
+const v1Api = axios.create({
     baseURL,
-    withCredentials: true,
 });
 
 const isBrowser = typeof window !== 'undefined';
 
 const getToken = () => (isBrowser ? localStorage.getItem('token') : null);
 
-api.interceptors.request.use(
-    (config) => {
-        if (!isBrowser) return config;
-        const token = getToken();
-        if (token && config.headers) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => Promise.reject(error)
-);
+export function setAuthToken(token: string) {
+    if (token) {
+        v1Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        delete v1Api.defaults.headers.common["Authorization"];
+    }
+}
 
-api.interceptors.response.use(
+// Set initial token from localStorage if available
+if (isBrowser) {
+    const token = getToken();
+    if (token) {
+        setAuthToken(token);
+    }
+}
+
+v1Api.interceptors.response.use(
     (response) => response,
     (error: AxiosError) => {
         const status = (error.response && error.response.status) || null;
@@ -38,5 +41,4 @@ api.interceptors.response.use(
     }
 );
 
-
-export default api;
+export { v1Api };

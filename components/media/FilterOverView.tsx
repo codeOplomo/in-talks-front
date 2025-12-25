@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Select,
   SelectContent,
@@ -14,80 +14,60 @@ import { Button } from "../ui/button";
 import { Filter, RotateCcw } from "lucide-react";
 
 const media = [
-  {
-    label: "Instagram",
-    image: "/media/instagram.png",
-  },
-  {
-    label: "Youtube",
-    image: "/media/youtube.png",
-  },
-  {
-    label: "X",
-    image: "/media/twitter.png",
-  },
-  {
-    label: "Tiktok",
-    image: "/media/tiktok.png",
-  },
-  {
-    label: "Facebook",
-    image: "/media/facebook.png",
-  },
-  {
-    label: "Linkedin",
-    image: "/media/linkedin.png",
-  },
-];
-const languages = [
-  {
-    label: "Tous",
-    image: "https://flagcdn.com/48x36/un.png", // UN flag for "Tous"
-  },
-  {
-    label: "Arabe",
-    image: "https://flagcdn.com/48x36/sa.png", // Saudi Arabia flag
-  },
-  {
-    label: "Français",
-    image: "https://flagcdn.com/48x36/fr.png", // France flag
-  },
-  {
-    label: "Anglais",
-    image: "https://flagcdn.com/48x36/gb.png", // United Kingdom flag
-  },
+  { label: "Instagram", image: "/media/instagram.png" },
+  { label: "Youtube", image: "/media/youtube.png" },
+  { label: "X", image: "/media/twitter.png" },
+  { label: "Tiktok", image: "/media/tiktok.png" },
+  { label: "Facebook", image: "/media/facebook.png" },
+  { label: "Linkedin", image: "/media/linkedin.png" },
 ];
 
-const FilterOverView = () => {
-  const [dateRange, setDateRange] = useState({
-    from: undefined as Date | undefined,
-    to: undefined as Date | undefined,
-  });
-  const [source, setSource] = useState<string>("");
-  const [sentiment, setSentiment] = useState<string>("");
-  const [author, setAuthor] = useState<string>("");
-  const [format, setFormat] = useState<string>("");
-  const [language, setLanguage] = useState<string>("");
-  const [city, setCity] = useState<string>("");
+const languages = [
+  { label: "Tous", image: "https://flagcdn.com/48x36/un.png" },
+  { label: "Arabe", image: "https://flagcdn.com/48x36/sa.png" },
+  { label: "Français", image: "https://flagcdn.com/48x36/fr.png" },
+  { label: "Anglais", image: "https://flagcdn.com/48x36/gb.png" },
+];
+
+interface FilterOverViewProps {
+  filters: {
+    dateRange: { from: Date | undefined; to: Date | undefined };
+    source: string;
+    sentiment: string;
+    author: string;
+    format: string;
+    language: string;
+    city: string;
+  };
+  onFiltersChange: (filters: any) => void;
+}
+
+const FilterOverView: React.FC<FilterOverViewProps> = ({ filters, onFiltersChange }) => {
+  const updateFilter = (key: string, value: any) => {
+    onFiltersChange({ ...filters, [key]: value });
+  };
 
   const handleReset = () => {
-    setDateRange({ from: undefined, to: undefined });
-    setSource("");
-    setSentiment("");
-    setAuthor("");
-    setFormat("");
-    setLanguage("");
-    setCity("");
+    onFiltersChange({
+      dateRange: { from: undefined, to: undefined },
+      source: "",
+      sentiment: "",
+      author: "",
+      format: "",
+      language: "",
+      city: "",
+    });
   };
 
   return (
     <div>
-      <div className="grid grid-cols-4 gap-2 ">
+      <div className="grid grid-cols-4 gap-2">
         <CompactDatePicker
-          dateRange={dateRange}
-          onDateRangeChange={setDateRange}
+          dateRange={filters.dateRange}
+          onDateRangeChange={(range) => updateFilter("dateRange", range)}
         />
-        <Select value={source} onValueChange={setSource}>
+        
+        <Select value={filters.source} onValueChange={(val) => updateFilter("source", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par source" />
           </SelectTrigger>
@@ -116,123 +96,88 @@ const FilterOverView = () => {
                       }}
                     />
                   ) : item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.label}
-                      width={20}
-                      height={20}
-                    />
-                  ) : (
-                    <></>
-                  )}
+                    <Image src={item.image} alt={item.label} width={20} height={20} />
+                  ) : null}
                   {item.label}
                 </SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select value={sentiment} onValueChange={setSentiment}>
+
+        <Select value={filters.sentiment} onValueChange={(val) => updateFilter("sentiment", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par sentiment" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Par sentiment </SelectLabel>
+              <SelectLabel>Par sentiment</SelectLabel>
               {["Positif", "Neutre", "Négatif"].map((item) => (
-                <SelectItem key={item} value={item}>
-                  {item}
-                </SelectItem>
+                <SelectItem key={item} value={item}>{item}</SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select value={author} onValueChange={setAuthor}>
+
+        <Select value={filters.author} onValueChange={(val) => updateFilter("author", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par auteur" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Par auteur </SelectLabel>
+              <SelectLabel>Par auteur</SelectLabel>
               {["Tous", "Grand public", "Influenceurs", "Médias", "Concurrents"].map((item) => (
-                <SelectItem key={item} value={item}>
-                  {item}
-                </SelectItem>
+                <SelectItem key={item} value={item}>{item}</SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select value={format} onValueChange={setFormat}>
+
+        <Select value={filters.format} onValueChange={(val) => updateFilter("format", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par format" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Par format </SelectLabel>
+              <SelectLabel>Par format</SelectLabel>
               {["Tous", "Vidéo", "Publication", "Commentaire", "Article"].map((item) => (
-                <SelectItem key={item} value={item}>
-                  {item}
-                </SelectItem>
+                <SelectItem key={item} value={item}>{item}</SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select value={language} onValueChange={setLanguage}>
+
+        <Select value={filters.language} onValueChange={(val) => updateFilter("language", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par langue" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Par langue </SelectLabel>
+              <SelectLabel>Par langue</SelectLabel>
               {languages.map((item) => (
                 <SelectItem key={item.label} value={item.label}>
-                  <Image
-                    src={item.image}
-                    alt={item.label}
-                    width={20}
-                    height={20}
-                  />
+                  <Image src={item.image} alt={item.label} width={20} height={20} />
                   {item.label}
                 </SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select value={city} onValueChange={setCity}>
+
+        <Select value={filters.city} onValueChange={(val) => updateFilter("city", val)}>
           <SelectTrigger className="w-full bg-white">
             <SelectValue placeholder="Par ville" />
           </SelectTrigger>
           <SelectContent className="h-[400px]">
             <SelectGroup>
-              <SelectLabel>Par ville </SelectLabel>
-              {[
-                "Casablanca",
-                "Rabat",
-                "Fes",
-                "Marrakech",
-                "Tangier",
-                "Agadir",
-                "Meknes",
-                "Oujda",
-                "Kenitra",
-                "Tetouan",
-                "Safi",
-                "Mohammedia",
-                "Khouribga",
-                "El Jadida",
-                "Beni Mellal",
-                "Nador",
-                "Taza",
-                "Settat",
-                "Larache",
-                "Ksar El Kebir",
-              ].map((item) => (
-                <SelectItem key={item} value={item}>
-                  {item}
-                </SelectItem>
+              <SelectLabel>Par ville</SelectLabel>
+              {["Casablanca", "Rabat", "Fes", "Marrakech", "Tangier", "Agadir", "Meknes", "Oujda", "Kenitra", "Tetouan", "Safi", "Mohammedia", "Khouribga", "El Jadida", "Beni Mellal", "Nador", "Taza", "Settat", "Larache", "Ksar El Kebir"].map((item) => (
+                <SelectItem key={item} value={item}>{item}</SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
+
         <div className="flex-1 flex items-center gap-2.5">
           <Button className="flex-1 bg-main">
             <Filter />
@@ -244,7 +189,6 @@ const FilterOverView = () => {
           >
             <RotateCcw />
           </Button>
-
         </div>
       </div>
     </div>
