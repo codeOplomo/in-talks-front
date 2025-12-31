@@ -1,3 +1,9 @@
 {
-  "account": {}
+  "account": {
+    "tabs": {
+      "account": "Account",
+      "preference-settings": "Preferences & Settings",
+      "subscription-billing": "Subscription & Billing"
+    }
+  }
 }
