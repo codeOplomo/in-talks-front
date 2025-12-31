@@ -212,11 +212,34 @@ const mentions = [
   },
 ];
 
-export function InsightCards() {
+interface MentionFeed {
+  id: string;
+  title: string;
+  link: string;
+  postedDate: string;
+  thumbnail: string;
+  snippet?: string;
+  source: string;
+  type: string;
+}
+
+interface SectionCardsProps {
+  filters: any;
+  data: any;
+}
+
+export function InsightCards({ filters, data }: SectionCardsProps) {
+  const [showInsight1, setShowInsight1] = useState(false);
   const [showInsight2, setShowInsight2] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(mentions.length / itemsPerPage);
+
+  // Use only `data.latestMention` (passed from parent). Fallback to local sample `mentions`.
+  const mentionsList: MentionFeed[] = Array.isArray(data?.latestMention)
+    ? data!.latestMention
+    : mentions;
+
+  const totalPages = Math.max(1, Math.ceil(mentionsList.length / itemsPerPage));
 
   return (
     <div className="w-full h-full">
@@ -234,8 +257,11 @@ export function InsightCards() {
             {(() => {
               const startIndex = (currentPage - 1) * itemsPerPage;
               const endIndex = startIndex + itemsPerPage;
-              const currentItems = mentions.slice(startIndex, endIndex);
-              return currentItems.map((feed) => (
+
+
+              const currentItems: MentionFeed[] = (mentionsList || []).slice(startIndex, endIndex);
+
+              return (currentItems || []).map((feed: any) => (
                 <div key={feed.id} className="flex items-center gap-2">
                   <div
                     className="h-16 w-16 rounded-md bg-gray-700 bg-cover bg-center"

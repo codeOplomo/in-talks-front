@@ -6,7 +6,11 @@ import ToolTipsProvider from "../charts/ToolTipsProvider";
 
 type KeywordData = { keyword: string; count: number };
 
-const KeywordsNuage = ({ keywords }: { keywords: KeywordData[] }) => {
+interface SectionCardsProps {
+  filters: any;
+}
+
+const KeywordsNuage = ({ keywords, filters }: { keywords: KeywordData[] } & SectionCardsProps) => {
   const [showInsight, setShowInsight] = useState(false);
 
   // Sort keywords by count descending
