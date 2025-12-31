@@ -6,6 +6,7 @@ import FilterFeed from "@/components/fil-actualites/FilterFeed";
 import Mentions from "@/components/fil-actualites/Mentions";
 import MentionsFeed from "@/components/media/MentionsFeed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {v1Api} from "@/services/axiosService";
 
 const tabs = [
   {
@@ -33,6 +34,22 @@ const tabs = [
 ];
 
 export default function MentionsPanel() {
+
+  const [data , setData] = React.useState(null);
+
+  React.useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await v1Api.get("/mentions");
+        setData(response.data);
+        console.log("Mentions data:", response.data);
+      } catch (error) {
+        console.error("Error fetching mentions data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="">

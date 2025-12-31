@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChartConfig,
   ChartContainer,
@@ -110,6 +110,7 @@ const chartData = [
   { date: "2024-06-30", positive: 266, negative: 160, neutral: 420 },
 ];
 
+
 const chartConfig = {
   visitors: {
     label: "Mentions",
@@ -128,9 +129,16 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const ChartAreaInteractive = () => {
+interface SectionCardsProps {
+  filters: any;
+  data: any;
+  loading?: boolean;
+}
+
+const ChartAreaInteractive = ({ filters, data, loading }: SectionCardsProps) => {
   const isMobile = useIsMobile();
   const [showInsight, setShowInsight] = useState(false);
+
 
   return (
     <Card className="py-0   border dark:border-gray-800 border-gray-200 col-span-2">
@@ -151,7 +159,7 @@ const ChartAreaInteractive = () => {
               Total Mentions
             </span>
             <span className="text-lg leading-none font-bold sm:text-3xl dark:text-gray-200 text-gray-600">
-              11,780
+              {data?.total}
             </span>
           </button>
           <button className="data-[active=true]:bg-muted/50 relative z-5 flex flex-1 flex-col text-center justify-center gap-1 border-t dark:border-gray-800 border-gray-200 px-6 py-4 even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6">
@@ -159,7 +167,7 @@ const ChartAreaInteractive = () => {
               Daily Average
             </span>
             <span className="text-lg leading-none font-bold sm:text-3xl dark:text-gray-200 text-gray-600">
-              129
+              {data?.dailyAverage}
             </span>
           </button>
         </div>
